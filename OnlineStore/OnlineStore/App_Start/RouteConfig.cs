@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace OnlineStore
+namespace FirstREST
 {
     public class RouteConfig
     {
@@ -18,6 +18,18 @@ namespace OnlineStore
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            /*routes.MapRoute(
+                "Home",
+                "Home/{op1}/{op2}",
+                new
+                {
+                    controller = "Home",
+                    action = "Index",
+                    op1 = UrlParameter.Optional,
+                    op2 = UrlParameter.Optional
+                }
+            );*/
         }
     }
 }

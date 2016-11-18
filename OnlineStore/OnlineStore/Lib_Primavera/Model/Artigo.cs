@@ -19,5 +19,16 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
+        public double Preco
+        {
+            get;
+            set;
+        }
+
+        public string Familia
+        {
+            get;
+            set;
+        }
     }
 }

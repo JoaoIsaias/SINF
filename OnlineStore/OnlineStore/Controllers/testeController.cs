@@ -14,10 +14,10 @@ namespace FirstREST.Controllers
         //
         // GET: /teste/
 
-        public ActionResult Index()
+       /* public ActionResult Index()
         {
             return View();
-        }
+        }*/
 
     }
 }

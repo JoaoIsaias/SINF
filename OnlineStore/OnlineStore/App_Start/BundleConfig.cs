@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace OnlineStore
+namespace FirstREST
 {
     public class BundleConfig
     {

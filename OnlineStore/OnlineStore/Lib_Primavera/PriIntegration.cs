@@ -7,9 +7,6 @@ using Interop.StdPlatBS900;
 using Interop.StdBE900;
 using Interop.GcpBE900;
 using ADODB;
-using Interop.IGcpBS900;
-//using Interop.StdBESql800;
-//using Interop.StdBSSql800;
 
 namespace FirstREST.Lib_Primavera
 {
@@ -258,7 +255,7 @@ namespace FirstREST.Lib_Primavera
                     objArtigo = PriEngine.Engine.Comercial.Artigos.Edita(codArtigo);
                     myArt.CodArtigo = objArtigo.get_Artigo();
                     myArt.DescArtigo = objArtigo.get_Descricao();
-
+                    myArt.Preco = objArtigo.get_PCMedio();
                     return myArt;
                 }
                 
@@ -301,6 +298,32 @@ namespace FirstREST.Lib_Primavera
                 return null;
 
             }
+
+        }
+
+        public static List<Model.Artigo> ArtigosPorFamilia (string familia)
+        {
+             StdBELista objList;
+             List<Model.Artigo> listArts = new List<Model.Artigo>();
+             
+             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+             {
+                 objList = PriEngine.Engine.Consulta("SELECT Descricao, PCMedio, Familia FROM ARTIGO WHERE Familia = '" + familia + "'");
+                 while(!objList.NoFim())
+                 {
+                     Model.Artigo myArt = new Model.Artigo();
+                     myArt.DescArtigo = objList.Valor("Descricao");
+                     myArt.Preco = objList.Valor("PCMedio");
+                     myArt.Familia = objList.Valor("Familia");
+                     listArts.Add(myArt);
+                     objList.Seguinte();
+                 }
+                 return listArts;
+             }
+             else
+             {
+                 return null;
+             }
 
         }
 
@@ -391,8 +414,8 @@ namespace FirstREST.Lib_Primavera
                     myGR.set_TipoEntidade("F");
                     // Linhas do documento para a lista de linhas
                     lstlindv = dc.LinhasDoc;
-                    //PriEngine.Engine.Comercial.Compras.PreencheDadosRelacionados(ref myGR, ref rl);
-                    PriEngine.Engine.Comercial.Compras.PreencheDadosRelacionados(ref myGR);
+                    //PriEngine.Engine.Comercial.Compras.PreencheDadosRelacionados(myGR,rl);
+                    PriEngine.Engine.Comercial.Compras.PreencheDadosRelacionados(myGR);
                     foreach (Model.LinhaDocCompra lin in lstlindv)
                     {
                         PriEngine.Engine.Comercial.Compras.AdicionaLinha(myGR, lin.CodArtigo, lin.Quantidade, lin.Armazem, "", lin.PrecoUnitario, lin.Desconto);

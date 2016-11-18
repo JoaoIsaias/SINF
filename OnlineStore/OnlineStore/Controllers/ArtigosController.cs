@@ -37,6 +37,20 @@ namespace FirstREST.Controllers
             }
         }
 
+        public IEnumerable<Lib_Primavera.Model.Artigo> GetByFamilia (string familia)
+        {
+            IEnumerable<Lib_Primavera.Model.Artigo> familiaList = Lib_Primavera.PriIntegration.ArtigosPorFamilia(familia);
+            if (familiaList == null)
+            {
+                throw new HttpResponseException(
+                  Request.CreateResponse(HttpStatusCode.NotFound));
+            }
+            else
+            {
+                return familiaList;
+            }
+        }
+
     }
 }
 
