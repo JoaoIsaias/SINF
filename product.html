@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Homepage</title>
+	<title>Product Name</title>
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,10 +30,20 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							Options <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Wish List</a></li>
+							<li><a href="shopping_cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
+						</ul>
+					</li>
 					<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
 					<li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Register</a></li>
 				</ul>
-				<form class="navbar-form navbar-right" role="search">
+				<form action="search_results.html" class="navbar-form navbar-right" role="search">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search">
 						<span class="input-group-btn">
@@ -235,27 +245,6 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#firstCol").height($("#secondCol").height());
-			var fc = $("#firstCol").height();
-			var mc = $("#myCarousel").height();
-			$("#myCarousel").css("padding-top", (fc / 2) - (mc / 2));
-			$("#myCarousel").css("padding-bottom", (fc / 2) - (mc / 2));
-
-			$(window).resize(function() {
-				if ($(window).width() <= 768) {
-					$("#firstCol").height(reset);
-					$("#myCarousel").css("padding", 0);
-				} else {
-					$("#firstCol").height($("#secondCol").height());
-					var fc = $("#firstCol").height();
-					var mc = $("#myCarousel").height();
-					$("#myCarousel").css("padding-top", (fc / 2) - (mc / 2));
-					$("#myCarousel").css("padding-bottom", (fc / 2) - (mc / 2));
-				}
-			});
-		});
-	</script>
+	<script src="js/product.js"></script>
 </body>
 </html>
