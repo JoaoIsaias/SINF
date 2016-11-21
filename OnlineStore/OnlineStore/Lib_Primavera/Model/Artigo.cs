@@ -25,7 +25,13 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string Familia
+        public string Familia //categoria
+        {
+            get;
+            set;
+        }
+
+        public int Quantidade
         {
             get;
             set;

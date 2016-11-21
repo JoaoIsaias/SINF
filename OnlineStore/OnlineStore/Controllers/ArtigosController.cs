@@ -37,6 +37,7 @@ namespace FirstREST.Controllers
             }
         }
 
+        //GET api/Artigos?familia={familia}
         public IEnumerable<Lib_Primavera.Model.Artigo> GetByFamilia (string familia)
         {
             IEnumerable<Lib_Primavera.Model.Artigo> familiaList = Lib_Primavera.PriIntegration.ArtigosPorFamilia(familia);
