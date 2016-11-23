@@ -58,8 +58,8 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<div id="firstCol" class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 20px">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin: 0; background-color: black">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -81,22 +81,12 @@
 						<span class="sr-only">Next</span>
 					</a>
 				</div>
-			</div>
-			<div id="secondCol" class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 20px">
-				<div style="margin-bottom: 10px">
-					<h1 style="margin-top: 0; margin-bottom: 0">Product name</h1>
-					<span>by <a href="#">Brandname</a></span>
-					<a href="#" class="pull-right">69 reviews</a>
-					<span class="pull-right" style="margin-right: 10px">
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-						<span class="glyphicon glyphicon-star"></span>
-					</span>
-				</div>
-				<div id="product-details">
-					<h4>Price: $24.99</h4>
+				<div class="well">
+					<h3 style="margin-top: 0">
+						Product Name <small>by <a href="#">Brandname</a></small>
+						<span class="pull-right">$24.99</span>
+					</h3>
+					<p>Product description.</p>
 					<ul style="padding-left: 20px">
 						<li>Detail #1</li>
 						<li>Detail #2</li>
@@ -104,57 +94,20 @@
 						<li>Detail #4</li>
 						<li>Detail #5</li>
 					</ul>
-					<div class="panel panel-default">
-						<ul class="list-group">
-							<li class="list-group-item">
-								<span>Storage #1</span>
-								<input type="number" class="pull-right" min="1" max="14">
-								<span class="pull-right" style="margin-right: 10px">
-									Available <span class="badge">14</span>
-								</span>
-							</li>
-							<li class="list-group-item">
-								<span>Storage #2</span>
-								<input type="number" class="pull-right" min="1" max="14">
-								<span class="pull-right" style="margin-right: 10px">
-									Available <span class="badge">14</span>
-								</span>
-							</li>
-							<li class="list-group-item">
-								<span>Storage #3</span>
-								<input type="number" class="pull-right" min="1" max="14">
-								<span class="pull-right" style="margin-right: 10px">
-									Available <span class="badge">14</span>
-								</span>
-							</li>
-							<li class="list-group-item">
-								<span>Storage #4</span>
-								<input type="number" class="pull-right" min="1" max="14">
-								<span class="pull-right" style="margin-right: 10px">
-									Available <span class="badge">14</span>
-								</span>
-							</li>
-							<li class="list-group-item">
-								<span>Storage #5</span>
-								<input type="number" class="pull-right" min="1" max="14">
-								<span class="pull-right" style="margin-right: 10px">
-									Available <span class="badge">14</span>
-								</span>
-							</li>
-						</ul>
-					</div>
+					<a href="#reviews" class="pull-right">69 reviews</a>
+					<span style="color: red">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span>5.0 stars</span>
+					</span>
 				</div>
-				<button type="submit" class="btn btn-primary">
-					<span class="glyphicon glyphicon-list-alt"></span> Add to Wishlist
-				</button>
-				<button type="submit" class="btn btn-primary pull-right">
-					<span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart
-				</button>
 			</div>
 		</div>
 		<div class="row">
-			<div style="border-top: 1px solid black; margin: 0 0 20px 0;"></div>
-			<h3 style="margin-left: 20px">Related Products</h3>
+			<h4 style="margin: 0 0 10px 15px">Related Products</h4>
 			<div class="col-lg-3 col-md-3 col-sm-6">
 				<div class="thumbnail">
 					<img src="images/test.jpg" alt="Test">
@@ -237,6 +190,126 @@
 							<span class="glyphicon glyphicon-star"></span>
 						</span>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div id="reviews" class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<h4 style="margin-top: 0">Reviews</h4>
+				<div class="well">
+					<span style="display: block">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span>5.0 stars</span>
+						<span class="pull-right">10 days ago</span>
+					</span>
+					<span style="display: block; margin-bottom: 10px">
+						<b>By Anonymous on Month Day, Year</b>
+					</span>
+					<span style="display: block">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</span>
+				</div>
+				<div class="well">
+					<span style="display: block">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span>5.0 stars</span>
+						<span class="pull-right">10 days ago</span>
+					</span>
+					<span style="display: block; margin-bottom: 10px">
+						<b>By Anonymous on Month Day, Year</b>
+					</span>
+					<span style="display: block">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</span>
+				</div>
+				<div class="well">
+					<span style="display: block">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span>5.0 stars</span>
+						<span class="pull-right">10 days ago</span>
+					</span>
+					<span style="display: block; margin-bottom: 10px">
+						<b>By Anonymous on Month Day, Year</b>
+					</span>
+					<span style="display: block">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</span>
+				</div>
+				<div class="well">
+					<span style="display: block">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span>5.0 stars</span>
+						<span class="pull-right">10 days ago</span>
+					</span>
+					<span style="display: block; margin-bottom: 10px">
+						<b>By Anonymous on Month Day, Year</b>
+					</span>
+					<span style="display: block">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</span>
+				</div>
+				<div class="well">
+					<span style="display: block">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span>5.0 stars</span>
+						<span class="pull-right">10 days ago</span>
+					</span>
+					<span style="display: block; margin-bottom: 10px">
+						<b>By Anonymous on Month Day, Year</b>
+					</span>
+					<span style="display: block">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</span>
+				</div>
+				<div class="text-center" style="margin-bottom: 20px">
+					<button class="btn btn-primary">
+						Load More Reviews <span class="glyphicon glyphicon-arrow-down"></span>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -245,6 +318,5 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/product.js"></script>
 </body>
 </html>
