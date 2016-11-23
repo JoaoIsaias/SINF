@@ -56,6 +56,16 @@ namespace FirstREST.Controllers
         {
             return Lib_Primavera.PriIntegration.ListaArtigosDaMarca(param);
         }
+
+        // GET /artigos/getstock/{id do artigo}
+        public IEnumerable<Lib_Primavera.Model.Armazem> GetStock(string param)
+        {
+            return Lib_Primavera.PriIntegration.ListaStock(param);
+        }
+
+        // Get do rating dado pelos clientes ao artigo
+        // Select Avg(CDU_Classificacao) As ClassificacaoMedia From ArtigoCliente Where Artigo = 'A0005';
+        // Preciso de inserir um valor na tabela ArtigoCliente para testar se o valor returnado é diferente de null
     }
 }
 
