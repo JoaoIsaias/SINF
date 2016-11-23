@@ -31,7 +31,13 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public int Quantidade
+        public string Marca
+        {
+            get;
+            set;
+        }
+
+        public string Imagem
         {
             get;
             set;
