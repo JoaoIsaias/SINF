@@ -448,6 +448,41 @@ namespace FirstREST.Lib_Primavera
 
         }
 
+        public static IEnumerable<Model.Armazem> ListaStock(string codArtigo)
+        {
+
+            StdBELista objList;
+
+            Model.Armazem armazem = new Model.Armazem();
+            List<Model.Armazem> listWarehouses = new List<Model.Armazem>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("Select Armazens.Descricao, Sum(ArtigoArmazem.StkActual) As TotalStock From Armazens Inner Join ArtigoArmazem ON Armazens.Armazem = ArtigoArmazem.Armazem Where ArtigoArmazem.Artigo = '" + codArtigo + "' Group By Armazens.Descricao");
+
+                while (!objList.NoFim())
+                {
+                    armazem = new Model.Armazem();
+
+                    armazem.Descricao = objList.Valor("descricao");
+                    armazem.Stock = objList.Valor("totalstock");
+
+                    listWarehouses.Add(armazem);
+                    objList.Seguinte();
+                }
+
+                return listWarehouses;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
         #endregion Artigo
 
    
