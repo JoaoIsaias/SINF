@@ -13,45 +13,49 @@ namespace FirstREST.Controllers
 {
     public class ArtigosController : ApiController
     {
-        //
-        // GET: /Artigos/
-
-        public IEnumerable<Lib_Primavera.Model.Artigo> Get()
+        // GET /artigos/getalllist
+        public IEnumerable<Lib_Primavera.Model.Artigo> GetAllList()
         {
             return Lib_Primavera.PriIntegration.ListaArtigos();
         }
 
-
-        // GET api/artigo/5    
-        public Artigo Get(string id)
+        // GET /artigos/getbyid/{id do artigo}
+        public HttpResponseMessage GetByID(string param)
         {
-            Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
+            Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(param);
             if (artigo == null)
             {
-                throw new HttpResponseException(
-                  Request.CreateResponse(HttpStatusCode.NotFound));
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
             else
             {
-                return artigo;
+                return Request.CreateResponse(HttpStatusCode.OK, artigo);
             }
         }
 
-        //GET api/Artigos?familia={familia}
-        public IEnumerable<Lib_Primavera.Model.Artigo> GetByFamilia (string familia)
+        // GET /artigos/getallcategories
+        public IEnumerable<String> GetAllCategories()
         {
-            IEnumerable<Lib_Primavera.Model.Artigo> familiaList = Lib_Primavera.PriIntegration.ArtigosPorFamilia(familia);
-            if (familiaList == null)
-            {
-                throw new HttpResponseException(
-                  Request.CreateResponse(HttpStatusCode.NotFound));
-            }
-            else
-            {
-                return familiaList;
-            }
+            return Lib_Primavera.PriIntegration.ListaCategorias();
         }
 
+        // GET /artigos/getbycategory/{id da categoria}
+        public IEnumerable<Lib_Primavera.Model.Artigo> GetByCategory(string param)
+        {
+            return Lib_Primavera.PriIntegration.ListaArtigosDaCategoria(param);
+        }
+
+        // GET /artigos/getallbrands
+        public IEnumerable<String> GetAllBrands()
+        {
+            return Lib_Primavera.PriIntegration.ListaMarcas();
+        }
+
+        // GET /artigos/getbybrand/{id da marca}
+        public IEnumerable<Lib_Primavera.Model.Artigo> GetByBrand(string param)
+        {
+            return Lib_Primavera.PriIntegration.ListaArtigosDaMarca(param);
+        }
     }
 }
 

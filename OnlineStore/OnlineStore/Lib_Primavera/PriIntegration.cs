@@ -237,39 +237,9 @@ namespace FirstREST.Lib_Primavera
 
         #region Artigo
 
-        public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
-        {
-            
-            GcpBEArtigo objArtigo = new GcpBEArtigo();
-            Model.Artigo myArt = new Model.Artigo();
-
-            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-            {
-
-                if (PriEngine.Engine.Comercial.Artigos.Existe(codArtigo) == false)
-                {
-                    return null;
-                }
-                else
-                {
-                    objArtigo = PriEngine.Engine.Comercial.Artigos.Edita(codArtigo);
-                    myArt.CodArtigo = objArtigo.get_Artigo();
-                    myArt.DescArtigo = objArtigo.get_Descricao();
-                    myArt.Preco = objArtigo.get_PCMedio();
-                    return myArt;
-                }
-                
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
         public static List<Model.Artigo> ListaArtigos()
         {
-                        
+
             StdBELista objList;
 
             Model.Artigo art = new Model.Artigo();
@@ -278,13 +248,18 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Comercial.Artigos.LstArtigos();
+                objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO");
 
                 while (!objList.NoFim())
                 {
                     art = new Model.Artigo();
+
                     art.CodArtigo = objList.Valor("artigo");
                     art.DescArtigo = objList.Valor("descricao");
+                    art.Preco = objList.Valor("pcmedio");
+                    art.Familia = objList.Valor("familia");
+                    art.Marca = objList.Valor("marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
 
                     listArts.Add(art);
                     objList.Seguinte();
@@ -301,29 +276,175 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-        public static List<Model.Artigo> ArtigosPorFamilia (string familia)
+        public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
         {
-             StdBELista objList;
-             List<Model.Artigo> listArts = new List<Model.Artigo>();
-             
-             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-             {
-                 objList = PriEngine.Engine.Consulta("SELECT Descricao, PCMedio, Familia FROM ARTIGO WHERE Familia = '" + familia + "'");
-                 while(!objList.NoFim())
-                 {
-                     Model.Artigo myArt = new Model.Artigo();
-                     myArt.DescArtigo = objList.Valor("Descricao");
-                     myArt.Preco = objList.Valor("PCMedio");
-                     myArt.Familia = objList.Valor("Familia");
-                     listArts.Add(myArt);
-                     objList.Seguinte();
-                 }
-                 return listArts;
-             }
-             else
-             {
-                 return null;
-             }
+            StdBELista objList;
+            
+            GcpBEArtigo objArtigo = new GcpBEArtigo();
+            Model.Artigo art = new Model.Artigo();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.Comercial.Artigos.Existe(codArtigo) == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO");
+
+                    art.CodArtigo = objList.Valor("artigo");
+                    art.DescArtigo = objList.Valor("descricao");
+                    art.Preco = objList.Valor("pcmedio");
+                    art.Familia = objList.Valor("familia");
+                    art.Marca = objList.Valor("marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+
+                    return art;
+                }
+                
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public static List<String> ListaCategorias()
+        {
+
+            StdBELista objList;
+
+            List<String> listCategorias = new List<String>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT Familia FROM ARTIGO GROUP BY Familia");
+
+                while (!objList.NoFim())
+                {
+                    listCategorias.Add(objList.Valor("familia"));
+                    objList.Seguinte();
+                }
+
+                return listCategorias;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        public static List<Model.Artigo> ListaArtigosDaCategoria(string familiaId)
+        {
+
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO WHERE Familia = '" + familiaId + "'");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+
+                    art.CodArtigo = objList.Valor("artigo");
+                    art.DescArtigo = objList.Valor("descricao");
+                    art.Preco = objList.Valor("pcmedio");
+                    art.Familia = objList.Valor("familia");
+                    art.Marca = objList.Valor("marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        public static List<String> ListaMarcas()
+        {
+
+            StdBELista objList;
+
+            List<String> listBrands = new List<String>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT Marca FROM ARTIGO GROUP BY Marca");
+
+                while (!objList.NoFim())
+                {
+                    listBrands.Add(objList.Valor("marca"));
+                    objList.Seguinte();
+                }
+
+                return listBrands;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        public static List<Model.Artigo> ListaArtigosDaMarca(string brandId)
+        {
+
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO WHERE Marca = '" + brandId + "'");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+
+                    art.CodArtigo = objList.Valor("artigo");
+                    art.DescArtigo = objList.Valor("descricao");
+                    art.Preco = objList.Valor("pcmedio");
+                    art.Familia = objList.Valor("familia");
+                    art.Marca = objList.Valor("marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
 
         }
 
