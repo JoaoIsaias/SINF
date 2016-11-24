@@ -13,81 +13,119 @@ namespace FirstREST.Controllers
     public class ArtigosController : ApiController
     {
         // GET /artigos/getalllist
-        public IEnumerable<Lib_Primavera.Model.Artigo> GetAllList()
+        public HttpResponseMessage GetAllList()
         {
-            return Lib_Primavera.PriIntegration.ListaArtigos();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigos());
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getbyid/{id do artigo}
         public HttpResponseMessage GetByID(string param)
         {
             Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(param);
+
+            HttpResponseMessage response;
             if (artigo == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                response = Request.CreateResponse(HttpStatusCode.NotFound);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.OK, artigo);
+                response = Request.CreateResponse(HttpStatusCode.OK, artigo);
             }
+
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getallcategories
-        public IEnumerable<String> GetAllCategories()
+        public HttpResponseMessage GetAllCategories()
         {
-            return Lib_Primavera.PriIntegration.ListaCategorias();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaCategorias());
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getcategorydescription/{id da categoria}
         public HttpResponseMessage GetCategoryDescription(string param)
         {
             String description = Lib_Primavera.PriIntegration.GetCategoryDescription(param);
+
+            HttpResponseMessage response;
+
             if (description == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                response = Request.CreateResponse(HttpStatusCode.NotFound);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.OK, description);
+                response = Request.CreateResponse(HttpStatusCode.OK, description);
             }
+
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getbycategory/{id da categoria}
-        public IEnumerable<Lib_Primavera.Model.Artigo> GetByCategory(string param)
+        public HttpResponseMessage GetByCategory(string param)
         {
-            return Lib_Primavera.PriIntegration.ListaArtigosDaCategoria(param);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigosDaCategoria(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getallbrands
-        public IEnumerable<String> GetAllBrands()
+        public HttpResponseMessage GetAllBrands()
         {
-            return Lib_Primavera.PriIntegration.ListaMarcas();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaMarcas());
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getbranddescription/{id da marca}
         public HttpResponseMessage GetBrandDescription(string param)
         {
             String description = Lib_Primavera.PriIntegration.GetBrandDescription(param);
+
+            HttpResponseMessage response;
+
             if (description == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                response = Request.CreateResponse(HttpStatusCode.NotFound);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.OK, description);
+                response = Request.CreateResponse(HttpStatusCode.OK, description);
             }
+
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getbybrand/{id da marca}
-        public IEnumerable<Lib_Primavera.Model.Artigo> GetByBrand(string param)
+        public HttpResponseMessage GetByBrand(string param)
         {
-            return Lib_Primavera.PriIntegration.ListaArtigosDaMarca(param);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigosDaMarca(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // GET /artigos/getstock/{id do artigo}
-        public IEnumerable<Lib_Primavera.Model.Armazem> GetStock(string param)
+        public HttpResponseMessage GetStock(string param)
         {
-            return Lib_Primavera.PriIntegration.ListaStock(param);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaStock(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
         // Get do rating dado pelos clientes ao artigo
