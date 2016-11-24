@@ -10,9 +10,9 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
-    public class ArtigosController : ApiController
+    public class ArtigoController : ApiController
     {
-        // GET /artigos/getalllist
+        // GET /artigo/getalllist
         public HttpResponseMessage GetAllList()
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigos());
@@ -21,7 +21,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getbyid/{id do artigo}
+        // GET /artigo/getbyid/{id do artigo}
         public HttpResponseMessage GetByID(string param)
         {
             Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(param);
@@ -41,7 +41,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getallcategories
+        // GET /artigo/getallcategories
         public HttpResponseMessage GetAllCategories()
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaCategorias());
@@ -50,7 +50,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getcategorydescription/{id da categoria}
+        // GET /artigo/getcategorydescription/{id da categoria}
         public HttpResponseMessage GetCategoryDescription(string param)
         {
             String description = Lib_Primavera.PriIntegration.GetCategoryDescription(param);
@@ -71,7 +71,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getbycategory/{id da categoria}
+        // GET /artigo/getbycategory/{id da categoria}
         public HttpResponseMessage GetByCategory(string param)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigosDaCategoria(param));
@@ -80,7 +80,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getallbrands
+        // GET /artigo/getallbrands
         public HttpResponseMessage GetAllBrands()
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaMarcas());
@@ -89,7 +89,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getbranddescription/{id da marca}
+        // GET /artigo/getbranddescription/{id da marca}
         public HttpResponseMessage GetBrandDescription(string param)
         {
             String description = Lib_Primavera.PriIntegration.GetBrandDescription(param);
@@ -110,7 +110,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getbybrand/{id da marca}
+        // GET /artigo/getbybrand/{id da marca}
         public HttpResponseMessage GetByBrand(string param)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigosDaMarca(param));
@@ -119,7 +119,7 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigos/getstock/{id do artigo}
+        // GET /artigo/getstock/{id do artigo}
         public HttpResponseMessage GetStock(string param)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaStock(param));
@@ -133,4 +133,3 @@ namespace FirstREST.Controllers
         // Preciso de inserir um valor na tabela ArtigoCliente para testar se o valor returnado é diferente de null
     }
 }
-
