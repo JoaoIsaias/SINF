@@ -1,0 +1,6 @@
+Caso não saibam,no Primavera não existe tabelas para o carrinho nem para 
+a wishlist, por isso temos que adicioná-las à mão.
+Para isso sigam os passos que estão no .pdf que está nesta pasta.
+O tutorial começa na página 37.
+
+PS - para adicionar as tabelas têm que usar o "Professional Administrador".
