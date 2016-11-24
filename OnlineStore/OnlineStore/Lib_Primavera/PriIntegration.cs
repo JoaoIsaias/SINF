@@ -19,7 +19,6 @@ namespace FirstREST.Lib_Primavera
         public static List<Model.Cliente> ListaClientes()
         {
             
-            
             StdBELista objList;
 
             List<Model.Cliente> listClientes = new List<Model.Cliente>();
@@ -537,7 +536,6 @@ namespace FirstREST.Lib_Primavera
 
         #endregion Artigo
 
-   
 
         #region DocCompra
         
@@ -826,5 +824,44 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion DocsVenda
+
+        #region Carrinho
+
+        #endregion Carrinho
+
+        #region WishList
+
+        #endregion WishList
+
+        #region Armazem
+
+        public static List<Lib_Primavera.Model.Armazem> GetArmazens()
+        {
+            StdBELista objList;
+
+            List<Model.Armazem> armazens = new List<Model.Armazem>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT Armazem, Descricao FROM Armazens");
+
+                while (!objList.NoFim())
+                {
+                    Model.Armazem armazem = new Model.Armazem();
+                    armazem.IdArmazem = objList.Valor("Armazem");
+                    armazem.Descricao = objList.Valor("Descricao");
+                    armazens.Add(armazem);
+                    objList.Seguinte();
+
+                }
+
+                return armazens;
+            }
+            else
+                return null;
+
+        }
+
+        #endregion Armazem
     }
 }
