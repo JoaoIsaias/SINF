@@ -292,7 +292,7 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO");
+                    objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO WHERE Artigo = '" + codArtigo + "'");
 
                     art.CodArtigo = objList.Valor("artigo");
                     art.DescArtigo = objList.Valor("descricao");
@@ -337,6 +337,32 @@ namespace FirstREST.Lib_Primavera
             {
                 return null;
 
+            }
+
+        }
+
+        public static String GetCategoryDescription(string familiaId)
+        {
+            StdBELista objList;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.Comercial.Familias.Existe(familiaId) == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    objList = PriEngine.Engine.Consulta("SELECT Descricao FROM Familias WHERE Familia = '" + familiaId + "'");
+
+                    return objList.Valor("Descricao");
+                }
+
+            }
+            else
+            {
+                return null;
             }
 
         }
@@ -405,6 +431,32 @@ namespace FirstREST.Lib_Primavera
             {
                 return null;
 
+            }
+
+        }
+
+        public static String GetBrandDescription(string brandId)
+        {
+            StdBELista objList;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.Comercial.Marcas.Existe(brandId) == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    objList = PriEngine.Engine.Consulta("SELECT Descricao FROM Marcas WHERE Marca = '" + brandId + "'");
+
+                    return objList.Valor("Descricao");
+                }
+
+            }
+            else
+            {
+                return null;
             }
 
         }

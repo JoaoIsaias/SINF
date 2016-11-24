@@ -8,7 +8,6 @@ using System.Net.Http;
 using System.Web.Http;
 using FirstREST.Lib_Primavera.Model;
 
-
 namespace FirstREST.Controllers
 {
     public class ArtigosController : ApiController
@@ -39,6 +38,20 @@ namespace FirstREST.Controllers
             return Lib_Primavera.PriIntegration.ListaCategorias();
         }
 
+        // GET /artigos/getcategorydescription/{id da categoria}
+        public HttpResponseMessage GetCategoryDescription(string param)
+        {
+            String description = Lib_Primavera.PriIntegration.GetCategoryDescription(param);
+            if (description == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, description);
+            }
+        }
+
         // GET /artigos/getbycategory/{id da categoria}
         public IEnumerable<Lib_Primavera.Model.Artigo> GetByCategory(string param)
         {
@@ -49,6 +62,20 @@ namespace FirstREST.Controllers
         public IEnumerable<String> GetAllBrands()
         {
             return Lib_Primavera.PriIntegration.ListaMarcas();
+        }
+
+        // GET /artigos/getbranddescription/{id da marca}
+        public HttpResponseMessage GetBrandDescription(string param)
+        {
+            String description = Lib_Primavera.PriIntegration.GetBrandDescription(param);
+            if (description == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, description);
+            }
         }
 
         // GET /artigos/getbybrand/{id da marca}
