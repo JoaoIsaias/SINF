@@ -83,11 +83,9 @@
 				</div>
 				<div class="well">
 					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-6" style="margin-bottom: 20px">
-							<h3 style="margin-top: 0">
-								Product Name <small>by <a href="#">Brandname</a></small>
-								<span class="pull-right">$24.99</span>
-							</h3>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<h3 id="product-name" style="margin: 0 0 5px 0"></h3>
+							<h5 id="product-category" style="margin-top: 0"></h5>
 							<a href="#reviews" class="pull-right">69 reviews</a>
 							<span style="color: red">
 								<span class="glyphicon glyphicon-star"></span>
@@ -100,119 +98,14 @@
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<h3 style="margin-top: 0">Stock</h3>
-							<ul class="list-group" style="margin-bottom: 0">
-								<li class="list-group-item">
-									<span>Storage #1 <span class="badge">14</span></span>
-									<input type="number" class="pull-right" style="width: 50px">
-								</li>
-								<li class="list-group-item">
-									<span>Storage #2 <span class="badge">14</span></span>
-									<input type="number" class="pull-right" style="width: 50px">
-								</li>
-								<li class="list-group-item">
-									<span>Storage #3 <span class="badge">14</span></span>
-									<input type="number" class="pull-right" style="width: 50px">
-								</li>
-								<li class="list-group-item">
-									<span>Storage #4 <span class="badge">14</span></span>
-									<input type="number" class="pull-right" style="width: 50px">
-								</li>
-								<li class="list-group-item">
-									<span>Storage #5 <span class="badge">14</span></span>
-									<input type="number" class="pull-right" style="width: 50px">
-								</li>
-							</ul>
+							<ul id="storages" class="list-group" style="margin-bottom: 0"></ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div id="related" class="row">
 			<h4 style="margin: 0 0 10px 15px">Related Products</h4>
-			<div class="col-lg-3 col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img src="images/test.jpg" alt="Test">
-					<div class="caption">
-						<h4 style="margin: 0" class="pull-right">$24.99</h4>
-						<a href="product.html"><h4 style="margin: 0">TestImage</h4></a>
-					</div>
-					<div class="caption" style="padding-top: 0">
-						<span class="pull-right">
-							<a href="#reviews">69 reviews</a>
-						</span>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img src="images/test.jpg" alt="Test">
-					<div class="caption">
-						<h4 style="margin: 0" class="pull-right">$24.99</h4>
-						<a href="product.html"><h4 style="margin: 0">TestImage</h4></a>
-					</div>
-					<div class="caption" style="padding-top: 0">
-						<span class="pull-right">
-							<a href="#reviews">69 reviews</a>
-						</span>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img src="images/test.jpg" alt="Test">
-					<div class="caption">
-						<h4 style="margin: 0" class="pull-right">$24.99</h4>
-						<a href="product.html"><h4 style="margin: 0">TestImage</h4></a>
-					</div>
-					<div class="caption" style="padding-top: 0">
-						<span class="pull-right">
-							<a href="#reviews">69 reviews</a>
-						</span>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img src="images/test.jpg" alt="Test">
-					<div class="caption">
-						<h4 style="margin: 0" class="pull-right">$24.99</h4>
-						<a href="product.html"><h4 style="margin: 0">TestImage</h4></a>
-					</div>
-					<div class="caption" style="padding-top: 0">
-						<span class="pull-right">
-							<a href="#reviews">69 reviews</a>
-						</span>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-						</span>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div id="reviews" class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
@@ -339,5 +232,8 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Include lib and .js files -->
+	<script src="js/product.js"></script>
 </body>
 </html>
