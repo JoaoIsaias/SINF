@@ -131,7 +131,7 @@ namespace FirstREST.Controllers
         // GET /artigo/getclassification/{id do artigo}
         public HttpResponseMessage GetClassification(string param)
         {
-            float classificacao = Lib_Primavera.PriIntegration.GetClassificacao(param);
+            double classificacao = Lib_Primavera.PriIntegration.GetClassificacao(param);
 
             HttpResponseMessage response;
 
