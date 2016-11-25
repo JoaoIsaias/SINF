@@ -128,8 +128,34 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // Get do rating dado pelos clientes ao artigo
-        // Select Avg(CDU_Classificacao) As ClassificacaoMedia From ArtigoCliente Where Artigo = 'A0005';
-        // Preciso de inserir um valor na tabela ArtigoCliente para testar se o valor returnado é diferente de null
+        // GET /artigo/getclassification/{id do artigo}
+        public HttpResponseMessage GetClassification(string param)
+        {
+            float classificacao = Lib_Primavera.PriIntegration.GetClassificacao(param);
+
+            HttpResponseMessage response;
+
+            if (classificacao == -1)
+            {
+                response = Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                response = Request.CreateResponse(HttpStatusCode.OK, classificacao);
+            }
+
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
+        // GET /artigo/getreviews/{id do artigo}
+        public HttpResponseMessage GetReviews(string param)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaReviews(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
     }
 }
