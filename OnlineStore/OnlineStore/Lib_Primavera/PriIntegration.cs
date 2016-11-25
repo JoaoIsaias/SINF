@@ -534,11 +534,111 @@ namespace FirstREST.Lib_Primavera
 
         }
 
+        public static float GetClassificacao(string codArtigo)
+        {
+
+            StdBELista objList;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("Select Avg(CDU_Classificacao) As ClassificacaoMedia From ArtigoCliente Where Artigo = '" + codArtigo + "'");
+
+                return objList.Valor("ClassificacaoMedia");
+            }
+            else
+            {
+                return -1;
+
+            }
+
+        }
+
+        public static IEnumerable<Model.Review> ListaReviews(string codArtigo)
+        {
+
+            StdBELista objList;
+
+            Model.Review review = new Model.Review();
+            List<Model.Review> listReviews = new List<Model.Review>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_Classificacao, CDU_Review From ArtigoCliente Where Artigo = '" + codArtigo + "';");
+
+                while (!objList.NoFim())
+                {
+                    review = new Model.Review();
+
+                    review.CodArtigo = codArtigo;
+                    review.CodCliente = objList.Valor("Cliente");
+                    review.Classificacao = objList.Valor("CDU_Classificacao");
+                    review.Comentario = objList.Valor("CDU_Review");
+
+                    listReviews.Add(review);
+                    objList.Seguinte();
+                }
+
+                return listReviews;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
         #endregion Artigo
 
 
+        #region ArtigoCliente
+
+        public static bool InsereReview(Model.Review review)
+        {
+            GcpBeArtigoCliente artigoCliente = new GcpBeArtigoCliente();
+
+            StdBECampo CDU_Classificacao = new StdBECampo();
+            StdBECampo CDU_Review = new StdBECampo();
+
+            StdBECampos campos = new StdBECampos();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    artigoCliente.set_Artigo(review.CodArtigo);
+                    artigoCliente.set_Cliente(review.CodCliente);
+
+                    CDU_Classificacao.Nome = "CDU_Classificacao";
+                    CDU_Review.Nome = "CDU_Review";
+
+                    CDU_Classificacao.Valor = review.Classificacao;
+                    CDU_Review.Valor = review.Comentario;
+
+                    campos.Insere(CDU_Classificacao);
+                    campos.Insere(CDU_Review);
+
+                    artigoCliente.set_CamposUtil(campos);
+
+                    PriEngine.Engine.Comercial.ArtigosClientes.Actualiza(artigoCliente);
+
+                    return true;
+                }
+
+                return false;
+            } catch (Exception e){
+                return false;
+            }
+        }
+
+        #endregion ArtigoCliente
+
+
         #region DocCompra
-        
+
 
         public static List<Model.DocCompra> VGR_List()
         {
