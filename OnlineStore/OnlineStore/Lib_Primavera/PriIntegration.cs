@@ -247,17 +247,17 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo");
 
                 while (!objList.NoFim())
                 {
                     art = new Model.Artigo();
 
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("descricao");
-                    art.Preco = objList.Valor("pcpadrao");
-                    art.Familia = objList.Valor("familia");
-                    art.Marca = objList.Valor("marca");
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCMedio");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
 
                     listArts.Add(art);
@@ -291,13 +291,13 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO WHERE Artigo = '" + codArtigo + "'");
+                    objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo Where Artigo = '" + codArtigo + "'");
 
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("descricao");
-                    art.Preco = objList.Valor("pcmedio");
-                    art.Familia = objList.Valor("familia");
-                    art.Marca = objList.Valor("marca");
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCMedio");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
 
                     return art;
@@ -321,11 +321,11 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Familia FROM ARTIGO GROUP BY Familia");
+                objList = PriEngine.Engine.Consulta("Select Familia From Artigo Group By Familia");
 
                 while (!objList.NoFim())
                 {
-                    listCategorias.Add(objList.Valor("familia"));
+                    listCategorias.Add(objList.Valor("Familia"));
                     objList.Seguinte();
                 }
 
@@ -353,7 +353,7 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objList = PriEngine.Engine.Consulta("SELECT Descricao FROM Familias WHERE Familia = '" + familiaId + "'");
+                    objList = PriEngine.Engine.Consulta("Select Descricao From Familias Where Familia = '" + familiaId + "'");
 
                     return objList.Valor("Descricao");
                 }
@@ -377,17 +377,17 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO WHERE Familia = '" + familiaId + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo Where Familia = '" + familiaId + "'");
 
                 while (!objList.NoFim())
                 {
                     art = new Model.Artigo();
 
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("descricao");
-                    art.Preco = objList.Valor("pcmedio");
-                    art.Familia = objList.Valor("familia");
-                    art.Marca = objList.Valor("marca");
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCMedio");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
 
                     listArts.Add(art);
@@ -415,11 +415,11 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Marca FROM ARTIGO GROUP BY Marca");
+                objList = PriEngine.Engine.Consulta("Select Marca From Artigo Group By Marca");
 
                 while (!objList.NoFim())
                 {
-                    listBrands.Add(objList.Valor("marca"));
+                    listBrands.Add(objList.Valor("Marca"));
                     objList.Seguinte();
                 }
 
@@ -447,7 +447,7 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objList = PriEngine.Engine.Consulta("SELECT Descricao FROM Marcas WHERE Marca = '" + brandId + "'");
+                    objList = PriEngine.Engine.Consulta("Select Descricao From Marcas Where Marca = '" + brandId + "'");
 
                     return objList.Valor("Descricao");
                 }
@@ -471,17 +471,17 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT * FROM ARTIGO WHERE Marca = '" + brandId + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo Where Marca = '" + brandId + "'");
 
                 while (!objList.NoFim())
                 {
                     art = new Model.Artigo();
 
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("descricao");
-                    art.Preco = objList.Valor("pcmedio");
-                    art.Familia = objList.Valor("familia");
-                    art.Marca = objList.Valor("marca");
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCMedio");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
 
                     listArts.Add(art);
@@ -516,8 +516,8 @@ namespace FirstREST.Lib_Primavera
                 {
                     armazem = new Model.Armazem();
 
-                    armazem.Descricao = objList.Valor("descricao");
-                    armazem.Stock = objList.Valor("totalstock");
+                    armazem.Descricao = objList.Valor("Descricao");
+                    armazem.Stock = objList.Valor("TotalStock");
 
                     listWarehouses.Add(armazem);
                     objList.Seguinte();
@@ -946,7 +946,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("SELECT Armazem, Descricao FROM Armazens");
+                objList = PriEngine.Engine.Consulta("Select Armazem, Descricao From Armazens");
 
                 while (!objList.NoFim())
                 {
