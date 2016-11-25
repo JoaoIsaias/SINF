@@ -255,7 +255,7 @@ namespace FirstREST.Lib_Primavera
 
                     art.CodArtigo = objList.Valor("artigo");
                     art.DescArtigo = objList.Valor("descricao");
-                    art.Preco = objList.Valor("pcmedio");
+                    art.Preco = objList.Valor("pcpadrao");
                     art.Familia = objList.Valor("familia");
                     art.Marca = objList.Valor("marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
@@ -534,7 +534,7 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-        public static float GetClassificacao(string codArtigo)
+        public static double GetClassificacao(string codArtigo)
         {
 
             StdBELista objList;
@@ -542,9 +542,12 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Avg(CDU_Classificacao) As ClassificacaoMedia From ArtigoCliente Where Artigo = '" + codArtigo + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, AVG(CDU_Classificacao) As ClassificacaoMedia From ArtigoCliente Where Artigo = '" + codArtigo + "' Group By Artigo");
 
-                return objList.Valor("ClassificacaoMedia");
+                if (!objList.NoFim())
+                    return System.Convert.ToDouble(objList.Valor("ClassificacaoMedia"));
+                else
+                    return -1;
             }
             else
             {
