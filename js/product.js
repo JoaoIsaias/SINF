@@ -1,6 +1,7 @@
 var artigoID = decodeURIComponent($.urlParam('id'));
 if (artigoID == null)
 	console.log("404 NOT FOUND");
+// console.log(artigoID);
 
 // GET /artigo/getbyid/{id do artigo}
 $.get("http://localhost:49314/artigo/getbyid/" + artigoID)
@@ -11,9 +12,17 @@ $.get("http://localhost:49314/artigo/getbyid/" + artigoID)
 		// GET /artigo/getcategorydescription/{id da categoria}
 		$.get("http://localhost:49314/artigo/getcategorydescription/" + artigo.Familia)
 		.done(function(categoria) {
-			$("#product-name").html(artigo.DescArtigo
-									+ "<small> by <a href=\"#\">" + marca + "</a></small>"
-									+ "<span class=\"pull-right\">" + artigo.Preco + "€</span>");
+			$("#product-name").html(artigo.DescArtigo + "<small> by <a href=\"#\">" + marca + "</a></small>");
+			$("#product-price").html(artigo.Preco + "€");
+			$("#product-category").html("in <a href=\"#\">" + categoria + "</a> Category");
+		});
+	})
+	.fail(function() {
+		// GET /artigo/getcategorydescription/{id da categoria}
+		$.get("http://localhost:49314/artigo/getcategorydescription/" + artigo.Familia)
+		.done(function(categoria) {
+			$("#product-name").html(artigo.DescArtigo);
+			$("#product-price").html(artigo.Preco + "€");
 			$("#product-category").html("in <a href=\"#\">" + categoria + "</a> Category");
 		});
 	});
@@ -21,16 +30,10 @@ $.get("http://localhost:49314/artigo/getbyid/" + artigoID)
 	// GET /artigo/getclassification/{id do artigo}
 	$.get("http://localhost:49314/artigo/getclassification/" + artigoID)
 	.done(function(classificacao) {
-		// console.log(classificacao);
-		// $("#product-classification").
+		$("#product-classification").html($.generateClassification(classificacao));
 	})
 	.fail(function(xhr, textStatus) {
-		$("#product-classification").html("<span class=\"glyphicon glyphicon-star-empty\"></span>"
-											+ "<span class=\"glyphicon glyphicon-star-empty\"></span>"
-											+ "<span class=\"glyphicon glyphicon-star-empty\"></span>"
-											+ "<span class=\"glyphicon glyphicon-star-empty\"></span>"
-											+ "<span class=\"glyphicon glyphicon-star-empty\"></span>"
-											+ "<span> 0.0 stars</span>");
+		$("#product-classification").html($.generateClassification(0.0));
 	});
 
 	// GET /artigo/getstock/{id do artigo}
@@ -47,19 +50,23 @@ $.get("http://localhost:49314/artigo/getbyid/" + artigoID)
 	// GET /artigo/getbycategory/{id da categoria}
 	$.get("http://localhost:49314/artigo/getbycategory/" + artigo.Familia)
 	.done(function(relacionados) {
-		console.log(relacionados);
-		var values = $.generateNRandomNumbers(4, relacionados.length);
+		var values;
 
-		for (var i = 0; i < values.length; i++) {
+		if (relacionados.length < 4)
+			values = $.generateNRandomNumbers(relacionados.length, relacionados.length);
+		else
+			values = $.generateNRandomNumbers(4, relacionados.length);
+
+		for (var i = 0; i < relacionados.length; i++) {
 			$("#related").append("<div class=\"col-lg-3 col-md-3 col-sm-6\">"
-									+ "<div class=\"thumbnail\">"
-									+ "<img src=\"images/test.jpg\" alt=\"Test\">"
-									+ "<div class=\"caption\">"
-									+ "<h4 style=\"margin: 0\" class=\"pull-right\">" + relacionados[values[i]].Preco + "€</h4>"
-									+ "<a href=\"product.html?id=" + relacionados[values[i]].CodArtigo + "\"><h4 style=\"margin: 0\">" + relacionados[values[i]].DescArtigo + "</h4></a>"
-									+ "</div>"
-									+ "</div>"
-									+ "</div>");
+								+ "<div class=\"thumbnail\">"
+								+ "<img src=\"images/test.jpg\" alt=\"Test\">"
+								+ "<div class=\"caption\">"
+								+ "<h4 style=\"margin: 0\" class=\"pull-right\">" + relacionados[values[i]].Preco + "€</h4>"
+								+ "<a href=\"product.html?id=" + relacionados[values[i]].CodArtigo + "\"><h4 style=\"margin: 0\">" + relacionados[values[i]].DescArtigo + "</h4></a>"
+								+ "</div>"
+								+ "</div>"
+								+ "</div>");
 		}
 	});
 
