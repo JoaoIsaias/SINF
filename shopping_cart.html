@@ -20,38 +20,60 @@
 <body>
 	<nav class="navbar navbar-inverse" style="border-radius: 0">
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span> 
-				</button>
-				<a class="navbar-brand" href="index.html">Website Name</a>
+			<div class="row">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+					</button>
+					<a class="navbar-brand" href="index.html" style="margin-left: 0">Website Name</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Wish List</a></li>
+						<li><a href="shopping_cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
+						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+						<li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+					</ul>
+					<form id="smallForm" action="search_results.html" class="navbar-form navbar-right" role="search" style="display: none">
+						<div class="input-group">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									All <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Category #1</a></li>
+									<li><a href="#">Category #2</a></li>
+									<li><a href="#">Category #3</a></li>
+									<li><a href="#">Category #4</a></li>
+								</ul>
+							</div>
+							<input type="text" class="form-control" placeholder="Search">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							Options <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Wish List</a></li>
-							<li><a href="shopping_cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
-						</ul>
-					</li>
-					<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-					<li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-				</ul>
-				<form action="search_results.html" class="navbar-form navbar-right" role="search">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-					</div>
+			<div id="firstRow" class="row">
+				<form method="get" action="search_results.html" class="navbar-form text-center" role="search">
+					<button id="all-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 9%">
+						All <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Category #1</a></li>
+						<li><a href="#">Category #1</a></li>
+						<li><a href="#">Category #1</a></li>
+						<li><a href="#">Category #1</a></li>
+					</ul>
+					<input id="search-bar" type="text" class="form-control" placeholder="Search" style="width: 80%">
+					<button id="search-btn" class="btn btn-default" type="submit" style="width: 9%">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
 				</form>
 			</div>
 		</div>
@@ -175,5 +197,7 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+	<!-- Include .js files -->
+	<script src="js/navbar.js"></script>
 </body>
 </html>

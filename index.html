@@ -36,10 +36,32 @@
 						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
 						<li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Register</a></li>
 					</ul>
+					<form id="smallForm" action="search_results.html" class="navbar-form navbar-right" role="search" style="display: none">
+						<div class="input-group">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									All <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Category #1</a></li>
+									<li><a href="#">Category #2</a></li>
+									<li><a href="#">Category #3</a></li>
+									<li><a href="#">Category #4</a></li>
+								</ul>
+							</div>
+							<input type="text" class="form-control" placeholder="Search">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-			<div class="row">
-				<!--<button id="all-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 10%">
+			<div id="firstRow" class="row">
+				<form method="get" action="search_results.html" class="navbar-form text-center" role="search">
+					<button id="all-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 9%">
 						All <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
@@ -51,9 +73,7 @@
 					<input id="search-bar" type="text" class="form-control" placeholder="Search" style="width: 80%">
 					<button id="search-btn" class="btn btn-default" type="submit" style="width: 9%">
 						<span class="glyphicon glyphicon-search"></span>
-					</button>-->
-				<form method="get" action="search_results.html" class="navbar-form" role="search">
-					
+					</button>
 				</form>
 			</div>
 		</div>
@@ -284,8 +304,7 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
-
-	<!-- Include lib and .js files -->
-	<script src="js/index.js"></script>
+	<!-- Include .js files -->
+	<script src="js/navbar.js"></script>
 </body>
 </html>
