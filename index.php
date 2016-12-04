@@ -1,11 +1,3 @@
-<?php
-
-require 'database.php';
-
-$categories = getAllCategories();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>

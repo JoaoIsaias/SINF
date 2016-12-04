@@ -92,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row text-center">
+		<div class="row text-center" style="margin-bottom: 20px">
 			<a href="shopping_cart.php" class="btn btn-primary">
 				<span class="glyphicon glyphicon-shopping-cart"></span> Back to Shopping Cart
 			</a>
