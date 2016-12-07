@@ -1,3 +1,20 @@
+<?php
+
+require 'database.php';
+
+$categories = array();
+$catTemp = getAllCategories();
+
+for ($i = 0; $i < count($catTemp); $i++) {
+	// $categories[$i] = $i * 2;
+	// $categories[$i] = 
+	getCategoryById($catTemp[$i]);
+}
+
+// echo '<h1>' . print_r($categories) . '</h1>';
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
