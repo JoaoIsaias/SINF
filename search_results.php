@@ -10,219 +10,108 @@
 		<div class="row">
 			<h2 style="margin: 0 0 10px 15px">Search results for ""</h2>
 			<div class="col-lg-9 col-md-9 col-sm-9">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 style="margin: 0">
-							<a href="product.php">Product Name</a>
-							<span class="pull-right">$24.99</span>
-						</h4>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-2 col-md-2" style="margin-bottom: 10px">
-								<a href="product.php"><img src="images/test.jpg" class="img-responsive"></a>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<p style="text-align: justify">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-									proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-lg-4 col-md-4">
-								<ul style="padding-left: 20px">
-									<li>Detail #1</li>
-									<li>Detail #2</li>
-									<li>Detail #3</li>
-									<li>Detail #4</li>
-									<li>Detail #5</li>
-								</ul>
-							</div>
+				<div class="well">
+					<div class="media">
+						<div class="media-left">
+							<a href="product.php">
+								<img src="images/smallImage.png">
+							</a>
 						</div>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span>5.0 stars</span>
-						</span>
-						<a href="product.php#reviews" class="pull-right">69 reviews</a>
+						<div class="media-body">
+							<h3 class="media-heading pull-right">$24.99</h3>
+							<h3 class="media-heading">
+								<a href="product.php">Produto #</a>
+								<small> by <a href="#">Brand Name</a></small>
+							</h3>
+							<span>in <a href="#">Category</a></span>
+							<span style="display: block; margin-top: 53px">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span>5.0 stars</span>
+								<a href="product.php#reviews" class="pull-right">69 reviews</a>
+							</span>
+						</div>
 					</div>
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 style="margin: 0">
-							<a href="product.php">Product Name</a>
-							<span class="pull-right">$24.99</span>
-						</h4>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-2 col-md-2" style="margin-bottom: 10px">
-								<a href="product.php"><img src="images/test.jpg" class="img-responsive"></a>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<p style="text-align: justify">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-									proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-lg-4 col-md-4">
-								<ul style="padding-left: 20px">
-									<li>Detail #1</li>
-									<li>Detail #2</li>
-									<li>Detail #3</li>
-									<li>Detail #4</li>
-									<li>Detail #5</li>
-								</ul>
-							</div>
+				<div class="well">
+					<div class="media">
+						<div class="media-left">
+							<a href="product.php">
+								<img src="images/smallImage.png">
+							</a>
 						</div>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span>5.0 stars</span>
-						</span>
-						<a href="product.php#reviews" class="pull-right">69 reviews</a>
+						<div class="media-body">
+							<h3 class="media-heading pull-right">$24.99</h3>
+							<h3 class="media-heading">
+								<a href="product.php">Produto #</a>
+								<small> by <a href="#">Brand Name</a></small>
+							</h3>
+							<span>in <a href="#">Category</a></span>
+							<span style="display: block; margin-top: 53px">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span>5.0 stars</span>
+								<a href="product.php#reviews" class="pull-right">69 reviews</a>
+							</span>
+						</div>
 					</div>
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 style="margin: 0">
-							<a href="product.php">Product Name</a>
-							<span class="pull-right">$24.99</span>
-						</h4>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-2 col-md-2" style="margin-bottom: 10px">
-								<a href="product.php"><img src="images/test.jpg" class="img-responsive"></a>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<p style="text-align: justify">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-									proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-lg-4 col-md-4">
-								<ul style="padding-left: 20px">
-									<li>Detail #1</li>
-									<li>Detail #2</li>
-									<li>Detail #3</li>
-									<li>Detail #4</li>
-									<li>Detail #5</li>
-								</ul>
-							</div>
+				<div class="well">
+					<div class="media">
+						<div class="media-left">
+							<a href="product.php">
+								<img src="images/smallImage.png">
+							</a>
 						</div>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span>5.0 stars</span>
-						</span>
-						<a href="product.php#reviews" class="pull-right">69 reviews</a>
+						<div class="media-body">
+							<h3 class="media-heading pull-right">$24.99</h3>
+							<h3 class="media-heading">
+								<a href="product.php">Produto #</a>
+								<small> by <a href="#">Brand Name</a></small>
+							</h3>
+							<span>in <a href="#">Category</a></span>
+							<span style="display: block; margin-top: 53px">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span>5.0 stars</span>
+								<a href="product.php#reviews" class="pull-right">69 reviews</a>
+							</span>
+						</div>
 					</div>
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 style="margin: 0">
-							<a href="product.php">Product Name</a>
-							<span class="pull-right">$24.99</span>
-						</h4>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-2 col-md-2" style="margin-bottom: 10px">
-								<a href="product.php"><img src="images/test.jpg" class="img-responsive"></a>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<p style="text-align: justify">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-									proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-lg-4 col-md-4">
-								<ul style="padding-left: 20px">
-									<li>Detail #1</li>
-									<li>Detail #2</li>
-									<li>Detail #3</li>
-									<li>Detail #4</li>
-									<li>Detail #5</li>
-								</ul>
-							</div>
+				<div class="well">
+					<div class="media">
+						<div class="media-left">
+							<a href="product.php">
+								<img src="images/smallImage.png">
+							</a>
 						</div>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span>5.0 stars</span>
-						</span>
-						<a href="product.php#reviews" class="pull-right">69 reviews</a>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 style="margin: 0">
-							<a href="product.php">Product Name</a>
-							<span class="pull-right">$24.99</span>
-						</h4>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-2 col-md-2" style="margin-bottom: 10px">
-								<a href="product.php"><img src="images/test.jpg" class="img-responsive"></a>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<p style="text-align: justify">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-									proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-lg-4 col-md-4">
-								<ul style="padding-left: 20px">
-									<li>Detail #1</li>
-									<li>Detail #2</li>
-									<li>Detail #3</li>
-									<li>Detail #4</li>
-									<li>Detail #5</li>
-								</ul>
-							</div>
+						<div class="media-body">
+							<h3 class="media-heading pull-right">$24.99</h3>
+							<h3 class="media-heading">
+								<a href="product.php">Produto #</a>
+								<small> by <a href="#">Brand Name</a></small>
+							</h3>
+							<span>in <a href="#">Category</a></span>
+							<span style="display: block; margin-top: 53px">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span>5.0 stars</span>
+								<a href="product.php#reviews" class="pull-right">69 reviews</a>
+							</span>
 						</div>
-						<span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span>5.0 stars</span>
-						</span>
-						<a href="product.php#reviews" class="pull-right">69 reviews</a>
 					</div>
 				</div>
 				<ul class="pager">

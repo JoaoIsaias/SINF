@@ -1,12 +1,3 @@
-<?php
-
-require 'database.php';
-
-$catTemp = getAllCategories();
-var_dump($catTemp);
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,28 +18,28 @@ var_dump($catTemp);
 					</ol>
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="carousel-caption">
 								<h3>Test</h3>
 								<p>Testing.</p>
 							</div>
 						</div>
 						<div class="item">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="carousel-caption">
 								<h3>Test</h3>
 								<p>Testing.</p>
 							</div>
 						</div>
 						<div class="item">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="carousel-caption">
 								<h3>Test</h3>
 								<p>Testing.</p>
 							</div>
 						</div>
 						<div class="item">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="carousel-caption">
 								<h3>Test</h3>
 								<p>Testing.</p>
@@ -67,7 +58,7 @@ var_dump($catTemp);
 				<div class="row">
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -88,7 +79,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -109,7 +100,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -130,7 +121,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -151,7 +142,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -172,7 +163,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -193,7 +184,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
@@ -214,7 +205,7 @@ var_dump($catTemp);
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 						<div class="thumbnail">
-							<img src="images/test.jpg" alt="Test">
+							<img src="images/bigImage.png" alt="Test">
 							<div class="caption">
 								<h3 class="pull-right" style="margin: 0">$24.99</h3>
 								<a href="product.php"><h3 style="margin: 0">Test</h3></a>

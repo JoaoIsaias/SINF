@@ -24,11 +24,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Product name #1</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>In Stock</td>
-								<td>
-									<input type="number" min="1" placeholder="1">
-								</td>
+								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
@@ -38,11 +36,9 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Product name #2</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>In Stock</td>
-								<td>
-									<input type="number" min="1" placeholder="1">
-								</td>
+								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
@@ -52,11 +48,9 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Product name #3</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>In Stock</td>
-								<td>
-									<input type="number" min="1" placeholder="1">
-								</td>
+								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
@@ -66,11 +60,9 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Product name #4</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>In Stock</td>
-								<td>
-									<input type="number" min="1" placeholder="1">
-								</td>
+								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
@@ -80,11 +72,9 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Product name #5</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>In Stock</td>
-								<td>
-									<input type="number" min="1" placeholder="1">
-								</td>
+								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
@@ -98,11 +88,7 @@
 							<tr>
 								<td></td>
 								<td></td>
-								<td>
-									<button class="btn btn-primary pull-left">
-										<span class="glyphicon glyphicon-refresh"></span> Update Quantity
-									</button>
-								</td>
+								<td></td>
 								<td></td>
 								<td><b>Total:</b> $24.99</td>
 								<td></td>

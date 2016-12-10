@@ -22,31 +22,31 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Product name #1</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 							</tr>
 							<tr>
-								<td>Product name #2</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 							</tr>
 							<tr>
-								<td>Product name #3</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 							</tr>
 							<tr>
-								<td>Product name #4</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
 							</tr>
 							<tr>
-								<td>Product name #5</td>
+								<td><a href="product.php">Product name #1</a></td>
 								<td>1</td>
 								<td>$24.99</td>
 								<td>$24.99</td>
@@ -86,8 +86,8 @@
 					<div class="radio">
 						<label><input type="radio" name="optradio">Paypal</label>
 					</div>
-					<div class="radio">
-						<label><input type="radio" name="optradio">Credit Card</label>
+					<div class="radio" style="margin-bottom: 0">
+						<label><input type="radio" name="optradio">Credit or Debit Card</label>
 					</div>
 				</div>
 			</div>
