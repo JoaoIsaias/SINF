@@ -55,174 +55,352 @@
 						<span class="sr-only">Next</span>
 					</a>
 				</div>
-				<div class="row">
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+			</div>
+		</div>
+		<div class="row">
+			<h3 style="margin: 0 0 10px 15px">Category #1</h3>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-						<div class="thumbnail">
-							<img src="images/bigImage.png" alt="Test">
-							<div class="caption">
-								<h3 class="pull-right" style="margin: 0">$24.99</h3>
-								<a href="product.php"><h3 style="margin: 0">Test</h3></a>
-							</div>
-							<div class="caption" style="padding-top: 0">
-								<span class="pull-right">
-									<a href="product.php#reviews">69 reviews</a>
-								</span>
-								<span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-									<span class="glyphicon glyphicon-star"></span>
-								</span>
-							</div>
-						</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h3 style="margin: 0 0 10px 15px">Category #2</h3>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h3 style="margin: 0 0 10px 15px">Category #3</h3>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h3 style="margin: 0 0 10px 15px">Category #4</h3>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="images/mediumImage.png" alt="Test">
+					<div class="caption">
+						<h3 class="pull-right" style="margin: 0">$24.99</h3>
+						<a href="product.php"><h3 style="margin: 0">Test</h3></a>
+					</div>
+					<div class="caption" style="padding-top: 0">
+						<span class="pull-right">
+							<a href="product.php#reviews">69 reviews</a>
+						</span>
+						<span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</span>
 					</div>
 				</div>
 			</div>

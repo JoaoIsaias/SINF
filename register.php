@@ -14,7 +14,7 @@
 					<form>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control text-center" placeholder="Name">
+								<input type="text" class="form-control text-center" placeholder="Full Name">
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-user"></span>
 								</span>

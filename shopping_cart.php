@@ -30,8 +30,8 @@
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
-									<button class="btn btn-danger">
-										<span class="glyphicon glyphicon-remove pull-left"></span>
+									<button class="btn btn-danger pull-left">
+										<span class="glyphicon glyphicon-remove"></span>
 									</button>
 								</td>
 							</tr>
@@ -42,8 +42,8 @@
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
-									<button class="btn btn-danger">
-										<span class="glyphicon glyphicon-remove pull-left"></span>
+									<button class="btn btn-danger pull-left">
+										<span class="glyphicon glyphicon-remove"></span>
 									</button>
 								</td>
 							</tr>
@@ -54,8 +54,8 @@
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
-									<button class="btn btn-danger">
-										<span class="glyphicon glyphicon-remove pull-left"></span>
+									<button class="btn btn-danger pull-left">
+										<span class="glyphicon glyphicon-remove"></span>
 									</button>
 								</td>
 							</tr>
@@ -66,8 +66,8 @@
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
-									<button class="btn btn-danger">
-										<span class="glyphicon glyphicon-remove pull-left"></span>
+									<button class="btn btn-danger pull-left">
+										<span class="glyphicon glyphicon-remove"></span>
 									</button>
 								</td>
 							</tr>
@@ -78,8 +78,8 @@
 								<td>$24.99</td>
 								<td>$24.99</td>
 								<td>
-									<button class="btn btn-danger">
-										<span class="glyphicon glyphicon-remove pull-left"></span>
+									<button class="btn btn-danger pull-left">
+										<span class="glyphicon glyphicon-remove"></span>
 									</button>
 								</td>
 							</tr>

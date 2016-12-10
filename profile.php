@@ -11,11 +11,24 @@
 			<div class="col-lg-offset-1 col-md-offset-1 col-lg-7 col-md-7 col-sm-8">
 				<div class="well">
 					<h2 style="margin-top: 0">Account Information</h2>
-					<p><b>Name:</b> Alexandre Saraiva Moreira</p>
-					<p><b>Email:</b> email@gmail.com</p>
-					<p><b>Password:</b> ************</p>
-					<p><b>Current Address:</b> shbvskrbvsrbv</p>
-					<p style="margin-bottom: 0"><b>Current Payment Method:</b> Paypal / Credit or Debit Card</p>
+					<div class="form-group">
+						<label for="name">Name:</label>
+						<input id="name" type="text" class="form-control" disabled="disabled">
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input id="email" type="email" class="form-control" disabled="disabled">
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input id="password" type="password" class="form-control" disabled="disabled">
+					</div>
+					<p><b>Current Payment Method:</b> Paypal / Credit or Debit Card</p>
+					<p><b>Current Address:</b></p>
+					<p>something</p>
+					<p>something</p>
+					<p>something</p>
+					<p style="margin-bottom: 0">something</p>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-4">

@@ -12,7 +12,7 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#"><span class="glyphicon glyphicon-list-alt"></span> Wish List</a>
+						<a href="wish_list.php"><span class="glyphicon glyphicon-list-alt"></span> Wish List</a>
 					</li>
 					<li>
 						<a href="shopping_cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
