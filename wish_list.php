@@ -129,6 +129,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="row text-center">
+			<a href="index.php" class="btn btn-info">
+				<span class="glyphicon glyphicon-triangle-left"></span> Continue Shopping
+			</a>
+			<a href="shopping_cart.php" class="btn btn-success">
+				<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+			</a>
+		</div>
 	</div>
 	<?php require 'footer.php'; ?>
 </body>
