@@ -12,8 +12,6 @@ namespace FirstREST.Lib_Primavera
 {
     public class PriIntegration
     {
-        
-
         # region Cliente
 
         public static List<Model.Cliente> ListaClientes()
@@ -51,35 +49,43 @@ namespace FirstREST.Lib_Primavera
                 return null;
         }
 
-        public static Lib_Primavera.Model.Cliente GetCliente(string codCliente)
+        public static Lib_Primavera.Model.Cliente GetCliente(string user)
         {
-            
+            StdBELista objList;
 
-            GcpBECliente objCli = new GcpBECliente();
-
-
-            Model.Cliente myCli = new Model.Cliente();
+            GcpBECliente objCliente = new GcpBECliente();
+            Model.Cliente cli = new Model.Cliente();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_User, CDU_Password, Nome, NumContrib, Fac_Mor, Fac_Local, Fac_Cp, Fac_Cploc, Pais, ModoPag, CondPag, ModoExp, Desconto, Moeda From Clientes Where CDU_User Like '" + user + "'");
 
-                if (PriEngine.Engine.Comercial.Clientes.Existe(codCliente) == true)
-                {
-                    objCli = PriEngine.Engine.Comercial.Clientes.Edita(codCliente);
-                    myCli.CodCliente = objCli.get_Cliente();
-                    myCli.NomeCliente = objCli.get_Nome();
-                    myCli.Moeda = objCli.get_Moeda();
-                    myCli.NumContribuinte = objCli.get_NumContribuinte();
-                    myCli.Morada = objCli.get_Morada();
-                    return myCli;
-                }
-                else
-                {
+                if(objList.Vazia()){
                     return null;
                 }
+
+                cli.CodCliente = objList.Valor("Cliente");
+                cli.User = objList.Valor("CDU_User");
+                cli.Password = objList.Valor("CDU_Password");
+                cli.NomeCliente = objList.Valor("Nome");
+                cli.NumContribuinte = objList.Valor("NumContrib");
+                cli.Morada = objList.Valor("Fac_Mor");
+                cli.Local = objList.Valor("Fac_Local");
+                cli.CodigoPostal = objList.Valor("Fac_Cp");
+                cli.Localidade = objList.Valor("Fac_Cploc");
+                cli.Pais = objList.Valor("Pais");
+                cli.ModoPagamento = objList.Valor("ModoPag");
+                cli.CondPagamento = objList.Valor("CondPag");
+                cli.ModoExp = objList.Valor("ModoExp");
+                cli.Desconto = objList.Valor("Desconto");
+                cli.Moeda = objList.Valor("Moeda");
+
+                return cli;
             }
             else
+            {
                 return null;
+            }
         }
 
         public static Lib_Primavera.Model.RespostaErro UpdCliente(Lib_Primavera.Model.Cliente cliente)
@@ -138,7 +144,6 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-
         public static Lib_Primavera.Model.RespostaErro DelCliente(string codCliente)
         {
 
@@ -184,8 +189,6 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-
-
         public static Lib_Primavera.Model.RespostaErro InsereClienteObj(Model.Cliente cli)
         {
 
@@ -228,8 +231,6 @@ namespace FirstREST.Lib_Primavera
 
 
         }
-
-       
 
         #endregion Cliente;   // -----------------------------  END   CLIENTE    -----------------------
 
@@ -596,7 +597,6 @@ namespace FirstREST.Lib_Primavera
 
         #endregion Artigo
 
-
         #region ArtigoCliente
 
         public static bool InsereReview(Model.Review review)
@@ -639,9 +639,7 @@ namespace FirstREST.Lib_Primavera
 
         #endregion ArtigoCliente
 
-
         #region DocCompra
-
 
         public static List<Model.DocCompra> VGR_List()
         {
@@ -756,9 +754,7 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-
         #endregion DocCompra
-
 
         #region DocsVenda
 
@@ -822,8 +818,6 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-     
-
         public static List<Model.DocVenda> Encomendas_List()
         {
             
@@ -875,13 +869,8 @@ namespace FirstREST.Lib_Primavera
             return listdv;
         }
 
-
-       
-
         public static Model.DocVenda Encomenda_Get(string numdoc)
         {
-            
-            
             StdBELista objListCab;
             StdBELista objListLin;
             Model.DocVenda dv = new Model.DocVenda();
