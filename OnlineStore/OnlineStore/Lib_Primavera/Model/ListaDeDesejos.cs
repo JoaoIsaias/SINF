@@ -1,29 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace FirstREST.Lib_Primavera.Model
 {
-    public class Carrinho
+    public class ListaDeDesejos : ApiController
     {
-        public string id_Carrinho
+        public string idCliente
         {
             get;
             set;
         }
 
-        public string id_Cliente
+        public string idArtigo
         {
             get;
             set;
         }
-
-        public List<Model.Artigo> id_Artigos
-        {
-            get;
-            set;
-        }
-
     }
 }
