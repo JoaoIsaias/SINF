@@ -7,21 +7,27 @@ using System.Web.Http;
 
 namespace FirstREST.Lib_Primavera.Model
 {
-    public class Armazem
+    public class CarrinhoDeCompras : ApiController
     {
-        public string IdArmazem
+        public string idCliente
         {
             get;
             set;
         }
 
-        public string Descricao
+        public string idArtigo
         {
             get;
             set;
         }
 
-        public double Stock
+        public string Quantidade
+        {
+            get;
+            set;
+        }
+
+        public string idArmazem
         {
             get;
             set;
