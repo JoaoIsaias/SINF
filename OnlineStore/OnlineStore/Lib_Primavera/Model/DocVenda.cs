@@ -45,12 +45,27 @@ namespace FirstREST.Lib_Primavera.Model
         }
 
         public List<Model.LinhaDocVenda> LinhasDoc
-
         {
             get;
             set;
         }
- 
 
+        public double PrecoFinal
+        {
+            get;
+            set;
+        }
+
+        public string Estado
+        {
+            get;
+            set;
+        }
+
+        public string DataLiq
+        {
+            get;
+            set;
+        }
     }
 }

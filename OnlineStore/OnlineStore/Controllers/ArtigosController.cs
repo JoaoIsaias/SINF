@@ -127,35 +127,5 @@ namespace FirstREST.Controllers
 
             return response;
         }
-
-        // GET /artigo/getclassification/{id do artigo}
-        public HttpResponseMessage GetClassification(string param)
-        {
-            double classificacao = Lib_Primavera.PriIntegration.GetClassificacao(param);
-
-            HttpResponseMessage response;
-
-            if (classificacao == -1)
-            {
-                response = Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-            else
-            {
-                response = Request.CreateResponse(HttpStatusCode.OK, classificacao);
-            }
-
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-
-            return response;
-        }
-
-        // GET /artigo/getreviews/{id do artigo}
-        public HttpResponseMessage GetReviews(string param)
-        {
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaReviews(param));
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-
-            return response;
-        }
     }
 }
