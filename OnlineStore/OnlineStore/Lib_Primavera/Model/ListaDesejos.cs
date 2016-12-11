@@ -1,33 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web;
 
 namespace FirstREST.Lib_Primavera.Model
 {
-    public class Review
+    public class ListaDesejos
     {
-        public string CodArtigo
+        public string id_Lista
         {
             get;
             set;
         }
 
-        public string CodCliente
+        public string id_Cliente
         {
             get;
             set;
         }
 
-        public int Classificacao
-        {
-            get;
-            set;
-        }
-
-        public string Comentario
+        public List<Model.Artigo> id_Artigos
         {
             get;
             set;

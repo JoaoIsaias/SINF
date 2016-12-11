@@ -42,5 +42,17 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+
+        public int Quantidade
+        {
+            get;
+            set;
+        }
+
+        public string Armazem
+        {
+            get;
+            set;
+        }
     }
 }
