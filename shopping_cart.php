@@ -98,7 +98,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row text-center">
+		<div class="row text-center" style="margin-bottom: 20px">
 			<a href="index.php" class="btn btn-info">
 				<span class="glyphicon glyphicon-triangle-left"></span> Continue Shopping
 			</a>

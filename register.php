@@ -14,7 +14,7 @@
 					<form>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control text-center" placeholder="Full Name">
+								<input type="text" class="form-control text-center" placeholder="Full Name" required>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-user"></span>
 								</span>
@@ -22,7 +22,7 @@
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="email" class="form-control text-center" placeholder="Email">
+								<input type="email" class="form-control text-center" placeholder="Email" required>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-envelope"></span>
 								</span>
@@ -30,7 +30,7 @@
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="email" class="form-control text-center" placeholder="Confirm Email">
+								<input type="email" class="form-control text-center" placeholder="Confirm Email" required>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-envelope"></span>
 								</span>
@@ -38,7 +38,7 @@
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="password" class="form-control text-center" placeholder="Password">
+								<input type="password" class="form-control text-center" placeholder="Password" required>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-lock"></span>
 								</span>
@@ -46,7 +46,7 @@
 						</div>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="password" class="form-control text-center" placeholder="Confirm Password">
+								<input type="password" class="form-control text-center" placeholder="Confirm Password" required>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-lock"></span>
 								</span>
