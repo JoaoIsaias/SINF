@@ -1,3 +1,25 @@
+<?php
+
+$his = '';
+$pen = '';
+$tab = $_GET['tab'];
+
+if (isset($tab)) {
+	if (!empty($tab)) {
+		if ($tab === 'history') {
+			$his = "in active";
+		} else if ($tab === 'pending') {
+			$pen = "in active";
+		}
+	} else {
+		$his = "in active";
+	}
+} else {
+	$his = "in active";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,12 +71,16 @@
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="active"><a data-toggle="tab" href="#orderHistory">Order History</a></li>
-					<li><a data-toggle="tab" href="#pendingOrders">Pending Orders</a></li>
+					<li <?php if (!empty($his)) echo "class=\"active\""; ?>>
+						<a data-toggle="tab" href="#orderHistory">Order History</a>
+					</li>
+					<li <?php if (!empty($pen)) echo "class=\"active\""; ?>>
+						<a data-toggle="tab" href="#pendingOrders">Pending Orders</a>
+					</li>
 				</ul>
 				<div class="well" style="border-top-left-radius: 0; border-top-right-radius: 0">
 					<div class="tab-content">
-						<div id="orderHistory" class="tab-pane fade in active">
+						<div id="orderHistory" <?php echo "class=\"tab-pane fade $his\""; ?>>
 							<div class="table-responsive">
 								<table class="table table-striped" style="margin-bottom: 0">
 									<thead>
@@ -67,25 +93,25 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><a href="#">Order #1</a></td>
+											<td><a href="order_status.php">Order #1</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
 										</tr>
 										<tr>
-											<td><a href="#">Order #2</a></td>
+											<td><a href="order_status.php">Order #2</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
 										</tr>
 										<tr>
-											<td><a href="#">Order #3</a></td>
+											<td><a href="order_status.php">Order #3</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
 										</tr>
 										<tr>
-											<td><a href="#">Order #4</a></td>
+											<td><a href="order_status.php">Order #4</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
@@ -94,7 +120,7 @@
 								</table>
 							</div>
 						</div>
-						<div id="pendingOrders" class="tab-pane fade">
+						<div id="pendingOrders" <?php echo "class=\"tab-pane fade $pen\""; ?>>
 							<div class="table-responsive">
 								<table class="table table-striped" style="margin-bottom: 0">
 									<thead>
@@ -107,25 +133,25 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><a href="#">Order #1</a></td>
+											<td><a href="order_status.php">Order #1</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
 										</tr>
 										<tr>
-											<td><a href="#">Order #2</a></td>
+											<td><a href="order_status.php">Order #2</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
 										</tr>
 										<tr>
-											<td><a href="#">Order #3</a></td>
+											<td><a href="order_status.php">Order #3</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>
 										</tr>
 										<tr>
-											<td><a href="#">Order #4</a></td>
+											<td><a href="order_status.php">Order #4</a></td>
 											<td>DD/MM/YYYY</td>
 											<td>DD/MM/YYYY</td>
 											<td>$24.99</td>

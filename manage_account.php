@@ -1,3 +1,28 @@
+<?php
+
+$set = '';
+$add = '';
+$pay = '';
+$tab = $_GET['tab'];
+
+if (isset($tab)) {
+	if (!empty($tab)) {
+		if ($tab === 'settings') {
+			$set = "in active";
+		} else if ($tab === 'address') {
+			$add = "in active";
+		} else if ($tab === 'payment') {
+			$pay = "in active";
+		}
+	} else {
+		$set = "in active";
+	}
+} else {
+	$set = "in active";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +74,19 @@
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="active"><a data-toggle="tab" href="#settings">Settings</a></li>
-					<li><a data-toggle="tab" href="#addressBook">Address Book</a></li>
-					<li><a data-toggle="tab" href="#paymentOptions">Payment Options</a></li>
+					<li <?php if (!empty($set)) echo "class=\"active\""; ?>>
+						<a data-toggle="tab" href="#settings">Settings</a>
+					</li>
+					<li <?php if (!empty($add)) echo "class=\"active\""; ?>>
+						<a data-toggle="tab" href="#addressBook">Address Book</a>
+					</li>
+					<li <?php if (!empty($pay)) echo "class=\"active\""; ?>>
+						<a data-toggle="tab" href="#paymentOptions">Payment Options</a>
+					</li>
 				</ul>
 				<div class="well" style="border-top-left-radius: 0; border-top-right-radius: 0">
 					<div class="tab-content">
-						<div id="settings" class="tab-pane fade in active">
+						<div id="settings" <?php echo "class=\"tab-pane fade $set\""; ?>>
 							<form method="post" style="margin-bottom: 20px">
 								<div class="form-group">
 									<label for="name">New Name:</label>
@@ -86,7 +117,7 @@
 								<button type="submit" class="btn btn-primary">Edit Password</button>
 							</form>
 						</div>
-						<div id="addressBook" class="tab-pane fade">
+						<div id="addressBook" <?php echo "class=\"tab-pane fade $add\""; ?>>
 							<h4 style="margin: 0 0 10px 0">Addresses</h4>
 							<div style="padding: 15px; margin-bottom: 20px; border: 2px solid #d7e0e9; border-radius: 4px; background-color: #ffffff">
 								<p>something</p>
@@ -106,7 +137,7 @@
 								</button>
 							</div>
 						</div>
-						<div id="paymentOptions" class="tab-pane fade">
+						<div id="paymentOptions" <?php echo "class=\"tab-pane fade $pay\""; ?>>
 							<h4 style="margin-top: 0">Paypal Account</h4>
 							<p>something</p>
 							<div class="text-center" style="margin-bottom: 20px">
