@@ -14,6 +14,18 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
+        public string User
+        {
+            get;
+            set;
+        }
+
+        public string Password
+        {
+            get;
+            set;
+        }
+
         public string NomeCliente
         {
             get;
@@ -26,31 +38,59 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string Moeda
-        {
-            get;
-            set;
-        }
-
-        public string Email
-        {
-            get;
-            set;
-        }
-
         public string Morada
         {
             get;
             set;
         }
 
-        public string Telemóvel
+        public string Local
+        {
+            get;
+            set;
+        }
+        public string CodigoPostal
+        {
+            get;
+            set;
+        }
+        public string Localidade
         {
             get;
             set;
         }
 
-        public string Localidade
+        public string Pais
+        {
+            get;
+            set;
+        }
+
+        public string ModoPagamento
+        {
+            get;
+            set;
+        }
+
+        public string CondPagamento
+        {
+            get;
+            set;
+        }
+
+        public string ModoExp
+        {
+            get;
+            set;
+        }
+
+        public float Desconto
+        {
+            get;
+            set;
+        }
+
+        public string Moeda
         {
             get;
             set;
