@@ -17,19 +17,33 @@
 				<div class="well">
 					<h3 style="margin-top: 0">Lists</h3>
 					<ul style="padding-left: 20px; list-style-type: none">
-						<li><a href="wish_list.php">Wish List</a></li>
-						<li><a href="shopping_cart.php">Shopping Cart</a></li>
+						<li>
+							<a href="wish_list.php"><span class="glyphicon glyphicon-heart"></span> Wish List</a>
+						</li>
+						<li>
+							<a href="shopping_cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
+						</li>
 					</ul>
 					<h3 style="margin-top: 0">Orders</h3>
 					<ul style="padding-left: 20px; list-style-type: none">
-						<li><a href="orders.php?tab=history">Order History</a></li>
-						<li><a href="orders.php?tab=pending">Pending Orders</a></li>
+						<li>
+							<a href="orders.php?tab=history"><span class="glyphicon glyphicon-list-alt"></span> Order History</a>
+						</li>
+						<li>
+							<a href="orders.php?tab=pending"><span class="glyphicon glyphicon-time"></span> Pending Orders</a>
+						</li>
 					</ul>
 					<h3 style="margin-top: 0">Manage Account</h3>
 					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
-						<li><a href="manage_account.php?tab=settings">Settings</a></li>
-						<li><a href="manage_account.php?tab=address">Address Book</a></li>
-						<li><a href="manage_account.php?tab=payment">Payment Options</a></li>
+						<li>
+							<a href="manage_account.php?tab=settings"><span class="glyphicon glyphicon-cog"></span> Settings</a>
+						</li>
+						<li>
+							<a href="manage_account.php?tab=address"><span class="glyphicon glyphicon-book"></span> Address Book</a>
+						</li>
+						<li>
+							<a href="manage_account.php?tab=payment"><span class="glyphicon glyphicon-credit-card"></span> Payment Options</a>
+						</li>
 					</ul>
 				</div>
 			</div>
