@@ -27,6 +27,10 @@ PRIMARY KEY (idCliente, idArtigo)
 INSERT INTO ListaDeDesejos VALUES ('cli1', 'art1');
 INSERT INTO CarrinhoDeCompras VALUES ('cli1', 'art1', 5, 'A1');
 
---Deletes
+--Deletes							(Se este = der erro usa um LIKE)
 DELETE FROM ListaDeDesejos WHERE idCliente = 'cli1' AND idArtigo = 'art1';
 DELETE FROM CarrinhoDeCompras WHERE idCliente = 'cli1' AND idArtigo = 'art1';
+
+--Selects
+SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = 'Cli1';
+SELECT idArtigo, idArmazem, quantidade FROM CarrinhoDeCompras WHERE idCliente = 'Cli1';
