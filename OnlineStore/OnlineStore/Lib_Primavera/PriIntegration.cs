@@ -245,7 +245,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo");
 
                 while (!objList.NoFim())
                 {
@@ -253,7 +253,7 @@ namespace FirstREST.Lib_Primavera
 
                     art.CodArtigo = objList.Valor("Artigo");
                     art.DescArtigo = objList.Valor("Descricao");
-                    art.Preco = objList.Valor("PCMedio");
+                    art.Preco = objList.Valor("PCPadrao");
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
@@ -289,11 +289,11 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo Where Artigo = '" + codArtigo + "'");
+                    objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Artigo = '" + codArtigo + "'");
 
                     art.CodArtigo = objList.Valor("Artigo");
                     art.DescArtigo = objList.Valor("Descricao");
-                    art.Preco = objList.Valor("PCMedio");
+                    art.Preco = objList.Valor("PCPadrao");
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
@@ -375,7 +375,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo Where Familia = '" + familiaId + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Familia = '" + familiaId + "'");
 
                 while (!objList.NoFim())
                 {
@@ -383,7 +383,7 @@ namespace FirstREST.Lib_Primavera
 
                     art.CodArtigo = objList.Valor("Artigo");
                     art.DescArtigo = objList.Valor("Descricao");
-                    art.Preco = objList.Valor("PCMedio");
+                    art.Preco = objList.Valor("PCPadrao");
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
@@ -469,7 +469,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCMedio, Familia, Marca, CDU_DirImagem From Artigo Where Marca = '" + brandId + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Marca = '" + brandId + "'");
 
                 while (!objList.NoFim())
                 {
@@ -477,7 +477,7 @@ namespace FirstREST.Lib_Primavera
 
                     art.CodArtigo = objList.Valor("Artigo");
                     art.DescArtigo = objList.Valor("Descricao");
-                    art.Preco = objList.Valor("PCMedio");
+                    art.Preco = objList.Valor("PCPadrao");
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
@@ -546,6 +546,7 @@ namespace FirstREST.Lib_Primavera
 
             StdBECampo CDU_Classificacao = new StdBECampo();
             StdBECampo CDU_Review = new StdBECampo();
+            StdBECampo CDU_Data = new StdBECampo();
 
             StdBECampos campos = new StdBECampos();
 
@@ -558,12 +559,15 @@ namespace FirstREST.Lib_Primavera
 
                     CDU_Classificacao.Nome = "CDU_Classificacao";
                     CDU_Review.Nome = "CDU_Review";
+                    CDU_Data.Nome = "CDU_Data";
 
                     CDU_Classificacao.Valor = review.Classificacao;
                     CDU_Review.Valor = review.Comentario;
+                    CDU_Data.Valor = review.Data;
 
                     campos.Insere(CDU_Classificacao);
                     campos.Insere(CDU_Review);
+                    campos.Insere(CDU_Data);
 
                     artigoCliente.set_CamposUtil(campos);
 
@@ -635,7 +639,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_Classificacao, CDU_Review From ArtigoCliente Where Artigo = '" + codArtigo + "';");
+                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_Classificacao, CDU_Review, CDU_Data From ArtigoCliente Where Artigo = '" + codArtigo + "';");
 
                 while (!objList.NoFim())
                 {
@@ -645,6 +649,7 @@ namespace FirstREST.Lib_Primavera
                     review.CodCliente = objList.Valor("Cliente");
                     review.Classificacao = objList.Valor("CDU_Classificacao");
                     review.Comentario = objList.Valor("CDU_Review");
+                    review.Data = objList.Valor("CDU_Data");
 
                     listReviews.Add(review);
                     objList.Seguinte();

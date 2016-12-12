@@ -15,7 +15,8 @@ namespace FirstREST.Controllers
 	            "CodArtigo" : "A0005",
 	            "CodCliente" : "ALCAD",
 	            "Classificacao" : 5,
-	            "Comentario" : "Teste"
+	            "Comentario" : "Teste",
+                "Data" : "2016-12-12 16:23:32"
             }
          */
         public HttpResponseMessage InsertReview(Lib_Primavera.Model.Review review)
