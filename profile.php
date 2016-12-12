@@ -1,3 +1,24 @@
+<?php
+
+require 'database.php';
+
+if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
+	header('Location: index.php');
+	die();
+} else {
+	$user = getUser($_SESSION['user']);
+
+	$name = $user->NomeCliente;
+	$taxNumber = $user->NumContribuinte;
+	$address = $user->Morada;
+	$local = $user->Local;
+	$postalCode = $user->CodigoPostal;
+	$location = $user->Localidade;
+	$country = $user->Pais;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,24 +67,28 @@
 				<div class="well">
 					<h2 style="margin-top: 0">Account Information</h2>
 					<div class="form-group">
-						<label for="name">Name:</label>
-						<input id="name" type="text" class="form-control" disabled="disabled">
+						<label for="user">Username:</label>
+						<input id="user" type="text" class="form-control" value="<?= $_SESSION['user'] ?>" disabled>
 					</div>
 					<div class="form-group">
-						<label for="email">Email:</label>
-						<input id="email" type="email" class="form-control" disabled="disabled">
+						<label for="name">Name:</label>
+						<input id="name" type="text" class="form-control" value="<?= $name ?>" disabled>
+					</div>
+					<div class="form-group">
+						<label for="tax-number">Tax Number:</label>
+						<input id="tax-number" type="text" class="form-control" value="<?= $taxNumber ?>" disabled>
 					</div>
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6">
-							<p><b>Current Address:</b></p>
-							<p>something</p>
-							<p>something</p>
-							<p>something</p>
-							<p style="margin-bottom: 0">something</p>
+							<p><b>Address:</b></p>
+							<span><?= $address ?></span><br>
+							<span><?= $local ?></span><br>
+							<span><?= $postalCode ?> - <?= $location ?></span><br>
+							<span><?= $country ?></span>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
-							<p><b>Current Payment Method:</b></p>
-							<p>Paypal / Credit or Debit Card</p>
+							<p><b>Payment Method:</b></p>
+							<span>Paypal / Credit or Debit Card</span>
 						</div>
 					</div>
 				</div>

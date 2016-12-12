@@ -1,3 +1,25 @@
+<?php
+
+require 'database.php';
+
+$products = array();
+$categories = getAllCategories();
+$randomNumbers = generateNRandomNumbers(4, count($categories) - 1);
+
+for ($c = 0; $c < 4; $c++) {
+	if ($categories[$randomNumbers[$c]]->Descricao !== 'IGNORAR')
+		array_push($products, getByCategory($categories[$randomNumbers[$c]]->IdCategoria));
+	else
+		array_push($products, getByCategory($categories[rand(0, count($categories) - 1)]->IdCategoria));
+}
+
+/*for ($i = 0; $i < count($products); $i++) {
+	var_dump($products[$i]);
+	echo '<br>PAUSE<br>';
+}*/
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +28,7 @@
 </head>
 <body>
 	<?php require 'navbar.php'; ?>
-	<a href="profile.php" class="btn btn-primary">Atalho para profile (temporario)</a>
+	<!-- <a href="profile.php" class="btn btn-primary">Atalho para profile (temporario)</a> -->
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
@@ -34,7 +56,40 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<?php for ($i = 0; $i < 4; $i++) { ?>
+			<div class="row">
+				<h3 style="margin: 0 0 10px 15px"><?= $categories[$randomNumbers[$i]]->Descricao ?></h3>
+				<?php for ($j = 0; $j < 4; $j++) { ?>
+					<div class="col-lg-3 col-md-3 col-sm-6">
+						<div class="thumbnail">
+							<img src="images/mediumImage.png" alt="Test">
+							<div class="caption">
+								<h4 class="pull-right" style="margin: 0">
+									<?= $products[$i][$j]->Preco ?>€
+								</h4>
+								<h4 style="margin: 0">
+									<a href="product.php?id=<?= $products[$i][$j]->CodArtigo ?>">
+										<?= $products[$i][$j]->DescArtigo ?>
+									</a>
+								</h4>
+							</div>
+							<div class="caption clearfix" style="padding-top: 0">
+								<span class="pull-right">
+									<a href="product.php?id=<?= $products[$i][$j]->CodArtigo ?>#reviews">
+										<?= 0 ?>
+										<span> reviews</span>
+									</a>
+								</span>
+								<span>
+									<!-- print stars -->
+								</span>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
+			</div>
+		<?php } ?>
+		<!-- <div class="row">
 			<h3 style="margin: 0 0 10px 15px">Category #1</h3>
 			<div class="col-lg-3 col-md-3 col-sm-6">
 				<div class="thumbnail">
@@ -381,7 +436,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<?php require 'footer.php'; ?>
 </body>

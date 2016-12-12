@@ -58,14 +58,13 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_User, CDU_Password, Nome, NumContrib, Fac_Mor, Fac_Local, Fac_Cp, Fac_Cploc, Pais, ModoPag, CondPag, ModoExp, Desconto, Moeda From Clientes Where CDU_User Like '" + user + "'");
+                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_Password, Nome, NumContrib, Fac_Mor, Fac_Local, Fac_Cp, Fac_Cploc, Pais, ModoPag, CondPag, ModoExp, Desconto, Moeda From Clientes Where Cliente Like '" + user + "'");
 
                 if(objList.Vazia()){
                     return null;
                 }
 
                 cli.CodCliente = objList.Valor("Cliente");
-                cli.User = objList.Valor("CDU_User");
                 cli.Password = objList.Valor("CDU_Password");
                 cli.NomeCliente = objList.Valor("Nome");
                 cli.NumContribuinte = objList.Valor("NumContrib");
@@ -309,21 +308,27 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-        public static List<String> ListaCategorias()
+        public static List<Model.Categoria> ListaCategorias()
         {
 
             StdBELista objList;
 
-            List<String> listCategorias = new List<String>();
+            List<Model.Categoria> listCategorias = new List<Model.Categoria>();
+            Model.Categoria cat = new Model.Categoria();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Familia From Artigo Group By Familia");
+                objList = PriEngine.Engine.Consulta("Select Familia, Descricao From Familias");
 
                 while (!objList.NoFim())
                 {
-                    listCategorias.Add(objList.Valor("Familia"));
+                    cat = new Model.Categoria();
+
+                    cat.IdCategoria = objList.Valor("Familia");
+                    cat.Descricao = objList.Valor("Descricao");
+
+                    listCategorias.Add(cat);
                     objList.Seguinte();
                 }
 
@@ -1071,11 +1076,6 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion DocsVenda
-
-        #region Carrinho
-
-
-        #endregion Carrinho
 
         #region WishList
 

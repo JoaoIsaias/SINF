@@ -7,15 +7,15 @@ using System.Web.Http;
 
 namespace FirstREST.Lib_Primavera.Model
 {
-    public class ListaDeDesejos : ApiController
+    public class Categoria
     {
-        public string idCliente
+        public string IdCategoria
         {
             get;
             set;
         }
 
-        public string idArtigo
+        public string Descricao
         {
             get;
             set;

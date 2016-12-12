@@ -1,3 +1,26 @@
+<?php
+
+require 'database.php';
+
+$logon = false;
+$categories = getAllCategories();
+
+if (isset($_GET['category'])) {
+	if (!empty($_GET['category'])) {
+		$category = $_GET['category'];
+	} else {
+		$category = 'All';
+	}
+} else {
+	$category = 'All';
+}
+
+if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+	$logon = true;
+}
+
+?>
+
 <nav class="navbar navbar-default" style="border-radius: 0">
 	<div class="container">
 		<div class="row">
@@ -18,23 +41,31 @@
 						<a href="shopping_cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
 					</li>
 					<li>
-						<a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
+						<?php if ($logon === true) { ?>
+							<a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+						<?php } else { ?>
+							<a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
+						<?php } ?>
 					</li>
 					<li>
-						<a href="register.php"><span class="glyphicon glyphicon-user"></span> Register</a>
+						<?php if ($logon === true) { ?>
+							<a href="profile.php"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['user'] ?>'s Profile</a>
+						<?php } else { ?>
+							<a href="register.php"><span class="glyphicon glyphicon-user"></span> Register</a>
+						<?php } ?>
 					</li>
 				</ul>
 				<form action="search_results.php" method="get" class="navbar-form navbar-right">
 					<div class="input-group">
 						<div class="input-group-btn">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								All <span class="caret"></span>
+								<?= $category ?><span> </span><span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="#">Category #1</a></li>
-								<li><a href="#">Category #2</a></li>
-								<li><a href="#">Category #3</a></li>
-								<li><a href="#">Category #4</a></li>
+								<li><a href="#">All</a></li>
+								<?php for ($i = 0; $i < count($categories); $i++) { ?>
+									<li><a href="#"><?= $categories[$i]->Descricao ?></a></li>
+								<?php } ?>
 							</ul>
 						</div>
 						<input type="text" class="form-control" placeholder="Search">
