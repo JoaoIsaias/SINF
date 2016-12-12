@@ -18,6 +18,7 @@ namespace FirstREST.Controllers
 	            "Quantidade" : 2
             }
          */
+        /*
         public HttpResponseMessage InsertProduct(Lib_Primavera.Model.Carrinho carrinho)
         {
             bool succ = Lib_Primavera.PriIntegration.InsereProduct(carrinho);
@@ -32,7 +33,7 @@ namespace FirstREST.Controllers
             response.Headers.Add("Access-Control-Allow-Origin", "*");
 
             return response;
-        }
+        }*/
 
         // GET /carrinho/getbyuser/{user do cliente}
         /*

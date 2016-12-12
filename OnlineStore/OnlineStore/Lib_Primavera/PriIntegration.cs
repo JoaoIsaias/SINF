@@ -507,14 +507,19 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("Select Armazens.Descricao As Description, Sum(ArtigoArmazem.StkActual) As TotalStock From Armazens Inner Join ArtigoArmazem ON Armazens.Armazem = ArtigoArmazem.Armazem Where ArtigoArmazem.Artigo = '" + codArtigo + "' Group By Armazens.Descricao");
+                objList = PriEngine.Engine.Consulta("Select Armazens.Armazem, Armazens.Descricao, tab.TotalStock, Armazens.Morada, Armazens.Localidade, Armazens.Cp, Armazens.CpLocalidade from Armazens Inner Join (select Armazem, Sum(StkActual) As TotalStock from ArtigoArmazem where Artigo = '" + codArtigo + "' group by Armazem) tab ON Armazens.Armazem = tab.Armazem");
 
                 while (!objList.NoFim())
                 {
                     armazem = new Model.Armazem();
 
-                    armazem.Descricao = objList.Valor("Description");
+                    armazem.IdArmazem = objList.Valor("Armazem");
+                    armazem.Descricao = objList.Valor("Descricao");
                     armazem.Stock = objList.Valor("TotalStock");
+                    armazem.Morada = objList.Valor("Morada");
+                    armazem.Localidade = objList.Valor("Localidade");
+                    armazem.CodPostal = objList.Valor("Cp");
+                    armazem.CodPostalLocalidade = objList.Valor("CpLocalidade");
 
                     listWarehouses.Add(armazem);
                     objList.Seguinte();
@@ -1064,45 +1069,6 @@ namespace FirstREST.Lib_Primavera
 
         #region Carrinho
 
-        public static bool InsereNoCarrinho(Model.CarrinhoDeCompras carrinho)
-        {
-            GcpBeArtigoCliente artigoCliente = new GcpBeArtigoCliente();
-
-            StdBECampo CDU_Classificacao = new StdBECampo();
-            StdBECampo CDU_Review = new StdBECampo();
-
-            StdBECampos campos = new StdBECampos();
-
-            try
-            {
-                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-                {
-                    artigoCliente.set_Artigo(review.CodArtigo);
-                    artigoCliente.set_Cliente(review.CodCliente);
-
-                    CDU_Classificacao.Nome = "CDU_Classificacao";
-                    CDU_Review.Nome = "CDU_Review";
-
-                    CDU_Classificacao.Valor = review.Classificacao;
-                    CDU_Review.Valor = review.Comentario;
-
-                    campos.Insere(CDU_Classificacao);
-                    campos.Insere(CDU_Review);
-
-                    artigoCliente.set_CamposUtil(campos);
-
-                    PriEngine.Engine.Comercial.ArtigosClientes.Actualiza(artigoCliente);
-
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
 
         #endregion Carrinho
 
