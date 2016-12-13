@@ -2,17 +2,13 @@
 
 require 'database.php';
 
-$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
-$stmt->execute(array($_SESSION['user']));
-$productIds = $stmt->fetch();
-
-$products = array();
-for ($i = 0; $i < count($productIds); i++) {
-	array_push($products, getProductById($productIds[$i]));
+if ($_POST['removeall']) {
+	removeAllFromWishList();
+} else if ($_POST['remove'] && $_POST['id']) {
+	removeFromWishList($_POST['id']);
 }
 
-$db_users = null;
+$products = getWishList();
 
 ?>
 
@@ -35,47 +31,43 @@ $db_users = null;
 								<th>Product</th>
 								<th>Stock</th>
 								<th>Price</th>
-								<th>Shopping Cart</th>
 								<th>Remove</th>
 							</tr>
 						</thead>
 						<tbody>
 						<?php for ($i = 0; $i < count($products); $i++) { ?>
-							<tr>
-								<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
-								<?php if ($products[$i]->Stock > 0) { ?>
-								<td>In Stock</td>
-								<?php } else { ?>
-								<td>Not in Stock</td>
-								<?php } ?>
-								<td><?= $products[$i]->Preco ?> €</td>
-								<td>
-									<button class="btn btn-success pull-left">
-										<span class="glyphicon glyphicon-plus"></span> Add
-									</button>
-								</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
+							<form method="post">
+								<tr>
+									<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
+									<?php if ($products[$i]->Stock > 0) { ?>
+									<td>In Stock</td>
+									<?php } else { ?>
+									<td>Not in Stock</td>
+									<?php } ?>
+									<td><?= $products[$i]->Preco ?> €</td>
+									<td>
+										<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
+										<button type="submit" name="remove" class="btn btn-danger pull-left">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+									</td>
+								</tr>
+							</form>
 						<?php } ?>
 						</tbody>
 						<tfoot style="border-bottom: 2px solid #d5d5d5">
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>
-									<button class="btn btn-primary pull-left">
-										<span class="glyphicon glyphicon-plus"></span> Add All
-									</button>
-								</td>
-								<td></td>
-							</tr>
+							<form method="post">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>
+										<button type="submit" name="removeall" class="btn btn-danger pull-left">
+											<span class="glyphicon glyphicon-remove"></span> Remove All
+										</button>
+									</td>
+								</tr>
+							</form>
 						</tfoot>
 					</table>
 				</div>
