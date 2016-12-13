@@ -13,6 +13,52 @@ namespace FirstREST.Controllers
 {
     public class DocVendaController : ApiController
     {
+        // POST /docvenda/insereencomenda
+        /* Exemplo do body passado no post em json
+            {
+                "Entidade": "TA0001",
+                "EmailEntidade": "testeaula@mail.com",
+                "Serie": "2016",
+                "LinhasDoc": [
+                    {
+                        "CodArtigo": "A0001",
+                        "DescArtigo": "Pentium D925 Dual Core",
+                        "IdCabecDoc": "sd",
+                        "Quantidade": 1,
+                        "Unidade":1,
+                        "Desconto":0,
+                        "PrecoUnitario": 1000,
+                        "TotalILiquido": 1000,
+                        "TotalLiquido": 1000
+                    }
+                ]
+            }
+         */
+        public HttpResponseMessage InsereEncomenda(Lib_Primavera.Model.DocVenda doc)
+        {
+            Lib_Primavera.Model.RespostaErro erro = Lib_Primavera.PriIntegration.Encomendas_New(doc);
+
+            bool succ;
+            if(erro.Erro == 0){
+                succ = true;
+            }
+            else
+            {
+                succ = false;
+            }
+
+            HttpResponseMessage response;
+
+            if (succ)
+                response = Request.CreateResponse(HttpStatusCode.Created);
+            else
+                response = Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
         //
         // GET: /Clientes/
 
