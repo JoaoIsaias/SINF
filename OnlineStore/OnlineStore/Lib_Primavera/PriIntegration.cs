@@ -410,21 +410,28 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-        public static List<String> ListaMarcas()
+        public static List<Model.Marca> ListaMarcas()
         {
 
             StdBELista objList;
 
-            List<String> listBrands = new List<String>();
+            Model.Marca marc = new Model.Marca();
+
+            List<Model.Marca> listBrands = new List<Model.Marca>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Marca From Artigo Group By Marca");
+                objList = PriEngine.Engine.Consulta("Select Marca, Descricao From Marcas");
 
                 while (!objList.NoFim())
                 {
-                    listBrands.Add(objList.Valor("Marca"));
+                    marc = new Model.Marca();
+
+                    marc.IdMarca = objList.Valor("Marca");
+                    marc.Descricao = objList.Valor("Descricao");
+
+                    listBrands.Add(marc);
                     objList.Seguinte();
                 }
 
