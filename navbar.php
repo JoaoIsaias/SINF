@@ -1,20 +1,26 @@
 <?php
 
+$term = '';
 $logon = false;
+$category = 'All';
 $categories = getAllCategories();
+
+if (isset($_GET['term'])) {
+	if (!empty($_GET['term'])) {
+		$term = $_GET['term'];
+	}
+}
 
 if (isset($_GET['category'])) {
 	if (!empty($_GET['category'])) {
 		$category = $_GET['category'];
-	} else {
-		$category = 'All';
 	}
-} else {
-	$category = 'All';
 }
 
-if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-	$logon = true;
+if (isset($_SESSION['user'])) {
+	if (!empty($_SESSION['user'])) {
+		$logon = true;
+	}
 }
 
 ?>
@@ -57,7 +63,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 					<div class="input-group">
 						<div class="input-group-btn">
 							<button id="dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<?= $category ?><span> </span><span class="caret"></span>
+								<?= $category ?><span style="margin-left: 5px" class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li><a href="#">All</a></li>
@@ -68,7 +74,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 								<?php } ?>
 							</ul>
 						</div>
-						<input id="term" type="text" class="form-control" placeholder="Search">
+						<input id="term" type="text" class="form-control" value="<?= $term ?>" placeholder="Search">
 						<div class="input-group-btn">
 							<button id="submit" type="submit" class="btn btn-default">
 								<span class="glyphicon glyphicon-search"></span>
