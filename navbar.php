@@ -1,7 +1,5 @@
 <?php
 
-require 'database.php';
-
 $logon = false;
 $categories = getAllCategories();
 
@@ -55,27 +53,29 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 						<?php } ?>
 					</li>
 				</ul>
-				<form action="search_results.php" method="get" class="navbar-form navbar-right">
+				<div class="navbar-form navbar-right">
 					<div class="input-group">
 						<div class="input-group-btn">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<button id="dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<?= $category ?><span> </span><span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li><a href="#">All</a></li>
 								<?php for ($i = 0; $i < count($categories); $i++) { ?>
-									<li><a href="#"><?= $categories[$i]->Descricao ?></a></li>
+									<?php if ($categories[$i]->IdCategoria !== 'IGNORAR') { ?>
+										<li><a href="#"><?= $categories[$i]->Descricao ?></a></li>
+									<?php } ?>
 								<?php } ?>
 							</ul>
 						</div>
-						<input type="text" class="form-control" placeholder="Search">
+						<input id="term" type="text" class="form-control" placeholder="Search">
 						<div class="input-group-btn">
-							<button type="submit" class="btn btn-default">
+							<button id="submit" type="submit" class="btn btn-default">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

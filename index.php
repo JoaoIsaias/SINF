@@ -2,7 +2,7 @@
 
 require 'database.php';
 
-$products = array();
+/*$products = array();
 $categories = getAllCategories();
 $randomNumbers = generateNRandomNumbers(4, count($categories) - 1);
 
@@ -13,7 +13,7 @@ for ($c = 0; $c < 4; $c++) {
 		array_push($products, getByCategory($categories[rand(0, count($categories) - 1)]->IdCategoria));
 }
 
-/*for ($i = 0; $i < count($products); $i++) {
+for ($i = 0; $i < count($products); $i++) {
 	var_dump($products[$i]);
 	echo '<br>PAUSE<br>';
 }*/
@@ -28,7 +28,6 @@ for ($c = 0; $c < 4; $c++) {
 </head>
 <body>
 	<?php require 'navbar.php'; ?>
-	<!-- <a href="profile.php" class="btn btn-primary">Atalho para profile (temporario)</a> -->
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">

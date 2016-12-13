@@ -310,7 +310,6 @@ namespace FirstREST.Lib_Primavera
 
         public static List<Model.Categoria> ListaCategorias()
         {
-
             StdBELista objList;
 
             List<Model.Categoria> listCategorias = new List<Model.Categoria>();
