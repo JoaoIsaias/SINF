@@ -15,24 +15,24 @@ namespace FirstREST.Controllers
     {
         // POST /docvenda/insereencomenda
         /* Exemplo do body passado no post em json
-            {
-                "Entidade": "TA0001",
-                "EmailEntidade": "testeaula@mail.com",
-                "Serie": "2016",
-                "LinhasDoc": [                                      // Lista de objetos artigo
-                    {
-                        "CodArtigo": "A0001",
-                        "DescArtigo": "Pentium D925 Dual Core",
-                        "IdCabecDoc": "sd",                         // Pode ser sempre o mesmo
-                        "Quantidade": 1,                            // Tem de ser sempre >= 1
-                        "Unidade":1,                                // Sempre 1
-                        "Desconto":0,                               // Sempre 0
-                        "PrecoUnitario": 1000,                      // Preco do artigo
-                        "TotalILiquido": 1000,                      // Preco do artigo
-                        "TotalLiquido": 1000                        // Preco do artigo
-                    }
-                ]
-            }
+        {
+            "Entidade": "SOFRIO",
+            "EmailEntidade": "lala@mail.com",
+            "Serie": "2016",
+            "LinhasDoc": [
+                {
+                    "CodArtigo": "A0001",
+                    "DescArtigo": "Pentium D925 Dual Core",
+                    "IdCabecDoc": "sd",
+                    "Quantidade": 1,
+                    "Unidade":1,
+                    "Desconto":0,
+                    "PrecoUnitario": 1000,
+                    "TotalILiquido": 1000,
+                    "TotalLiquido": 1000
+                }
+            ]
+        }
          */
         public HttpResponseMessage InsereEncomenda(Lib_Primavera.Model.DocVenda doc)
         {
@@ -59,29 +59,22 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        //
-        // GET: /Clientes/
-
-        public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
+        // GET /docvenda/getartigosdaencomenda/{id da encomenda}
+        public HttpResponseMessage GetArtigosDaEncomenda(string param)
         {
-            return Lib_Primavera.PriIntegration.Encomendas_List();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.GetArtigosDaEncomenda(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
         }
 
-
-        // GET api/cliente/5    
-        public Lib_Primavera.Model.DocVenda Get(string id)
+        // GET /docvenda/getencomendascliente/{id do cliente}
+        public HttpResponseMessage GetEncomendasCliente(string param)
         {
-            Lib_Primavera.Model.DocVenda docvenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
-            if (docvenda == null)
-            {
-                throw new HttpResponseException(
-                        Request.CreateResponse(HttpStatusCode.NotFound));
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.GET_Pedidos(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
 
-            }
-            else
-            {
-                return docvenda;
-            }
+            return response;
         }
 
 
@@ -161,6 +154,14 @@ namespace FirstREST.Controllers
 
             }
 
+        }
+
+        //
+        // GET: /Clientes/
+
+        public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
+        {
+            return Lib_Primavera.PriIntegration.Encomendas_List();
         }
     }
 }
