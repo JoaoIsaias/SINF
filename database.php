@@ -157,92 +157,70 @@ function generateNRandomNumbers($n, $max) {
 	return $arr;
 }
 
-/*function isInWishList($idArtigo) {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
-	$stmt->execute(array($_SESSION['user']));
-	
-	if (!$stmt->fetch())
-		return false;
-	else
-		return true;
-}
+// WishList management - $list[$i]['productId']
+function getWishList($userID) {
+	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
 
-function getWishList() {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
-	$stmt->execute(array($_SESSION['user']));
-	$productIds = $stmt->fetch();
+	$stmt = $db->prepare('SELECT productId FROM WishList WHERE clientId = ?');
+	$stmt->execute(array($userID));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$db = NULL;
 
-	if ($productIds === false) {
-		return NULL;
-	}
-	
-	$products = array();
-	foreach ($productIds as $idArt) {
-		echo $idArt;
-		array_push($products, getProductById($idArt));
-	}
-	
-	return $products;
-}
-
-function addToWishList($idArtigo) {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('INSERT INTO ListaDeDesejos VALUES (:idCliente, :idArtigo)');
-	$stmt->bindParam(':idCliente', $_SESSION['user']);
-	$stmt->bindParam(':idArtigo', $idArtigo);
-	$stmt->execute();
-}
-
-function removeFromWishList($idArtigo) {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('DELETE FROM ListaDeDesejos WHERE idCliente = :idCliente AND idArtigo = :idArtigo');
-	$stmt->bindParam(':idCliente', $_SESSION['user']);
-	$stmt->bindParam(':idArtigo', $idArtigo);
-	$stmt->execute();
-}
-
-function removeAllFromWishList() {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('DELETE FROM ListaDeDesejos WHERE idCliente = :idCliente');
-	$stmt->bindParam(':idCliente', $_SESSION['user']);
-	$stmt->execute();
-}
-
-function getShoppingCart() {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('SELECT idArtigo, idArmazem, quantidade FROM CarrinhoDeCompras WHERE idCliente = ?');
-	$stmt->execute(array($_SESSION['user']));
-	$shoppingCartProducts = $stmt->fetch();
-	
-	$result = array();
-	for ($i = 0; $i < count($shoppingCartProducts); $i++) {
-		$product = array();
-		array_push($product, $shoppingCartProducts[$i]);
-		array_push($product, getProductById($shoppingCartProducts[$i]->CodArtigo));
-		array_push($result, $product);
-	}
-	
 	return $result;
 }
 
-function addToShoppingCart($idArtigo, $idArmazem, $quantidade) {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('INSERT INTO CarrinhoDeCompras VALUES (:idCliente, :idArtigo, :quantidade, :idArmazem)');
-	$stmt->bindParam(':idCliente', $_SESSION['user']);
-	$stmt->bindParam(':idArtigo', $idArtigo);
-	$stmt->bindParam(':quantidade', $quantidade);
-	$stmt->bindParam(':idArmazem', $idArmazem);
+function addToWishList($userID, $productID) {
+	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+
+	$stmt = $db->prepare('INSERT INTO WishList (clientId, productId) VALUES (:clientId, :productId)');
+	$stmt->bindParam(':clientId', $userID);
+	$stmt->bindParam(':productId', $productID);
 	$stmt->execute();
+	$db = NULL;
 }
 
-function removeFromShoppingCart($idArtigo) {
-	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
-	$stmt = $db_users->prepare('DELETE FROM CarrinhoDeCompras WHERE idCliente = :idCliente AND idArtigo = :idArtigo');
-	$stmt->bindParam(':idCliente', $_SESSION['user']);
-	$stmt->bindParam(':idArtigo', $idArtigo);
+function deleteFromWishList($userID, $productID) {
+	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+
+	$stmt = $db->prepare('DELETE FROM WishList WHERE clientId = :clientId AND productId = :productId');
+	$stmt->bindParam(':clientId', $userID);
+	$stmt->bindParam(':productId', $productID);
 	$stmt->execute();
-}*/
+	$db = NULL;
+}
+
+// ShoppingCart management - $cart[$i]['productId']
+function getShoppingCart($userID) {
+	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+
+	$stmt = $db->prepare('SELECT productId FROM ShoppingCart WHERE clientId = ?');
+	$stmt->execute(array($userID));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$db = NULL;
+
+	return $result;
+}
+
+function addToShoppingCart($userID, $productID, $quantity) {
+	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+
+	$stmt = $db->prepare('INSERT INTO ShoppingCart (clientId, productId, quantity)
+											VALUES (:clientId, :productId, :quantity)');
+	$stmt->bindParam(':clientId', $userID);
+	$stmt->bindParam(':productId', $productID);
+	$stmt->bindParam(':quantity', $quantity);
+	$stmt->execute();
+	$db = NULL;
+}
+
+function deleteFromShoppingCart($userID, $productID) {
+	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+
+	$stmt = $db->prepare('DELETE FROM ShoppingCart WHERE clientId = :clientId AND productId = :productId');
+	$stmt->bindParam(':clientId', $userID);
+	$stmt->bindParam(':productId', $productID);
+	$stmt->execute();
+	$db = NULL;
+}
 
 ?>
