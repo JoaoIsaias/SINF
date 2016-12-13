@@ -58,7 +58,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_Password, Nome, NumContrib, Fac_Mor, Fac_Local, Fac_Cp, Fac_Cploc, Pais, ModoPag, CondPag, ModoExp, Desconto, Moeda From Clientes Where Cliente Like '" + user + "'");
+                objList = PriEngine.Engine.Consulta("Select Cliente, CDU_Password, Nome, EnderecoWeb, NumContrib, Fac_Mor, Fac_Local, Fac_Cp, Fac_Cploc, Pais, ModoPag, CondPag, ModoExp, Desconto, Moeda From Clientes Where Cliente Like '" + user + "'");
 
                 if(objList.Vazia()){
                     return null;
@@ -78,6 +78,7 @@ namespace FirstREST.Lib_Primavera
                 cli.ModoExp = objList.Valor("ModoExp");
                 cli.Desconto = objList.Valor("Desconto");
                 cli.Moeda = objList.Valor("Moeda");
+                cli.Email = objList.Valor("EnderecoWeb");
 
                 return cli;
             }

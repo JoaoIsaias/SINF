@@ -95,5 +95,11 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+
+        public string Email
+        {
+            get;
+            set;
+        }
     }
 }
