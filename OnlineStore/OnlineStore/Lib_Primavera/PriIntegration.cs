@@ -244,7 +244,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo");
 
                 while (!objList.NoFim())
                 {
@@ -256,6 +256,7 @@ namespace FirstREST.Lib_Primavera
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
 
                     listArts.Add(art);
                     objList.Seguinte();
@@ -288,7 +289,7 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Artigo = '" + codArtigo + "'");
+                    objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Artigo = '" + codArtigo + "'");
 
                     art.CodArtigo = objList.Valor("Artigo");
                     art.DescArtigo = objList.Valor("Descricao");
@@ -296,6 +297,7 @@ namespace FirstREST.Lib_Primavera
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
 
                     return art;
                 }
@@ -379,7 +381,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Familia = '" + familiaId + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia = '" + familiaId + "'");
 
                 while (!objList.NoFim())
                 {
@@ -391,6 +393,7 @@ namespace FirstREST.Lib_Primavera
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
 
                     listArts.Add(art);
                     objList.Seguinte();
@@ -473,7 +476,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Marca = '" + brandId + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Marca = '" + brandId + "'");
 
                 while (!objList.NoFim())
                 {
@@ -485,6 +488,7 @@ namespace FirstREST.Lib_Primavera
                     art.Familia = objList.Valor("Familia");
                     art.Marca = objList.Valor("Marca");
                     art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
 
                     listArts.Add(art);
                     objList.Seguinte();

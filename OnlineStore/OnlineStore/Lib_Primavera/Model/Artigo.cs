@@ -54,5 +54,11 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+
+        public double Stock
+        {
+            get;
+            set;
+        }
     }
 }
