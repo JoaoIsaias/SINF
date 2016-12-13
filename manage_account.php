@@ -1,5 +1,7 @@
 <?php
 
+require 'database.php';
+
 $set = '';
 $add = '';
 $pay = '';

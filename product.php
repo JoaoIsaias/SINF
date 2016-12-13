@@ -2,10 +2,6 @@
 
 require 'database.php';
 
-if (isset($_POST['addtowishlist'])) {
-	addToWishList($_POST['addtowishlist']);
-}
-
 if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$product = getProductById($_GET['id']);
 
@@ -21,8 +17,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$storages = getStockById($_GET['id']);
 	$related = getByCategory($product->Familia);
 	$randomNumbers = generateNRandomNumbers(4, count($related));
-	
-	$isInWishList = isInWishList($_GET['id']);
 } else {
 	header('Location: 404_not_found.php');
 	die();
@@ -76,14 +70,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<span>5.0 stars</span>
 								<a href="#reviews" class="pull-right"><?= count($reviews) ?> reviews</a>
 							</span>
-							<form method="post">
-								<button <?php if ($isInWishList) { echo "disabled"; } ?> class="btn btn-primary" name="addtowishlist" value="<?= $_GET['id'] ?>" type="submit">
+							<?php if ($logon === true) { ?>
+								<button class="btn btn-primary" name="addtowishlist" type="submit">
 									<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
 								</button>
 								<button class="btn btn-primary pull-right">
 									<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 								</button>
-							</form>
+							<?php } ?>
 						</div>
 						<div class="col-lg-5 col-md-5 col-sm-5">
 							<h3 style="margin-top: 0">Stock</h3>

@@ -1,5 +1,7 @@
 <?php
 
+require 'database.php';
+
 $his = '';
 $pen = '';
 $tab = $_GET['tab'];

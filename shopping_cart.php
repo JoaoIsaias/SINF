@@ -1,3 +1,14 @@
+<?php
+
+require 'database.php';
+
+if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
+	header('Location: index.php');
+	die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

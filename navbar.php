@@ -40,12 +40,14 @@ if (isset($_SESSION['user'])) {
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="wish_list.php"><span class="glyphicon glyphicon-heart"></span> Wish List</a>
-					</li>
-					<li>
-						<a href="shopping_cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
-					</li>
+					<?php if ($logon === true) { ?>
+						<li>
+							<a href="wish_list.php"><span class="glyphicon glyphicon-heart"></span> Wish List</a>
+						</li>
+						<li>
+							<a href="shopping_cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
+						</li>
+					<?php } ?>
 					<li>
 						<?php if ($logon === true) { ?>
 							<a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
@@ -70,11 +72,14 @@ if (isset($_SESSION['user'])) {
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Brands</li>
 								<li><a href="#">All</a></li>
+								<?php for ($i = 0; $i < count($brands); $i++) { ?>
+									<li><a class="brand" href="#"><?= $brands[$i]->Descricao ?></a></li>
+								<?php } ?>
 								<li class="dropdown-header">Categories</li>
 								<li><a href="#">All</a></li>
 								<?php for ($i = 0; $i < count($categories); $i++) { ?>
 									<?php if ($categories[$i]->IdCategoria !== 'IGNORAR') { ?>
-										<li><a href="#"><?= $categories[$i]->Descricao ?></a></li>
+										<li><a class="category" href="#"><?= $categories[$i]->Descricao ?></a></li>
 									<?php } ?>
 								<?php } ?>
 							</ul>

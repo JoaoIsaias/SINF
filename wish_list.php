@@ -2,13 +2,12 @@
 
 require 'database.php';
 
-if ($_POST['removeall']) {
-	removeAllFromWishList();
-} else if ($_POST['remove'] && $_POST['id']) {
-	removeFromWishList($_POST['id']);
+if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
+	header('Location: index.php');
+	die();
 }
 
-$products = getWishList();
+$products = NULL;
 
 ?>
 
@@ -24,9 +23,9 @@ $products = getWishList();
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<h2 style="margin-top: 0">Wish List</h2>
-				<?php if ($products == NULL) { ?>
+				<?php if ($products === NULL) { ?>
 					<div class="alert alert-info" role="alert">
-						<span>Currently you have no products on the Wish List.</span>
+						<span>Currently, you have no products on the Wish List.</span>
 					</div>
 				<?php } else { ?>
 					<div class="table-responsive">
@@ -45,9 +44,9 @@ $products = getWishList();
 									<tr>
 										<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
 										<?php if ($products[$i]->Stock > 0) { ?>
-										<td>In Stock</td>
+											<td>In Stock</td>
 										<?php } else { ?>
-										<td>Not in Stock</td>
+											<td>Not in Stock</td>
 										<?php } ?>
 										<td><?= $products[$i]->Preco ?> €</td>
 										<td>
