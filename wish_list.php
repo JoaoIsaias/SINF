@@ -7,6 +7,7 @@ if ($_POST['removeall']) {
 } else if ($_POST['remove'] && $_POST['id']) {
 	removeFromWishList($_POST['id']);
 }
+// var_dump($products);
 
 $products = getWishList();
 

@@ -59,6 +59,20 @@ function getStockById($id) {
 	return json_decode($json);
 }
 
+// GET /artigo/getallbrands
+function getAllBrands() {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/getallbrands");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
 // GET /artigo/getallcategories
 function getAllCategories() {
 	$ch = curl_init();
@@ -108,6 +122,20 @@ function getUser($id) {
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/cliente/getbyuser/$id/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
+// GET /artigo/getsearch/{querry de procura}
+function getSearchByTerm($term) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/getsearch/$term/");
 
 	$json = curl_exec($ch);
 	curl_close($ch);
