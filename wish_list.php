@@ -11,6 +11,7 @@ $products = array();
 for ($i = 0; $i < count($productIds); i++) {
 	array_push($products, getProductById($productIds[$i]));
 }
+// var_dump($products);
 
 $db_users = null;
 

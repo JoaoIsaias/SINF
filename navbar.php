@@ -2,18 +2,20 @@
 
 $term = '';
 $logon = false;
-$category = 'All';
+$option = 'All';
+
+$brands = getAllBrands();
 $categories = getAllCategories();
+
+if (isset($_GET['option'])) {
+	if (!empty($_GET['option'])) {
+		$option = $_GET['option'];
+	}
+}
 
 if (isset($_GET['term'])) {
 	if (!empty($_GET['term'])) {
 		$term = $_GET['term'];
-	}
-}
-
-if (isset($_GET['category'])) {
-	if (!empty($_GET['category'])) {
-		$category = $_GET['category'];
 	}
 }
 
@@ -63,9 +65,12 @@ if (isset($_SESSION['user'])) {
 					<div class="input-group">
 						<div class="input-group-btn">
 							<button id="dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<?= $category ?><span style="margin-left: 5px" class="caret"></span>
+								<?= $option ?><span style="margin-left: 5px" class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
+								<li class="dropdown-header">Brands</li>
+								<li><a href="#">All</a></li>
+								<li class="dropdown-header">Categories</li>
 								<li><a href="#">All</a></li>
 								<?php for ($i = 0; $i < count($categories); $i++) { ?>
 									<?php if ($categories[$i]->IdCategoria !== 'IGNORAR') { ?>
