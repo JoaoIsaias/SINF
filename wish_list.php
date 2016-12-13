@@ -7,7 +7,6 @@ if ($_POST['removeall']) {
 } else if ($_POST['remove'] && $_POST['id']) {
 	removeFromWishList($_POST['id']);
 }
-// var_dump($products);
 
 $products = getWishList();
 
@@ -25,53 +24,59 @@ $products = getWishList();
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<h2 style="margin-top: 0">Wish List</h2>
-				<div class="table-responsive">
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>
-								<th>Product</th>
-								<th>Stock</th>
-								<th>Price</th>
-								<th>Remove</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php for ($i = 0; $i < count($products); $i++) { ?>
-							<form method="post">
+				<?php if ($products == NULL) { ?>
+					<div class="alert alert-info" role="alert">
+						<span>Currently you have no products on the Wish List.</span>
+					</div>
+				<?php } else { ?>
+					<div class="table-responsive">
+						<table class="table table-striped table-hover">
+							<thead>
 								<tr>
-									<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
-									<?php if ($products[$i]->Stock > 0) { ?>
-									<td>In Stock</td>
-									<?php } else { ?>
-									<td>Not in Stock</td>
-									<?php } ?>
-									<td><?= $products[$i]->Preco ?> €</td>
-									<td>
-										<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
-										<button type="submit" name="remove" class="btn btn-danger pull-left">
-											<span class="glyphicon glyphicon-remove"></span>
-										</button>
-									</td>
+									<th>Product</th>
+									<th>Stock</th>
+									<th>Price</th>
+									<th>Remove</th>
 								</tr>
-							</form>
-						<?php } ?>
-						</tbody>
-						<tfoot style="border-bottom: 2px solid #d5d5d5">
-							<form method="post">
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-										<button type="submit" name="removeall" class="btn btn-danger pull-left">
-											<span class="glyphicon glyphicon-remove"></span> Remove All
-										</button>
-									</td>
-								</tr>
-							</form>
-						</tfoot>
-					</table>
-				</div>
+							</thead>
+							<tbody>
+							<?php for ($i = 0; $i < count($products); $i++) { ?>
+								<form method="post">
+									<tr>
+										<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
+										<?php if ($products[$i]->Stock > 0) { ?>
+										<td>In Stock</td>
+										<?php } else { ?>
+										<td>Not in Stock</td>
+										<?php } ?>
+										<td><?= $products[$i]->Preco ?> €</td>
+										<td>
+											<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
+											<button type="submit" name="remove" class="btn btn-danger pull-left">
+												<span class="glyphicon glyphicon-remove"></span>
+											</button>
+										</td>
+									</tr>
+								</form>
+							<?php } ?>
+							</tbody>
+							<tfoot style="border-bottom: 2px solid #d5d5d5">
+								<form method="post">
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<button type="submit" name="removeall" class="btn btn-danger pull-left">
+												<span class="glyphicon glyphicon-remove"></span> Remove All
+											</button>
+										</td>
+									</tr>
+								</form>
+							</tfoot>
+						</table>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 		<div class="row text-center">

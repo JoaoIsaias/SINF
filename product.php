@@ -2,8 +2,8 @@
 
 require 'database.php';
 
-if ($_POST['addtowishlist']) {
-	addToWishList($_POST['addtowishlist'])
+if (isset($_POST['addtowishlist'])) {
+	addToWishList($_POST['addtowishlist']);
 }
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -77,13 +77,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<a href="#reviews" class="pull-right"><?= count($reviews) ?> reviews</a>
 							</span>
 							<form method="post">
-								<button <?php if ($isInWishList) { ?> disabled <?php } ?> class="btn btn-primary" name="addtowishlist" value="<?= $_GET['id'] ?>" type="submit">
+								<button <?php if ($isInWishList) { echo "disabled"; } ?> class="btn btn-primary" name="addtowishlist" value="<?= $_GET['id'] ?>" type="submit">
 									<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
 								</button>
+								<button class="btn btn-primary pull-right">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+								</button>
 							</form>
-							<button class="btn btn-primary pull-right">
-								<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
-							</button>
 						</div>
 						<div class="col-lg-5 col-md-5 col-sm-5">
 							<h3 style="margin-top: 0">Stock</h3>

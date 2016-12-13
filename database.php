@@ -157,14 +157,15 @@ function generateNRandomNumbers($n, $max) {
 	return $arr;
 }
 
-function isInWishList($idArtigo){
+function isInWishList($idArtigo) {
 	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
 	$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
 	$stmt->execute(array($_SESSION['user']));
 	
-	if(!$stmt->fetch())
+	if (!$stmt->fetch())
 		return false;
-	else return true;
+	else
+		return true;
 }
 
 function getWishList() {
@@ -172,9 +173,13 @@ function getWishList() {
 	$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
 	$stmt->execute(array($_SESSION['user']));
 	$productIds = $stmt->fetch();
+
+	if ($productIds === false) {
+		return NULL;
+	}
 	
 	$products = array();
-	for ($i = 0; $i < count($productIds); i++) {
+	for ($i = 0; $i < count($productIds); $i++) {
 		array_push($products, getProductById($productIds[$i]));
 	}
 	
@@ -211,7 +216,7 @@ function getShoppingCart() {
 	$shoppingCartProducts = $stmt->fetch();
 	
 	$result = array();
-	for ($i = 0; $i < count($shoppingCartProducts); i++) {
+	for ($i = 0; $i < count($shoppingCartProducts); $i++) {
 		$product = array();
 		array_push($product, $shoppingCartProducts[$i]);
 		array_push($product, getProductById($shoppingCartProducts[$i]->CodArtigo));
