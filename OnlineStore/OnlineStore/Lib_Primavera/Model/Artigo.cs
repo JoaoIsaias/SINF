@@ -25,6 +25,12 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
+        public string Iva
+        {
+            get;
+            set;
+        }
+
         public string Familia //categoria
         {
             get;

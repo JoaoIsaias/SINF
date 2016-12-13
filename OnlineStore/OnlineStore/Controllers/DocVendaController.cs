@@ -19,17 +19,17 @@ namespace FirstREST.Controllers
                 "Entidade": "TA0001",
                 "EmailEntidade": "testeaula@mail.com",
                 "Serie": "2016",
-                "LinhasDoc": [
+                "LinhasDoc": [                                      // Lista de objetos artigo
                     {
                         "CodArtigo": "A0001",
                         "DescArtigo": "Pentium D925 Dual Core",
-                        "IdCabecDoc": "sd",
-                        "Quantidade": 1,
-                        "Unidade":1,
-                        "Desconto":0,
-                        "PrecoUnitario": 1000,
-                        "TotalILiquido": 1000,
-                        "TotalLiquido": 1000
+                        "IdCabecDoc": "sd",                         // Pode ser sempre o mesmo
+                        "Quantidade": 1,                            // Tem de ser sempre >= 1
+                        "Unidade":1,                                // Sempre 1
+                        "Desconto":0,                               // Sempre 0
+                        "PrecoUnitario": 1000,                      // Preco do artigo
+                        "TotalILiquido": 1000,                      // Preco do artigo
+                        "TotalLiquido": 1000                        // Preco do artigo
                     }
                 ]
             }
