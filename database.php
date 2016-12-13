@@ -129,4 +129,86 @@ function generateNRandomNumbers($n, $max) {
 	return $arr;
 }
 
+function isInWishList($idArtigo){
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
+	$stmt->execute(array($_SESSION['user']));
+	
+	if(!$stmt->fetch())
+		return false;
+	else return true;
+}
+
+function getWishList() {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
+	$stmt->execute(array($_SESSION['user']));
+	$productIds = $stmt->fetch();
+	
+	$products = array();
+	for ($i = 0; $i < count($productIds); i++) {
+		array_push($products, getProductById($productIds[$i]));
+	}
+	
+	return $products;
+}
+
+function addToWishList($idArtigo) {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('INSERT INTO ListaDeDesejos VALUES (:idCliente, :idArtigo);');
+	$stmt->bindParam(':idCliente', $_SESSION['user']);
+	$stmt->bindParam(':idArtigo', $idArtigo);
+	$stmt->execute();
+}
+
+function removeFromWishList($idArtigo) {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('DELETE FROM ListaDeDesejos WHERE idCliente = :idCliente AND idArtigo = :idArtigo');
+	$stmt->bindParam(':idCliente', $_SESSION['user']);
+	$stmt->bindParam(':idArtigo', $idArtigo);
+	$stmt->execute();
+}
+
+function removeAllFromWishList() {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('DELETE FROM ListaDeDesejos WHERE idCliente = :idCliente');
+	$stmt->bindParam(':idCliente', $_SESSION['user']);
+	$stmt->execute();
+}
+
+function getShoppingCart() {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('SELECT idArtigo, idArmazem, quantidade FROM CarrinhoDeCompras WHERE idCliente = ?');
+	$stmt->execute(array($_SESSION['user']));
+	$shoppingCartProducts = $stmt->fetch();
+	
+	$result = array();
+	for ($i = 0; $i < count($shoppingCartProducts); i++) {
+		$product = array();
+		array_push($product, $shoppingCartProducts[$i]);
+		array_push($product, getProductById($shoppingCartProducts[$i]->CodArtigo));
+		array_push($result, $product);
+	}
+	
+	return $result;
+}
+
+function addToShoppingCart($idArtigo, $idArmazem, $quantidade) {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('INSERT INTO CarrinhoDeCompras VALUES (:idCliente, :idArtigo, :quantidade, :idArmazem)');
+	$stmt->bindParam(':idCliente', $_SESSION['user']);
+	$stmt->bindParam(':idArtigo', $idArtigo);
+	$stmt->bindParam(':quantidade', $quantidade);
+	$stmt->bindParam(':idArmazem', $idArmazem);
+	$stmt->execute();
+}
+
+function removeFromShoppingCart($idArtigo) {
+	$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+	$stmt = $db_users->prepare('DELETE FROM CarrinhoDeCompras WHERE idCliente = :idCliente AND idArtigo = :idArtigo');
+	$stmt->bindParam(':idCliente', $_SESSION['user']);
+	$stmt->bindParam(':idArtigo', $idArtigo);
+	$stmt->execute();
+}
+
 ?>
