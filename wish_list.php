@@ -1,3 +1,21 @@
+<?php
+
+require 'database.php';
+
+$db_users = new PDO('sqlite:db_sqlite/sinf.db');
+$stmt = $db_users->prepare('SELECT idArtigo FROM ListaDeDesejos WHERE idCliente = ?');
+$stmt->execute(array($_SESSION['user']));
+$productIds = $stmt->fetch();
+
+$products = array();
+for ($i = 0; $i < count($productIds); i++) {
+	array_push($products, getProductById($productIds[$i]));
+}
+
+$db_users = null;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +34,21 @@
 							<tr>
 								<th>Product</th>
 								<th>Stock</th>
-								<th>Quantity</th>
 								<th>Price</th>
-								<th>Subtotal</th>
 								<th>Shopping Cart</th>
 								<th>Remove</th>
 							</tr>
 						</thead>
 						<tbody>
+						<?php for ($i = 0; $i < count($products); $i++) { ?>
 							<tr>
-								<td><a href="product.php">Product name #1</a></td>
+								<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
+								<?php if ($products[$i]->Stock > 0) { ?>
 								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
+								<?php } else { ?>
+								<td>Not in Stock</td>
+								<?php } ?>
+								<td><?= $products[$i]->Preco ?> €</td>
 								<td>
 									<button class="btn btn-success pull-left">
 										<span class="glyphicon glyphicon-plus"></span> Add
@@ -41,74 +60,7 @@
 									</button>
 								</td>
 							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-success pull-left">
-										<span class="glyphicon glyphicon-plus"></span> Add
-									</button>
-								</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-success pull-left">
-										<span class="glyphicon glyphicon-plus"></span> Add
-									</button>
-								</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-success pull-left">
-										<span class="glyphicon glyphicon-plus"></span> Add
-									</button>
-								</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-success pull-left">
-										<span class="glyphicon glyphicon-plus"></span> Add
-									</button>
-								</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
+						<?php } ?>
 						</tbody>
 						<tfoot style="border-bottom: 2px solid #d5d5d5">
 							<tr>
@@ -116,7 +68,7 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td><b>Total:</b> $24.99</td>
+								<td></td>
 								<td>
 									<button class="btn btn-primary pull-left">
 										<span class="glyphicon glyphicon-plus"></span> Add All
