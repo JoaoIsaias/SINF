@@ -127,5 +127,14 @@ namespace FirstREST.Controllers
 
             return response;
         }
+
+        // GET /artigo/getsearch/{querry de procura}
+        public HttpResponseMessage GetSearch(string param)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaSearch(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
     }
 }

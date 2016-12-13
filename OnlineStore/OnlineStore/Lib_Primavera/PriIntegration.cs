@@ -1082,37 +1082,44 @@ namespace FirstREST.Lib_Primavera
 
         # region Search
 
-        public static List<Model.Artigo> SearchArtigosNome(string codArtigo)
+        public static List<Model.Artigo> ListaSearch(string querry)
         {
+
             StdBELista objList;
-            List<Model.Artigo> listArtigos = new List<Model.Artigo>();
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-
-                objList = PriEngine.Engine.Consulta("SELECT DISTINCT CDU_Nome, ARTIGO.Artigo, ArtigoMoeda.Artigo,  CDU_Descricao, Desconto, STKActual, PCPadrao, Familia, SubFamilia, Marca, Modelo,  CDU_Imagem, PVP1 FROM  ARTIGO, ArtigoMoeda  WHERE ARTIGO.Artigo = ArtigoMoeda.Artigo AND (CDU_Descricao LIKE '%" + codArtigo + "%' OR Marca LIKE '%" + codArtigo + "%' OR CDU_Nome LIKE '%" + codArtigo + "%')");
-
+                string likeQuerry = "%" + querry + "%";
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Descricao like '" + likeQuerry + "'");
 
                 while (!objList.NoFim())
                 {
-                    Model.Artigo art = new Model.Artigo();
+                    art = new Model.Artigo();
 
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("CDU_Descricao");
-                    art.Preco = Math.Round(Convert.ToDouble(objList.Valor("PVP1")) * 1.23, 2);
-                    art.Familia = objList.Valor("familia");
-                    art.Marca = objList.Valor("marca");
-                    art.Imagem = objList.Valor("CDU_Imagem");
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCPadrao");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
 
-                    listArtigos.Add(art);
+                    listArts.Add(art);
                     objList.Seguinte();
                 }
 
+                return listArts;
 
-                return listArtigos;
             }
             else
+            {
                 return null;
+
+            }
+
         }
 
         #endregion Search
