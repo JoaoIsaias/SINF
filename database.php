@@ -87,34 +87,6 @@ function getAllCategories() {
 	return json_decode($json);
 }
 
-// GET /artigo/get4randcategories
-function getRandCategories() {
-	$ch = curl_init();
-
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/get4randcategories");
-
-	$json = curl_exec($ch);
-	curl_close($ch);
-
-	return json_decode($json);
-}
-
-// GET /artigo/get2randbycategory/{id da categoria}
-function getRandProducts($id) {
-	$ch = curl_init();
-
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/get2randbycategory/$id/");
-
-	$json = curl_exec($ch);
-	curl_close($ch);
-
-	return json_decode($json);
-}
-
 // GET /artigo/getcategorydescription/{id da categoria}
 function getCategoryById($id) {
 	$ch = curl_init();

@@ -109,9 +109,15 @@ if (count($cart) > 0) {
 			<a href="index.php" class="btn btn-info">
 				<span class="glyphicon glyphicon-triangle-left"></span> Continue Shopping
 			</a>
-			<a href="checkout.php" class="btn btn-success">
-				<span class="glyphicon glyphicon-credit-card"></span> Checkout
-			</a>
+			<?php if (count($cart) > 0) { ?>
+				<a href="checkout.php" class="btn btn-success">
+					<span class="glyphicon glyphicon-credit-card"></span> Checkout
+				</a>
+			<?php } else { ?>
+				<a href="checkout.php" class="btn btn-success" disabled>
+					<span class="glyphicon glyphicon-credit-card"></span> Checkout
+				</a>
+			<?php } ?>
 		</div>
 	</div>
 	<?php require 'footer.php'; ?>
