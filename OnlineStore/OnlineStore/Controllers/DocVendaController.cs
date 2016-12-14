@@ -16,20 +16,12 @@ namespace FirstREST.Controllers
         // POST /docvenda/insereencomenda
         /* Exemplo do body passado no post em json
         {
-            "Entidade": "SOFRIO",
-            "EmailEntidade": "lala@mail.com",
-            "Serie": "2016",
+            "Entidade": "ALCAD",
             "LinhasDoc": [
                 {
                     "CodArtigo": "A0001",
-                    "DescArtigo": "Pentium D925 Dual Core",
-                    "IdCabecDoc": "sd",
-                    "Quantidade": 1,
-                    "Unidade":1,
-                    "Desconto":0,
-                    "PrecoUnitario": 1000,
-                    "TotalILiquido": 1000,
-                    "TotalLiquido": 1000
+                    "Quantidade": 2,
+                    "PrecoUnitario": 100
                 }
             ]
         }
