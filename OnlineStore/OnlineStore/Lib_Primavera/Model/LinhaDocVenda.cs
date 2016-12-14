@@ -15,27 +15,7 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-         public string DescArtigo
-        {
-            get;
-            set;
-        }
-
-         public string IdCabecDoc
-         {
-             get;
-             set;
-         }
-
-
-
          public double Quantidade
-        {
-            get;
-            set;
-        }
-
-         public string Unidade
         {
             get;
             set;
@@ -52,19 +32,5 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
-
-         public double TotalILiquido
-        {
-            get;
-            set;
-        }
-
-          public double TotalLiquido
-        {
-            get;
-            set;
-        }
-
-
     }
 }
