@@ -14,12 +14,6 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string Entidade
-        {
-            get;
-            set;
-        }
-
         public int NumDoc
         {
             get;
@@ -32,7 +26,7 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public double TotalMerc
+        public string Entidade
         {
             get;
             set;
@@ -50,19 +44,19 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public double PrecoFinal
+        public double Preco
+        {
+            get;
+            set;
+        }
+
+        public double IVA
         {
             get;
             set;
         }
 
         public string Estado
-        {
-            get;
-            set;
-        }
-
-        public string DataLiq
         {
             get;
             set;
