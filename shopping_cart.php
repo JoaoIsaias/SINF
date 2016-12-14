@@ -72,8 +72,8 @@ if (count($cart) > 0) {
 												<td>Not in Stock</td>
 											<?php } ?>
 											<td><?= $cart[$i]['quantity'] ?></td>
-											<td><?= $products[$i]->Preco ?> €</td>
-											<td><?= $cart[$i]['quantity'] * $products[$i]->Preco ?> €</td>
+											<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?> €</td>
+											<td><?= $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0))) ?> €</td>
 											<td>
 												<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
 												<button type="submit" name="remove" class="btn btn-danger pull-left">

@@ -3,6 +3,19 @@
 // Functions to access and retrieve information from the database
 session_start();
 
+// Print stars
+function printStars($stars) {
+	$rest = 5 - $stars;
+
+	for ($i = 0; $i < $stars; $i++)
+		echo "<span class=\"glyphicon glyphicon-star\"></span>";
+
+	if ($rest > 0) {
+		for ($i = 0; $i < $rest; $i++)
+			echo "<span class=\"glyphicon glyphicon-star-empty\"></span>";
+	}
+}
+
 // GET /artigo/getbyid/{id do artigo}
 function getProductById($id) {
 	$ch = curl_init();
@@ -10,6 +23,34 @@ function getProductById($id) {
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/getbyid/$id/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
+// GET /review/getartigoclassification/{id do artigo}
+function getProductRating($id) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/review/getartigoclassification/$id/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
+// GET /artigo/get4randbycategory/{id da categoria}
+function getRelatedProducts($id) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/get4randbycategory/$id");
 
 	$json = curl_exec($ch);
 	curl_close($ch);
@@ -59,6 +100,16 @@ function getStockById($id) {
 	return json_decode($json);
 }
 
+// Get brand's ID
+function getBrandId($desc, $brands) {
+	for ($i = 0; $i < count($brands); $i++) {
+		if ($brands[$i]->Descricao === $desc)
+			return $brands[$i]->IdMarca;
+	}
+
+	return NULL;
+}
+
 // GET /artigo/getallbrands
 function getAllBrands() {
 	$ch = curl_init();
@@ -71,6 +122,16 @@ function getAllBrands() {
 	curl_close($ch);
 
 	return json_decode($json);
+}
+
+// Get category's ID
+function getCategoryId($desc, $categories) {
+	for ($i = 0; $i < count($categories); $i++) {
+		if ($categories[$i]->Descricao === $desc)
+			return $categories[$i]->IdCategoria;
+	}
+
+	return NULL;
 }
 
 // GET /artigo/getallcategories
@@ -130,12 +191,26 @@ function getUser($id) {
 }
 
 // GET /artigo/getsearch/{querry de procura}
-function getSearchByTerm($term) {
+function getSearchResults($query) {
 	$ch = curl_init();
 
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/getsearch/$term/");
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/getsearch/$query/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
+// GET /artigo/getsearch/{querry de procura}/{id da categoria ou marca}
+function getSpecificSearchResults($query, $id) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/getsearch/$query/$id/");
 
 	$json = curl_exec($ch);
 	curl_close($ch);

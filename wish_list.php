@@ -69,7 +69,7 @@ if (count($list) > 0) {
 										<?php } else { ?>
 											<td>Not in Stock</td>
 										<?php } ?>
-										<td><?= $products[$i]->Preco ?> €</td>
+										<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€</td>
 										<td>
 											<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
 											<button type="submit" name="remove" class="btn btn-danger pull-left">

@@ -7,6 +7,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 	$description = $product->DescArtigo;
 	$price = $product->Preco;
+	$iva = $product->Iva / 100.0;
 	$brand = '';
 
 	if (!empty($product->Marca))
@@ -15,8 +16,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$category = getCategoryById($product->Familia);
 	$reviews = getReviewsById($_GET['id']);
 	$storages = getStockById($_GET['id']);
-	$related = getByCategory($product->Familia);
-	$randomNumbers = generateNRandomNumbers(4, count($related));
+	$related = getRelatedProducts($product->Familia);
+	$rating = getProductRating($_GET['id']);
+
+	if ($rating === NULL)
+		$rating = 0;
 
 	$list = NULL;
 	$cart = NULL;
@@ -87,8 +91,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 				</div>
 				<div class="well">
 					<div class="row">
-						<div class="col-lg-7 col-md-7 col-sm-7" style="margin-bottom: 20px">
-							<h3 class="pull-right" style="margin: 0 0 5px 0"><?= $price ?>€</h3>
+						<div class="col-lg-7 col-md-7 col-sm-7">
+							<h3 class="pull-right" style="margin: 0 0 5px 0"><?= $price + ($price * $iva) ?>€</h3>
 							<h3 style="margin: 0 0 5px 0">
 								<?= $description ?>
 								<?php if (!empty($brand)) echo "<small> by $brand</small>"; ?>
@@ -96,18 +100,24 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 							<h5 style="margin-top: 0">in <?= $category ?></h5>
 							<?php if ($logon === true) { ?>
 								<span style="color: red; display: block; margin-bottom: 15px">
-									<span>5.0 stars</span>
+									<span>
+										<?php printStars($rating); ?>
+										<?= $rating ?> stars
+									</span>
 									<a href="#reviews" class="pull-right"><?= count($reviews) ?> reviews</a>
 								</span>
 								<?php if ($inList === false && $inCart === false) { ?>
 									<form method="post">
-										<button class="btn btn-primary" name="addtolist" type="submit">
-											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
-										</button>
-										<input type="hidden" name="quantity" value="1">
-										<button class="btn btn-primary pull-right" name="addtocart" type="submit">
-											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
-										</button>
+										<div class="clearfix" style="margin-bottom: 10px">
+											<button class="btn btn-primary" name="addtolist" type="submit">
+												<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
+											</button>
+											<button class="btn btn-primary pull-right" name="addtocart" type="submit">
+												<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+											</button>
+										</div>
+										<input type="number" name="quantity" value="1" class="form-control pull-right" style="width: 100px">
+										<span style="padding-top: 10px; margin-right: 5px" class="pull-right"><b>Quantity:</b></span>
 									</form>
 								<?php } else if ($inList === false && $inCart === true) { ?>
 									<form method="post">
@@ -120,13 +130,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 									</form>
 								<?php } else if ($inList === true && $inCart === false) { ?>
 									<form method="post">
-										<button disabled class="btn btn-primary" name="addtolist" type="submit">
-											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
-										</button>
-										<input type="hidden" name="quantity" value="1">
-										<button class="btn btn-primary pull-right" name="addtocart" type="submit">
-											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
-										</button>
+										<div class="clearfix" style="margin-bottom: 10px">
+											<button disabled class="btn btn-primary" name="addtolist" type="submit">
+												<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
+											</button>
+											<button class="btn btn-primary pull-right" name="addtocart" type="submit">
+												<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+											</button>
+										</div>
+										<input type="number" name="quantity" value="1" class="form-control pull-right" style="width: 100px">
+										<span style="padding-top: 10px; margin-right: 5px" class="pull-right"><b>Quantity:</b></span>
 									</form>
 								<?php } else { ?>
 									<form method="post">
@@ -160,10 +173,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 										<span><?= $storages[$i]->CodPostal ?> - <?= $storages[$i]->CodPostalLocalidade ?></span>
 									</li>
 								<?php } ?>
-								<li class="list-group-item">
-									<label for="quantity">Quantity:</label>
-									<input id="quantity" type="number" min="1" value="1" class="form-control">
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -175,28 +184,19 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 				<h4 style="margin-top: 0">Related Products</h4>
 				<?php if (count($related) > 0) { ?>
 					<div class="row">
-						<?php for ($i = 0; $i < 4; $i++) { ?>
+						<?php for ($i = 0; $i < count($related); $i++) { ?>
 							<div class="col-lg-3 col-md-3 col-sm-6">
 								<div class="thumbnail">
 									<img src="images/mediumImage.png" alt="Test">
 									<div class="caption">
 										<h4 style="margin: 0" class="pull-right">
-											<?= $related[$randomNumbers[$i]]->Preco ?>€
+											<?= $related[$i]->Preco + ($related[$i]->Preco * ($related[$i]->Iva / 100.0)) ?>€
 										</h4>
 										<h4 style="margin: 0">
-											<a href="product.php?id=<?= $related[$randomNumbers[$i]]->CodArtigo ?>">
-												<?= $related[$randomNumbers[$i]]->DescArtigo ?>
+											<a href="product.php?id=<?= $related[$i]->CodArtigo ?>">
+												<?= $related[$i]->DescArtigo ?>
 											</a>
 										</h4>
-										<span class="clearfix">
-											<span>
-												<!-- print stars -->
-											</span>
-											<a class="pull-right" href="product.php?id=<?= $related[$randomNumbers[$i]]->CodArtigo ?>#reviews">
-												<?= count(getReviewsById($related[$randomNumbers[$i]]->CodArtigo)) ?>
-												<span> reviews</span>
-											</a>
-										</span>
 									</div>
 								</div>
 							</div>
