@@ -272,7 +272,84 @@ namespace FirstREST.Lib_Primavera
                 return null;
 
             }
+        }
 
+        public static List<Model.Artigo> Lista16RandArtigos()
+        {
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("Select Top 16 Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia != 'IGNORAR' Order By NEWID()");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCPadrao");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
+                    art.Iva = objList.Valor("Iva");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
+        public static List<Model.Artigo> Lista32RandArtigos()
+        {
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("Select Top 32 Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia != 'IGNORAR' Order By NEWID()");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCPadrao");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
+                    art.Iva = objList.Valor("Iva");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
         }
 
         public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
