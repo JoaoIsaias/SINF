@@ -347,6 +347,40 @@ namespace FirstREST.Lib_Primavera
 
         }
 
+        public static List<Model.Categoria> Lista4CategoriasRand()
+        {
+            StdBELista objList;
+
+            List<Model.Categoria> listCategorias = new List<Model.Categoria>();
+            Model.Categoria cat = new Model.Categoria();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("select top 4 Familia, Descricao from Familias where familia != 'IGNORAR' ORDER BY NEWID()");
+
+                while (!objList.NoFim())
+                {
+                    cat = new Model.Categoria();
+
+                    cat.IdCategoria = objList.Valor("Familia");
+                    cat.Descricao = objList.Valor("Descricao");
+
+                    listCategorias.Add(cat);
+                    objList.Seguinte();
+                }
+
+                return listCategorias;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
         public static String GetCategoryDescription(string familiaId)
         {
             StdBELista objList;
@@ -385,6 +419,97 @@ namespace FirstREST.Lib_Primavera
             {
 
                 objList = PriEngine.Engine.Consulta("Select Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia = '" + familiaId + "'");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCPadrao");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
+                    art.Iva = objList.Valor("Iva");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        public static List<Model.Artigo> GetByIdList(Model.ListaArtigos lista)
+        {
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                string prepareQuerry = "(";
+                for (int i = 0; i < lista.Artigos.Count() - 1; i++ )
+                {
+                    prepareQuerry += "'" + lista.Artigos.ElementAt(i) + "',";
+                }
+                if(lista.Artigos.Count() != 0){
+                    prepareQuerry += "'" + lista.Artigos.ElementAt(lista.Artigos.Count() - 1) + "'";
+                }
+                prepareQuerry += ")";
+
+                objList = PriEngine.Engine.Consulta("Select Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Artigo in " + prepareQuerry);
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+
+                    art.CodArtigo = objList.Valor("Artigo");
+                    art.DescArtigo = objList.Valor("Descricao");
+                    art.Preco = objList.Valor("PCPadrao");
+                    art.Familia = objList.Valor("Familia");
+                    art.Marca = objList.Valor("Marca");
+                    art.Imagem = objList.Valor("CDU_DirImagem");
+                    art.Stock = objList.Valor("STKActual");
+                    art.Iva = objList.Valor("Iva");
+
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        public static List<Model.Artigo> Lista4ArtigosDaCategoriaRand(string familiaId)
+        {
+
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("Select top 4 Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia = '" + familiaId + "' ORDER BY NEWID()");
 
                 while (!objList.NoFim())
                 {
@@ -1156,7 +1281,7 @@ namespace FirstREST.Lib_Primavera
 
         # region Search
 
-        public static List<Model.Artigo> ListaSearch(string querry)
+        public static List<Model.Artigo> ListaSearch(string querry1, string querry2)
         {
 
             StdBELista objList;
@@ -1166,9 +1291,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-
-                string likeQuerry = "%" + querry + "%";
-                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Descricao like '" + likeQuerry + "'");
+                objList = PriEngine.Engine.Consulta("Select Artigo, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem From Artigo Where Descricao like '%" + querry1 + "%' and ( Familia like '%" + querry2 + "%' or Marca like '%" + querry2 + "%' )");
 
                 while (!objList.NoFim())
                 {

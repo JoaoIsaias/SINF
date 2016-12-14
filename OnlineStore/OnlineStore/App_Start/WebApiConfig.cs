@@ -11,8 +11,8 @@ namespace FirstREST
         {
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "{controller}/{action}/{param}",
-                defaults: new { param = RouteParameter.Optional }
+                routeTemplate: "{controller}/{action}/{param}/{param2}",
+                defaults: new { param = RouteParameter.Optional, param2 = RouteParameter.Optional }
             );
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));

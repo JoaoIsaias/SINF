@@ -41,10 +41,40 @@ namespace FirstREST.Controllers
             return response;
         }
 
+        // POST /artigo/retrievebyidlist
+         /* Exemplo do body passado no post em json
+            {
+	            "Artigos" : [
+                    "B0001",
+                    "B0002",
+                    "B0003",
+                    "B0004",
+                    "B0005",
+                    "B0006"
+                ]
+            }
+         */
+        public HttpResponseMessage RetrieveByIdList(Lib_Primavera.Model.ListaArtigos lista)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.GetByIdList(lista));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
         // GET /artigo/getallcategories
         public HttpResponseMessage GetAllCategories()
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaCategorias());
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
+        // GET /artigo/get4randcategories
+        public HttpResponseMessage Get4RandCategories()
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.Lista4CategoriasRand());
             response.Headers.Add("Access-Control-Allow-Origin", "*");
 
             return response;
@@ -75,6 +105,15 @@ namespace FirstREST.Controllers
         public HttpResponseMessage GetByCategory(string param)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaArtigosDaCategoria(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
+        // GET /artigo/get4randbycategory/{id da categoria}
+        public HttpResponseMessage Get4RandByCategory(string param)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.Lista4ArtigosDaCategoriaRand(param));
             response.Headers.Add("Access-Control-Allow-Origin", "*");
 
             return response;
@@ -131,7 +170,16 @@ namespace FirstREST.Controllers
         // GET /artigo/getsearch/{querry de procura}
         public HttpResponseMessage GetSearch(string param)
         {
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaSearch(param));
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaSearch(param, ""));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
+        // GET /artigo/getsearch/{querry de procura}/{id da categoria ou marca}
+        public HttpResponseMessage GetSearch(string param, string param2)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.ListaSearch(param, param2));
             response.Headers.Add("Access-Control-Allow-Origin", "*");
 
             return response;
