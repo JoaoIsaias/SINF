@@ -41,7 +41,7 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 						</li>
 					</ul>
 					<h3 style="margin-top: 0">Orders</h3>
-					<ul style="padding-left: 20px; list-style-type: none">
+					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
 						<li>
 							<a href="orders.php?tab=history"><span class="glyphicon glyphicon-list-alt"></span> Order History</a>
 						</li>
@@ -49,42 +49,37 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 							<a href="orders.php?tab=pending"><span class="glyphicon glyphicon-time"></span> Pending Orders</a>
 						</li>
 					</ul>
-					<h3 style="margin-top: 0">Manage Account</h3>
-					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
-						<li>
-							<a href="manage_account.php?tab=settings"><span class="glyphicon glyphicon-cog"></span> Settings</a>
-						</li>
-						<li>
-							<a href="manage_account.php?tab=address"><span class="glyphicon glyphicon-book"></span> Address Book</a>
-						</li>
-						<li>
-							<a href="manage_account.php?tab=payment"><span class="glyphicon glyphicon-credit-card"></span> Payment Options</a>
-						</li>
-					</ul>
 				</div>
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8">
 				<div class="well">
-					<h2 style="margin-top: 0">Account Information</h2>
+					<div class="clearfix">
+						<h2 style="margin-top: 0" class="pull-left">Account Information</h2>
+						<a href="edit_profile.php" class="btn btn-sm btn-primary pull-right">
+							<span class="glyphicon glyphicon-cog"></span> Edit Profile
+						</a>
+					</div>
 					<div class="form-group">
 						<label for="user">Username:</label>
-						<input id="user" type="text" class="form-control" value="<?= $_SESSION['user'] ?>" disabled>
+						<input style="background-color: #ffffff" id="user" type="text" class="form-control" value="<?= $_SESSION['user'] ?>" disabled>
 					</div>
 					<div class="form-group">
 						<label for="name">Name:</label>
-						<input id="name" type="text" class="form-control" value="<?= $name ?>" disabled>
+						<input style="background-color: #ffffff" id="name" type="text" class="form-control" value="<?= $name ?>" disabled>
 					</div>
 					<div class="form-group">
 						<label for="tax-number">Tax Number:</label>
-						<input id="tax-number" type="text" class="form-control" value="<?= $taxNumber ?>" disabled>
+						<input style="background-color: #ffffff" id="tax-number" type="text" class="form-control" value="<?= $taxNumber ?>" disabled>
 					</div>
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6">
-							<p><b>Address:</b></p>
-							<span><?= $address ?></span><br>
-							<span><?= $local ?></span><br>
-							<span><?= $postalCode ?> - <?= $location ?></span><br>
-							<span><?= $country ?></span>
+							<label for="address">Address:</label>
+							<div id="address" style="background-color: #ffffff; border: 2px solid #dce4ec; border-radius: 4px; padding: 10px 15px">
+								<span><?= $address ?></span><br>
+								<span><?= $local ?></span><br>
+								<span><?= $postalCode ?> - <?= $location ?></span><br>
+								<span><?= $country ?></span>
+							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<p><b>Payment Method:</b></p>

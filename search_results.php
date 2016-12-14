@@ -11,6 +11,9 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 		$type = $_GET['type'];
 		$option = $_GET['option'];
 		$term = $_GET['term'];
+
+		
+		
 	} else {
 		header('Location: index.php');
 		die();

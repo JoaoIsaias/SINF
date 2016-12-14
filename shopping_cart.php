@@ -7,6 +7,29 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 	die();
 }
 
+if (isset($_POST['remove'])) {
+	if (isset($_POST['id']) && !empty($_POST['id'])) {
+		deleteFromShoppingCart($_SESSION['user'], $_POST['id']);
+	}
+}
+
+$cart = getShoppingCart($_SESSION['user']);
+
+if (isset($_POST['removeall'])) {
+	for ($i = 0; $i < count($cart); $i++) {
+		deleteFromShoppingCart($_SESSION['user'], $cart[$i]['productId']);
+	}
+}
+
+$products = array();
+$cart = getShoppingCart($_SESSION['user']);
+
+if (count($cart) > 0) {
+	for ($i = 0; $i < count($cart); $i++) {
+		array_push($products, getProductById($cart[$i]['productId']));
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,92 +44,65 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<h2 style="margin-top: 0">Shopping Cart</h2>
-				<div class="table-responsive">
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>
-								<th>Product</th>
-								<th>Stock</th>
-								<th>Quantity</th>
-								<th>Price</th>
-								<th>Subtotal</th>
-								<th>Remove</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product name #1</a></td>
-								<td>In Stock</td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-								<td>
-									<button class="btn btn-danger pull-left">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot style="border-bottom: 2px solid #d5d5d5">
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><b>Total:</b> $24.99</td>
-								<td></td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
+				<?php if (count($cart) === 0) { ?>
+					<div class="alert alert-info" role="alert">
+						<span>Currently, you have no products on the Shopping Cart.</span>
+					</div>
+				<?php } else { ?>
+					<div class="table-responsive">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Stock</th>
+									<th>Quantity</th>
+									<th>Price</th>
+									<th>Subtotal</th>
+									<th>Remove</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php for ($i = 0; $i < count($products); $i++) { ?>
+									<form method="post">
+										<tr>
+											<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->DescArtigo ?></a></td>
+											<?php if ($products[$i]->Stock > 0) { ?>
+												<td>In Stock</td>
+											<?php } else { ?>
+												<td>Not in Stock</td>
+											<?php } ?>
+											<td><?= $cart[$i]['quantity'] ?></td>
+											<td><?= $products[$i]->Preco ?> €</td>
+											<td><?= $cart[$i]['quantity'] * $products[$i]->Preco ?> €</td>
+											<td>
+												<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
+												<button type="submit" name="remove" class="btn btn-danger pull-left">
+													<span class="glyphicon glyphicon-remove"></span>
+												</button>
+											</td>
+										</tr>
+									</form>
+								<?php } ?>
+							</tbody>
+							<tfoot style="border-bottom: 2px solid #d5d5d5">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><b>Total:</b> <?= $total ?></td>
+									<td>
+										<form method="post">
+											<button type="submit" name="removeall" class="btn btn-danger pull-left">
+												<span class="glyphicon glyphicon-remove"></span> Remove All
+											</button>
+										</form>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 		<div class="row text-center" style="margin-bottom: 20px">

@@ -34,11 +34,6 @@ if (isset($tab)) {
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="well">
-					<h3 style="margin-top: 0">Current Information</h3>
-					<p><b>Name: </b>Full Name</p>
-					<p style="margin-bottom: 0"><b>Email: </b> email@email.com</p>
-				</div>
-				<div class="well">
 					<h3 style="margin-top: 0">Lists</h3>
 					<ul style="padding-left: 20px; list-style-type: none">
 						<li>
@@ -49,7 +44,7 @@ if (isset($tab)) {
 						</li>
 					</ul>
 					<h3 style="margin-top: 0">Orders</h3>
-					<ul style="padding-left: 20px; list-style-type: none">
+					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
 						<li>
 							<a href="orders.php?tab=history"><span class="glyphicon glyphicon-list-alt"></span> Order History</a>
 						</li>
@@ -57,19 +52,10 @@ if (isset($tab)) {
 							<a href="orders.php?tab=pending"><span class="glyphicon glyphicon-time"></span> Pending Orders</a>
 						</li>
 					</ul>
-					<h3 style="margin-top: 0">Manage Account</h3>
-					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
-						<li>
-							<a href="manage_account.php?tab=settings"><span class="glyphicon glyphicon-cog"></span> Settings</a>
-						</li>
-						<li>
-							<a href="manage_account.php?tab=address"><span class="glyphicon glyphicon-book"></span> Address Book</a>
-						</li>
-						<li>
-							<a href="manage_account.php?tab=payment"><span class="glyphicon glyphicon-credit-card"></span> Payment Options</a>
-						</li>
-					</ul>
 				</div>
+				<a href="profile.php" class="btn btn-block btn-primary">
+					<span class="glyphicon glyphicon-triangle-left"></span> Back to Profile
+				</a>
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8">
 				<ul class="nav nav-tabs nav-justified">

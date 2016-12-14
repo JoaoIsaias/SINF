@@ -27,15 +27,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 		$list = getWishList($_SESSION['user']);
 		$cart = getShoppingCart($_SESSION['user']);
 
-		// var_dump($list);
-		// var_dump($cart);
-
 		if (count($list) !== 0) {
 			$inList = inWishList($_GET['id'], $list);
 		}
 
 		if (count($list) !== 0) {
-			$inCart = inWishList($_GET['id'], $cart);
+			$inCart = inShoppingCart($_GET['id'], $cart);
 		}
 	}
 
@@ -44,7 +41,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 		header('Location: wish_list.php');
 		die();
 	} else if (isset($_POST['addtocart'])) {
-		echo 'to shopping cart';
+		addToShoppingCart($_SESSION['user'], $_GET['id'], $_POST['quantity']);
+		header('Location: shopping_cart.php');
+		die();
 	}
 } else {
 	header('Location: 404_not_found.php');
@@ -88,7 +87,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 				</div>
 				<div class="well">
 					<div class="row">
-						<div class="col-lg-7 col-md-7 col-sm-7">
+						<div class="col-lg-7 col-md-7 col-sm-7" style="margin-bottom: 20px">
 							<h3 class="pull-right" style="margin: 0 0 5px 0"><?= $price ?>€</h3>
 							<h3 style="margin: 0 0 5px 0">
 								<?= $description ?>
@@ -105,6 +104,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 										<button class="btn btn-primary" name="addtolist" type="submit">
 											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
 										</button>
+										<input type="hidden" name="quantity" value="1">
 										<button class="btn btn-primary pull-right" name="addtocart" type="submit">
 											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 										</button>
@@ -123,6 +123,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 										<button disabled class="btn btn-primary" name="addtolist" type="submit">
 											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
 										</button>
+										<input type="hidden" name="quantity" value="1">
 										<button class="btn btn-primary pull-right" name="addtocart" type="submit">
 											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 										</button>
@@ -145,15 +146,24 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 							<?php } ?>
 						</div>
 						<div class="col-lg-5 col-md-5 col-sm-5">
-							<h3 style="margin-top: 0">Stock</h3>
+							<h3 style="margin-top: 0">Storages</h3>
 							<ul class="list-group" style="margin-bottom: 0">
 								<?php for ($i = 0; $i < count($storages); $i++) { ?>
 									<li class="list-group-item clearfix">
 										<span class="pull-left"><?= $storages[$i]->Descricao ?></span>
 										<span class="badge pull-left" style="margin-left: 10px"><?= $storages[$i]->Stock ?></span>
-										<input class="pull-right" type="number" min="0" max="<?= $storages[$i]->Stock ?>" value="1">
+										<br>
+										<span><?= $storages[$i]->Morada ?></span>
+										<br>
+										<span><?= $storages[$i]->Localidade ?></span>
+										<br>
+										<span><?= $storages[$i]->CodPostal ?> - <?= $storages[$i]->CodPostalLocalidade ?></span>
 									</li>
 								<?php } ?>
+								<li class="list-group-item">
+									<label for="quantity">Quantity:</label>
+									<input id="quantity" type="number" min="1" value="1" class="form-control">
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -227,5 +237,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 		</div>
 	</div>
 	<?php require 'footer.php'; ?>
+	<script src="js/product.js"></script>
 </body>
 </html>

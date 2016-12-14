@@ -213,7 +213,7 @@ function inShoppingCart($id, $cart) {
 function getShoppingCart($userID) {
 	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
-	$stmt = $db->prepare('SELECT productId FROM ShoppingCart WHERE clientId = ?');
+	$stmt = $db->prepare('SELECT productId, quantity FROM ShoppingCart WHERE clientId = ?');
 	$stmt->execute(array($userID));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$db = NULL;
