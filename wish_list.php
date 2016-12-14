@@ -55,7 +55,9 @@ if (count($list) > 0) {
 								<tr>
 									<th>Product</th>
 									<th>Stock</th>
+									<th>IVA</th>
 									<th>Price</th>
+									<th>Price + IVA</th>
 									<th>Remove</th>
 								</tr>
 							</thead>
@@ -69,6 +71,8 @@ if (count($list) > 0) {
 										<?php } else { ?>
 											<td>Not in Stock</td>
 										<?php } ?>
+										<td><?= $products[$i]->Iva ?></td>
+										<td><?= $products[$i]->Preco ?>€</td>
 										<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€</td>
 										<td>
 											<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
@@ -83,6 +87,8 @@ if (count($list) > 0) {
 							<tfoot style="border-bottom: 2px solid #d5d5d5">
 								<form method="post">
 									<tr>
+										<td></td>
+										<td></td>
 										<td></td>
 										<td></td>
 										<td></td>

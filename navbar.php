@@ -78,7 +78,7 @@ if (isset($_SESSION['user'])) {
 								<?php } ?>
 							</ul>
 						</div>
-						<input id="term" type="text" class="form-control" value="<?= $term ?>" placeholder="Search">
+						<input id="search-box" type="text" class="form-control" value="<?= $term ?>" placeholder="Search">
 						<div class="input-group-btn">
 							<button id="submit" type="submit" class="btn btn-default">
 								<span class="glyphicon glyphicon-search"></span>

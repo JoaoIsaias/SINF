@@ -2,23 +2,14 @@
 
 require 'database.php';
 
-$his = '';
-$pen = '';
-$tab = $_GET['tab'];
-
-if (isset($tab)) {
-	if (!empty($tab)) {
-		if ($tab === 'history') {
-			$his = "in active";
-		} else if ($tab === 'pending') {
-			$pen = "in active";
-		}
-	} else {
-		$his = "in active";
-	}
+if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
+	header('Location: index.php');
+	die();
 } else {
-	$his = "in active";
+	$orders = getOrdersById($_SESSION['user']);
 }
+
+var_dump($orders);
 
 ?>
 
@@ -35,21 +26,15 @@ if (isset($tab)) {
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="well">
 					<h3 style="margin-top: 0">Lists</h3>
-					<ul style="padding-left: 20px; list-style-type: none">
+					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
 						<li>
 							<a href="wish_list.php"><span class="glyphicon glyphicon-heart"></span> Wish List</a>
 						</li>
 						<li>
 							<a href="shopping_cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
 						</li>
-					</ul>
-					<h3 style="margin-top: 0">Orders</h3>
-					<ul style="padding-left: 20px; list-style-type: none; margin-bottom: 0">
 						<li>
-							<a href="orders.php?tab=history"><span class="glyphicon glyphicon-list-alt"></span> Order History</a>
-						</li>
-						<li>
-							<a href="orders.php?tab=pending"><span class="glyphicon glyphicon-time"></span> Pending Orders</a>
+							<a href="orders.php"><span class="glyphicon glyphicon-list-alt"></span> Orders</a>
 						</li>
 					</ul>
 				</div>
@@ -58,97 +43,36 @@ if (isset($tab)) {
 				</a>
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8">
-				<ul class="nav nav-tabs nav-justified">
-					<li <?php if (!empty($his)) echo "class=\"active\""; ?>>
-						<a data-toggle="tab" href="#orderHistory">Order History</a>
-					</li>
-					<li <?php if (!empty($pen)) echo "class=\"active\""; ?>>
-						<a data-toggle="tab" href="#pendingOrders">Pending Orders</a>
-					</li>
-				</ul>
-				<div class="well" style="border-top-left-radius: 0; border-top-right-radius: 0">
-					<div class="tab-content">
-						<div id="orderHistory" <?php echo "class=\"tab-pane fade $his\""; ?>>
-							<div class="table-responsive">
-								<table class="table table-striped" style="margin-bottom: 0">
-									<thead>
-										<tr>
-											<th>Order</th>
-											<th>Ordered On</th>
-											<th>Delivered On</th>
-											<th>Paid</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><a href="order_status.php">Order #1</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-										<tr>
-											<td><a href="order_status.php">Order #2</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-										<tr>
-											<td><a href="order_status.php">Order #3</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-										<tr>
-											<td><a href="order_status.php">Order #4</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+				<div class="well">
+					<h2 style="margin-top: 0">Orders</h2>
+					<?php if (count($orders) === 0) { ?>
+						<div class="alert alert-info" role="alert">
+							<span>You have no orders to show.</span>
 						</div>
-						<div id="pendingOrders" <?php echo "class=\"tab-pane fade $pen\""; ?>>
-							<div class="table-responsive">
-								<table class="table table-striped" style="margin-bottom: 0">
-									<thead>
+					<?php } else { ?>
+						<div class="table-responsive" style="background-color: #ffffff">
+							<table class="table table-striped table-hover" style="margin-bottom: 0">
+								<thead>
+									<tr>
+										<th>Order</th>
+										<th>Date</th>
+										<th>State</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for ($i = 0; $i < count($orders); $i++) { ?>
 										<tr>
-											<th>Order</th>
-											<th>Ordered On</th>
-											<th>Due Delivery</th>
-											<th>Paid</th>
+											<td>
+												<a href="order.php?id=<?= $orders[$i]->id ?>">Order #<?= $i + 1 ?></a>
+											</td>
+											<td><?= $orders[$i]->Data ?></td>
+											<td><?= $orders[$i]->Estado ?></td>
 										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><a href="order_status.php">Order #1</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-										<tr>
-											<td><a href="order_status.php">Order #2</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-										<tr>
-											<td><a href="order_status.php">Order #3</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-										<tr>
-											<td><a href="order_status.php">Order #4</a></td>
-											<td>DD/MM/YYYY</td>
-											<td>DD/MM/YYYY</td>
-											<td>$24.99</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+									<?php } ?>
+								</tbody>
+							</table>
 						</div>
-					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

@@ -49,7 +49,7 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 				<?php if ($type === 'both') { ?>
 					<h2 style="margin-top: 0">Search results for "<?= $term ?>"</h2>
 				<?php } else { ?>
-					<h2 style="margin-top: 0">Search results for "<?= $term ?>" in "<?= $option ?>"</h2>
+					<h2 style="margin-top: 0">Search results for "<?= $term ?>"<small> in <?= $type ?> "<?= $option ?>"</small></h2>
 				<?php } ?>
 				<?php if ($results === NULL || count($results) === 0) { ?>
 					<div class="alert alert-warning" role="alert">
@@ -63,7 +63,6 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 									<th>Image</th>
 									<th>Product</th>
 									<th>Price</th>
-									<th>Reviews</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -82,16 +81,6 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 											</h5>
 										</td>
 										<td><h5><?= $results[$i]->Preco ?> €</h5></td>
-										<td>
-											<h5>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span style="margin-left: 5px">5.0 stars</span>
-											</h5>
-										</td>
 									</tr>
 								<?php } ?>
 							</tbody>

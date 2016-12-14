@@ -86,6 +86,20 @@ function getReviewsById($id) {
 	return json_decode($json);
 }
 
+// GET /docvenda/getencomendascliente/{id do cliente}
+function getOrdersById($id) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/docvenda/getencomendascliente/$id/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
 // GET /artigo/getstock/{id do artigo}
 function getStockById($id) {
 	$ch = curl_init();
