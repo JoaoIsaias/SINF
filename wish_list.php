@@ -13,6 +13,8 @@ if (isset($_POST['remove'])) {
 	}
 }
 
+$total = 0;
+$totalIva = 0;
 $list = getWishList($_SESSION['user']);
 
 if (isset($_POST['removeall'])) {
@@ -71,12 +73,12 @@ if (count($list) > 0) {
 										<?php } else { ?>
 											<td>Not in Stock</td>
 										<?php } ?>
-										<td><?= $products[$i]->Iva ?></td>
+										<td><?= $products[$i]->Iva ?>%</td>
 										<td><?= $products[$i]->Preco ?>€</td>
 										<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€</td>
 										<td>
 											<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
-											<button type="submit" name="remove" class="btn btn-danger pull-left">
+											<button type="submit" name="remove" class="btn btn-sm btn-danger pull-left">
 												<span class="glyphicon glyphicon-remove"></span>
 											</button>
 										</td>
@@ -90,10 +92,10 @@ if (count($list) > 0) {
 										<td></td>
 										<td></td>
 										<td></td>
-										<td></td>
-										<td></td>
+										<td><b>Total: </b><?= $total ?>€</td>
+										<td><b>Total (IVA): </b><?= $totalIva ?>€</td>
 										<td>
-											<button type="submit" name="removeall" class="btn btn-danger pull-left">
+											<button type="submit" name="removeall" class="btn btn-sm btn-danger pull-left">
 												<span class="glyphicon glyphicon-remove"></span> Remove All
 											</button>
 										</td>

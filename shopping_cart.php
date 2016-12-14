@@ -13,6 +13,8 @@ if (isset($_POST['remove'])) {
 	}
 }
 
+$total = 0;
+$totalIva = 0;
 $cart = getShoppingCart($_SESSION['user']);
 
 if (isset($_POST['removeall'])) {
@@ -56,8 +58,9 @@ if (count($cart) > 0) {
 									<th>Product</th>
 									<th>Stock</th>
 									<th>Quantity</th>
+									<th>IVA</th>
 									<th>Price</th>
-									<th>Subtotal</th>
+									<th>Price + IVA</th>
 									<th>Remove</th>
 								</tr>
 							</thead>
@@ -72,11 +75,12 @@ if (count($cart) > 0) {
 												<td>Not in Stock</td>
 											<?php } ?>
 											<td><?= $cart[$i]['quantity'] ?></td>
-											<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?> €</td>
-											<td><?= $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0))) ?> €</td>
+											<td><?= $products[$i]->Iva ?>%</td>
+											<td><?= $cart[$i]['quantity'] * $products[$i]->Preco ?>€</td>
+											<td><?= $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0))) ?>€</td>
 											<td>
 												<input type="hidden" name="id" value="<?= $products[$i]->CodArtigo ?>">
-												<button type="submit" name="remove" class="btn btn-danger pull-left">
+												<button type="submit" name="remove" class="btn btn-sm btn-danger pull-left">
 													<span class="glyphicon glyphicon-remove"></span>
 												</button>
 											</td>
@@ -90,10 +94,11 @@ if (count($cart) > 0) {
 									<td></td>
 									<td></td>
 									<td></td>
-									<td><b>Total:</b> <?= $total ?></td>
+									<td><b>Total: </b><?= $total ?>€</td>
+									<td><b>Total (IVA): </b><?= $totalIva ?>€</td>
 									<td>
 										<form method="post">
-											<button type="submit" name="removeall" class="btn btn-danger pull-left">
+											<button type="submit" name="removeall" class="btn btn-sm btn-danger pull-left">
 												<span class="glyphicon glyphicon-remove"></span> Remove All
 											</button>
 										</form>

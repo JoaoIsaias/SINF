@@ -9,8 +9,6 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 	$orders = getOrdersById($_SESSION['user']);
 }
 
-var_dump($orders);
-
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +54,8 @@ var_dump($orders);
 									<tr>
 										<th>Order</th>
 										<th>Date</th>
-										<th>State</th>
+										<th>Time</th>
+										<th>Full Price</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -65,8 +64,9 @@ var_dump($orders);
 											<td>
 												<a href="order.php?id=<?= $orders[$i]->id ?>">Order #<?= $i + 1 ?></a>
 											</td>
-											<td><?= $orders[$i]->Data ?></td>
-											<td><?= $orders[$i]->Estado ?></td>
+											<td><?= explode("T", $orders[$i]->Data)[0] ?></td>
+											<td><?= explode("T", $orders[$i]->Data)[1] ?></td>
+											<td><?= $orders[$i]->Preco ?>€</td>
 										</tr>
 									<?php } ?>
 								</tbody>

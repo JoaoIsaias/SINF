@@ -80,7 +80,7 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 												</a>
 											</h5>
 										</td>
-										<td><h5><?= $results[$i]->Preco ?> €</h5></td>
+										<td><h5><?= $results[$i]->Preco ?>€</h5></td>
 									</tr>
 								<?php } ?>
 							</tbody>
