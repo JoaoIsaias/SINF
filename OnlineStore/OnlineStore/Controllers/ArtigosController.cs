@@ -21,6 +21,24 @@ namespace FirstREST.Controllers
             return response;
         }
 
+        // GET /artigo/get16randartigos
+        public HttpResponseMessage Get16RandArtigos()
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.Lista16RandArtigos());
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
+        // GET /artigo/get32randartigos
+        public HttpResponseMessage Get32RandArtigos()
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.Lista32RandArtigos());
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
         // GET /artigo/getbyid/{id do artigo}
         public HttpResponseMessage GetByID(string param)
         {
