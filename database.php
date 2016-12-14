@@ -158,8 +158,18 @@ function generateNRandomNumbers($n, $max) {
 }
 
 // WishList management - $list[$i]['productId']
+function inWishList($id, $list) {
+	for ($i = 0; $i < count($list); $i++) {
+		if ($list[$i]['productId'] === $id) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 function getWishList($userID) {
-	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
 	$stmt = $db->prepare('SELECT productId FROM WishList WHERE clientId = ?');
 	$stmt->execute(array($userID));
@@ -170,7 +180,7 @@ function getWishList($userID) {
 }
 
 function addToWishList($userID, $productID) {
-	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
 	$stmt = $db->prepare('INSERT INTO WishList (clientId, productId) VALUES (:clientId, :productId)');
 	$stmt->bindParam(':clientId', $userID);
@@ -180,7 +190,7 @@ function addToWishList($userID, $productID) {
 }
 
 function deleteFromWishList($userID, $productID) {
-	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
 	$stmt = $db->prepare('DELETE FROM WishList WHERE clientId = :clientId AND productId = :productId');
 	$stmt->bindParam(':clientId', $userID);
@@ -190,8 +200,18 @@ function deleteFromWishList($userID, $productID) {
 }
 
 // ShoppingCart management - $cart[$i]['productId']
+function inShoppingCart($id, $cart) {
+	for ($i = 0; $i < count($cart); $i++) {
+		if ($cart[$i]['productId'] === $id) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 function getShoppingCart($userID) {
-	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
 	$stmt = $db->prepare('SELECT productId FROM ShoppingCart WHERE clientId = ?');
 	$stmt->execute(array($userID));
@@ -202,7 +222,7 @@ function getShoppingCart($userID) {
 }
 
 function addToShoppingCart($userID, $productID, $quantity) {
-	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
 	$stmt = $db->prepare('INSERT INTO ShoppingCart (clientId, productId, quantity)
 											VALUES (:clientId, :productId, :quantity)');
@@ -214,7 +234,7 @@ function addToShoppingCart($userID, $productID, $quantity) {
 }
 
 function deleteFromShoppingCart($userID, $productID) {
-	$db = new PDO('sqlite:sinf.db') or die('Can not connect to database!');
+	$db = new PDO('sqlite:sqlite_db/sinf.db') or die('Can not connect to database!');
 
 	$stmt = $db->prepare('DELETE FROM ShoppingCart WHERE clientId = :clientId AND productId = :productId');
 	$stmt->bindParam(':clientId', $userID);

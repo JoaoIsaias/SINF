@@ -17,6 +17,35 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$storages = getStockById($_GET['id']);
 	$related = getByCategory($product->Familia);
 	$randomNumbers = generateNRandomNumbers(4, count($related));
+
+	$list = NULL;
+	$cart = NULL;
+	$inList = false;
+	$inCart = false;
+
+	if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+		$list = getWishList($_SESSION['user']);
+		$cart = getShoppingCart($_SESSION['user']);
+
+		// var_dump($list);
+		// var_dump($cart);
+
+		if (count($list) !== 0) {
+			$inList = inWishList($_GET['id'], $list);
+		}
+
+		if (count($list) !== 0) {
+			$inCart = inWishList($_GET['id'], $cart);
+		}
+	}
+
+	if (isset($_POST['addtolist'])) {
+		addToWishList($_SESSION['user'], $_GET['id']);
+		header('Location: wish_list.php');
+		die();
+	} else if (isset($_POST['addtocart'])) {
+		echo 'to shopping cart';
+	}
 } else {
 	header('Location: 404_not_found.php');
 	die();
@@ -66,17 +95,53 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<?php if (!empty($brand)) echo "<small> by $brand</small>"; ?>
 							</h3>
 							<h5 style="margin-top: 0">in <?= $category ?></h5>
-							<span style="color: red; display: block; margin-bottom: 15px">
-								<span>5.0 stars</span>
-								<a href="#reviews" class="pull-right"><?= count($reviews) ?> reviews</a>
-							</span>
 							<?php if ($logon === true) { ?>
-								<button class="btn btn-primary" name="addtowishlist" type="submit">
-									<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
-								</button>
-								<button class="btn btn-primary pull-right">
-									<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
-								</button>
+								<span style="color: red; display: block; margin-bottom: 15px">
+									<span>5.0 stars</span>
+									<a href="#reviews" class="pull-right"><?= count($reviews) ?> reviews</a>
+								</span>
+								<?php if ($inList === false && $inCart === false) { ?>
+									<form method="post">
+										<button class="btn btn-primary" name="addtolist" type="submit">
+											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
+										</button>
+										<button class="btn btn-primary pull-right" name="addtocart" type="submit">
+											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+										</button>
+									</form>
+								<?php } else if ($inList === false && $inCart === true) { ?>
+									<form method="post">
+										<button class="btn btn-primary" name="addtolist" type="submit">
+											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
+										</button>
+										<button disabled class="btn btn-primary pull-right" name="addtocart" type="submit">
+											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+										</button>
+									</form>
+								<?php } else if ($inList === true && $inCart === false) { ?>
+									<form method="post">
+										<button disabled class="btn btn-primary" name="addtolist" type="submit">
+											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
+										</button>
+										<button class="btn btn-primary pull-right" name="addtocart" type="submit">
+											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+										</button>
+									</form>
+								<?php } else { ?>
+									<form method="post">
+										<button disabled class="btn btn-primary" name="addtolist" type="submit">
+											<span class="glyphicon glyphicon-list-alt"></span> Add To Wish List
+										</button>
+										<button disabled class="btn btn-primary pull-right" name="addtocart" type="submit">
+											<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
+										</button>
+									</form>
+								<?php } ?>
+							<?php } else { ?>
+								<span style="color: red; display: block">
+									<span>5.0 stars</span>
+									<a href="#reviews" class="pull-right"><?= count($reviews) ?> reviews</a>
+								</span>
 							<?php } ?>
 						</div>
 						<div class="col-lg-5 col-md-5 col-sm-5">

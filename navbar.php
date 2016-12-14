@@ -2,16 +2,9 @@
 
 $term = '';
 $logon = false;
-$option = 'All';
 
 $brands = getAllBrands();
 $categories = getAllCategories();
-
-if (isset($_GET['option'])) {
-	if (!empty($_GET['option'])) {
-		$option = $_GET['option'];
-	}
-}
 
 if (isset($_GET['term'])) {
 	if (!empty($_GET['term'])) {
@@ -67,16 +60,16 @@ if (isset($_SESSION['user'])) {
 					<div class="input-group">
 						<div class="input-group-btn">
 							<button id="dropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<?= $option ?><span style="margin-left: 5px" class="caret"></span>
+								All<span class="text-hide">|both</span><span style="margin-left: 5px" class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Brands</li>
-								<li><a href="#">All</a></li>
+								<li><a class="brand" href="#">All</a></li>
 								<?php for ($i = 0; $i < count($brands); $i++) { ?>
 									<li><a class="brand" href="#"><?= $brands[$i]->Descricao ?></a></li>
 								<?php } ?>
 								<li class="dropdown-header">Categories</li>
-								<li><a href="#">All</a></li>
+								<li><a class="category" href="#">All</a></li>
 								<?php for ($i = 0; $i < count($categories); $i++) { ?>
 									<?php if ($categories[$i]->IdCategoria !== 'IGNORAR') { ?>
 										<li><a class="category" href="#"><?= $categories[$i]->Descricao ?></a></li>

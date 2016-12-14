@@ -7,7 +7,28 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 	die();
 }
 
-$products = NULL;
+if (isset($_POST['remove'])) {
+	if (isset($_POST['id']) && !empty($_POST['id'])) {
+		deleteFromWishList($_SESSION['user'], $_POST['id']);
+	}
+}
+
+$list = getWishList($_SESSION['user']);
+
+if (isset($_POST['removeall'])) {
+	for ($i = 0; $i < count($list); $i++) {
+		deleteFromWishList($_SESSION['user'], $list[$i]['productId']);
+	}
+}
+
+$products = array();
+$list = getWishList($_SESSION['user']);
+
+if (count($list) > 0) {
+	for ($i = 0; $i < count($list); $i++) {
+		array_push($products, getProductById($list[$i]['productId']));
+	}
+}
 
 ?>
 
@@ -23,7 +44,7 @@ $products = NULL;
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<h2 style="margin-top: 0">Wish List</h2>
-				<?php if ($products === NULL) { ?>
+				<?php if (count($list) === 0) { ?>
 					<div class="alert alert-info" role="alert">
 						<span>Currently, you have no products on the Wish List.</span>
 					</div>
@@ -42,7 +63,7 @@ $products = NULL;
 							<?php for ($i = 0; $i < count($products); $i++) { ?>
 								<form method="post">
 									<tr>
-										<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->Descricao ?></a></td>
+										<td><a href="product.php?id=<?= $products[$i]->CodArtigo ?>"><?= $products[$i]->DescArtigo ?></a></td>
 										<?php if ($products[$i]->Stock > 0) { ?>
 											<td>In Stock</td>
 										<?php } else { ?>

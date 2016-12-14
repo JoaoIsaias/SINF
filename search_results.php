@@ -2,6 +2,24 @@
 
 require 'database.php';
 
+$type = 'both';
+$option = 'All';
+$term = '';
+
+if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
+	if (!empty($_GET['type']) && !empty($_GET['option']) && !empty($_GET['term'])) {
+		$type = $_GET['type'];
+		$option = $_GET['option'];
+		$term = $_GET['term'];
+	} else {
+		header('Location: index.php');
+		die();
+	}
+} else {
+	header('Location: index.php');
+	die();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +32,7 @@ require 'database.php';
 	<?php require 'navbar.php'; ?>
 	<div class="container">
 		<div class="row">
-			<h2 style="margin: 0 0 10px 15px">Search results for ""</h2>
+			<h2 style="margin: 0 0 10px 15px">Search results for "<?= $term ?>"</h2>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<div class="table-responsive">
 					<table class="table table-striped table-hover">
@@ -34,9 +52,7 @@ require 'database.php';
 									</a>
 								</td>
 								<td>
-									<h4>
-										<a href="product.php?id=">Product</a> <small>by Brand in Category</small>
-									</h4>
+									<h4><a href="product.php?id=">Product</a></h4>
 								</td>
 								<td><h4>24.99€</h4></td>
 								<td>
