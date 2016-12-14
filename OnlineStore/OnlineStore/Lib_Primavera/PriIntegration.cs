@@ -509,7 +509,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("Select top 4 Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia = '" + familiaId + "' ORDER BY NEWID()");
+                objList = PriEngine.Engine.Consulta("Select top 2 Artigo, Iva, Descricao, PCPadrao, Familia, Marca, CDU_DirImagem, STKActual From Artigo Where Familia = '" + familiaId + "' ORDER BY NEWID()");
 
                 while (!objList.NoFim())
                 {

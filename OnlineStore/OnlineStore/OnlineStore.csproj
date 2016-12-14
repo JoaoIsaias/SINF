@@ -281,6 +281,7 @@
     <Compile Include="Lib_Primavera\Model\DocVenda.cs" />
     <Compile Include="Lib_Primavera\Model\LinhaDocCompra.cs" />
     <Compile Include="Lib_Primavera\Model\LinhaDocVenda.cs" />
+    <Compile Include="Lib_Primavera\Model\ListaArtigos.cs" />
     <Compile Include="Lib_Primavera\Model\Marca.cs" />
     <Compile Include="Lib_Primavera\Model\RespostaErro.cs" />
     <Compile Include="Lib_Primavera\Model\Review.cs" />

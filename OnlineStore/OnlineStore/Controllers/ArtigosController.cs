@@ -110,8 +110,8 @@ namespace FirstREST.Controllers
             return response;
         }
 
-        // GET /artigo/get4randbycategory/{id da categoria}
-        public HttpResponseMessage Get4RandByCategory(string param)
+        // GET /artigo/get2randbycategory/{id da categoria}
+        public HttpResponseMessage Get2RandByCategory(string param)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.Lista4ArtigosDaCategoriaRand(param));
             response.Headers.Add("Access-Control-Allow-Origin", "*");
