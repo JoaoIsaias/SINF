@@ -66,7 +66,7 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 											</td>
 											<td><?= explode("T", $orders[$i]->Data)[0] ?></td>
 											<td><?= explode("T", $orders[$i]->Data)[1] ?></td>
-											<td><?= $orders[$i]->Preco ?>€</td>
+											<td><?= $orders[$i]->Preco + $orders[$i]->IVA ?>€</td>
 										</tr>
 									<?php } ?>
 								</tbody>
