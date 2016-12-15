@@ -278,5 +278,6 @@ C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\bin\ko\System.Spatial.resources.dll
 C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\bin\ru\System.Spatial.resources.dll
 C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\bin\zh-Hans\System.Spatial.resources.dll
 C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\bin\zh-Hant\System.Spatial.resources.dll
+C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\obj\Debug\OnlineStore.csprojResolveAssemblyReference.cache
 C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\obj\Debug\FirstREST.dll
 C:\MAMP\htdocs\SINF\OnlineStore\OnlineStore\obj\Debug\FirstREST.pdb
