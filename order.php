@@ -106,13 +106,13 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 									<span>10%</span>
 								</div>
 							</div>
-						<?php } else if ($orderState === 'Expedido') { ?>
+						<?php } else if ($orderState === 'Expedida') { ?>
 							<div class="progress" style="background-color: #ffffff; margin-bottom: 0">
 								<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
 									<span>60%</span>
 								</div>
 							</div>
-						<?php } else if ($orderState === 'Completo') { ?>
+						<?php } else if ($orderState === 'Encomenda Completa') { ?>
 							<div class="progress" style="background-color: #ffffff; margin-bottom: 0">
 								<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
 									<span>100%</span>
