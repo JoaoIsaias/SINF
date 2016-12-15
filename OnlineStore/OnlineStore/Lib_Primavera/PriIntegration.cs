@@ -1087,6 +1087,33 @@ namespace FirstREST.Lib_Primavera
             return listdv;
         }
 
+        public static List<Model.DocVenda> GetDadosEncomenda(string idEncomenda)
+        {
+            StdBELista objList;
+            List<Model.DocVenda> listdv = new List<Model.DocVenda>();
+            List<Model.LinhaDocVenda> listlindv = new List<Model.LinhaDocVenda>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT TOP 10 Id, DataGravacao, TotalMerc, TotalIva, Estado, TipoDoc, NumDoc FROM CabecDoc, CabecDocStatus WHERE Id=IdCabecDoc AND TipoDoc='ECL' AND Id='" + idEncomenda + "' ORDER BY DataGravacao DESC");
+                while (!objList.NoFim())
+                {
+                    Model.DocVenda dv = new Model.DocVenda();
+                    dv.id = objList.Valor("Id");
+                    dv.Data = objList.Valor("DataGravacao");
+                    dv.Preco = objList.Valor("TotalMerc") * 0.8;
+                    dv.IVA = objList.Valor("TotalMerc") * 0.2;
+                    dv.Estado = objList.Valor("Estado");
+                    dv.NumDoc = objList.Valor("NumDoc");
+
+                    listdv.Add(dv);
+                    objList.Seguinte();
+                }
+
+            }
+            return listdv;
+        }
+
         public static List<Model.LinhaDocVenda> GetArtigosDaEncomenda(string idEncomenda)
         {
             StdBELista objListLin;

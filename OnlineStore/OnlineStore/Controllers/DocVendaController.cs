@@ -60,6 +60,15 @@ namespace FirstREST.Controllers
             return response;
         }
 
+        // GET /docvenda/getdadosencomenda/{id da encomenda}
+        public HttpResponseMessage GetDadosEncomenda(string param)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Lib_Primavera.PriIntegration.GetDadosEncomenda(param));
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            return response;
+        }
+
         // GET /docvenda/getartigosdaencomenda/{id da encomenda}
         public HttpResponseMessage GetArtigosDaEncomenda(string param)
         {
