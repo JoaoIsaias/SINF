@@ -181,6 +181,34 @@ function getOrderById($id) {
 	return json_decode($json);
 }
 
+// GET /docvenda/getdadosencomenda/{id da encomenda}
+function getOrderDataById($id) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/docvenda/getdadosencomenda/$id/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
+// GET /docvenda/getestadoencomenda/{numero de documento que vem com a encomenda}
+function getOrderState($numDoc) {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/docvenda/getestadoencomenda/$numDoc/");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
 // GET /artigo/getstock/{id do artigo}
 function getStockById($id) {
 	$ch = curl_init();

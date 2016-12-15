@@ -39,7 +39,7 @@ if (isset($_POST['login']) && !empty($_POST['user']) && !empty($_POST['pass'])) 
 							<div class="input-group">
 								<input name="user" type="text" class="form-control text-center" placeholder="Username" required>
 								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-envelope"></span>
+									<span class="glyphicon glyphicon-user"></span>
 								</span>
 							</div>
 						</div>

@@ -73,7 +73,7 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 										<tr>
 											<td>
 												<a href="product.php?id=<?= $results[$i]->CodArtigo ?>">
-													<img src="images/smallImage.png" class="img-responsive" width="65" height="65">
+													<img src="images/<?= $results[$i]->Imagem ?>" class="img-responsive" width="65" height="65">
 												</a>
 											</td>
 											<td>

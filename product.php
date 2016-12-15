@@ -7,6 +7,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 	$description = $product->DescArtigo;
 	$price = $product->Preco;
+	$image = $product->Imagem;
 	$iva = $product->Iva / 100.0;
 	$brand = '';
 
@@ -27,14 +28,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$related = getRelatedProducts($product->Familia);
 	$rating = getProductRating($_GET['id']);
 
-	$minNum = 9999;
 	$maxNum = 0;
-
 	for ($i = 0; $i < count($storages); $i++) {
-		if ($storages[$i]->Stock < $minNum)
-			$minNum = $storages[$i]->Stock;
-		if ($storages[$i]->Stock > $maxNum)
-			$maxNum = $storages[$i]->Stock;
+		$maxNum += $storages[$i]->Stock;
 	}
 
 	if ($rating === NULL)
@@ -93,10 +89,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 						<li data-target="#myCarousel" data-slide-to="3"></li>
 					</ol>
 					<div class="carousel-inner" role="listbox">
-						<div class="item active"><img src="images/bigImage.png" alt="Test"></div>
-						<div class="item"><img src="images/bigImage.png" alt="Test"></div>
-						<div class="item"><img src="images/bigImage.png" alt="Test"></div>
-						<div class="item"><img src="images/bigImage.png" alt="Test"></div>
+						<div class="item active"><img src="images/<?= $image ?>" alt="Test"></div>
+						<div class="item"><img src="images/<?= $image ?>" alt="Test"></div>
+						<div class="item"><img src="images/<?= $image ?>" alt="Test"></div>
+						<div class="item"><img src="images/<?= $image ?>" alt="Test"></div>
 					</div>
 					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -134,7 +130,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 												<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 											</button>
 										</div>
-										<input type="number" name="quantity" min="<?= $minNum ?>" max="<?= $maxNum ?>" class="form-control pull-right" style="width: 100px" value="1">
+										<input type="number" name="quantity" min="1" max="<?= $maxNum ?>" class="form-control pull-right" style="width: 100px" value="1">
 										<span style="padding-top: 10px; margin-right: 5px" class="pull-right"><b>Quantity:</b></span>
 									</form>
 								<?php } else if ($inList === false && $inCart === true) { ?>
@@ -156,7 +152,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 												<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 											</button>
 										</div>
-										<input type="number" name="quantity" min="<?= $minNum ?>" max="<?= $maxNum ?>" class="form-control pull-right" style="width: 100px" value="1">
+										<input type="number" name="quantity" min="1" max="<?= $maxNum ?>" class="form-control pull-right" style="width: 100px" value="1">
 										<span style="padding-top: 10px; margin-right: 5px" class="pull-right"><b>Quantity:</b></span>
 									</form>
 								<?php } else { ?>
@@ -205,7 +201,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 						<?php for ($i = 0; $i < count($related); $i++) { ?>
 							<div class="col-lg-3 col-md-3 col-sm-6">
 								<div class="thumbnail">
-									<img src="images/mediumImage.png" alt="Test">
+									<img src="images/<?= $related[$i]->Imagem ?>" alt="Test">
 									<div class="caption">
 										<h4 style="margin: 0" class="pull-right">
 											<?= $related[$i]->Preco + ($related[$i]->Preco * ($related[$i]->Iva / 100.0)) ?>€
@@ -252,14 +248,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<b>Rating:</b>
 							</span>
 							<input class="form-control pull-left" style="width: 80px" type="number" min="1" max="5" name="rating" required>
-							<button type="submit" class="btn btn-success pull-right">
+							<button type="submit" class="btn btn-success pull-right" <?php if ($logon === false) echo "disabled"; ?>>
 								<span class="glyphicon glyphicon-pencil"></span> Submit
 							</button>
 						</div>
 					</form>
 				<?php } else { ?>
 					<div class="alert alert-info" role="alert">
-						<p style="margin-bottom: 15px">There are no reviews fot this product, currently.</p>
+						<p style="margin-bottom: 15px">There are no reviews for this product, currently.</p>
 					</div>
 					<form method="post">
 						<div class="well clearfix">
@@ -268,7 +264,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<b>Rating:</b>
 							</span>
 							<input class="form-control pull-left" style="width: 80px" type="number" min="1" max="5" name="rating" required>
-							<button type="submit" class="btn btn-success pull-right" <?php if ($logon !== true) echo "disabled"; ?>>
+							<button type="submit" class="btn btn-success pull-right" <?php if ($logon === false) echo "disabled"; ?>>
 								<span class="glyphicon glyphicon-pencil"></span> Submit
 							</button>
 						</div>

@@ -40,6 +40,11 @@ if (count($cart) > 0) {
 		}
 
 		insertOrder($_SESSION['user'], $bought);
+
+		for ($i = 0; $i < count($cart); $i++) {
+			deleteFromShoppingCart($_SESSION['user'], $cart[$i]['productId']);
+		}
+
 		header('Location: orders.php');
 		die();
 	}
@@ -101,8 +106,8 @@ if (count($cart) > 0) {
 									<td></td>
 									<td></td>
 									<td></td>
-									<td><b>Total: </b><?= $total ?></td>
-									<td><b>Total (IVA): </b><?= $totalIva ?></td>
+									<td><b>Total: </b><?= $total ?>€</td>
+									<td><b>Total (IVA): </b><?= $totalIva ?>€</td>
 								</tr>
 							</tfoot>
 						</table>

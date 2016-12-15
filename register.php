@@ -44,6 +44,22 @@ require 'database.php';
 						</div>
 						<div class="form-group">
 							<div class="input-group">
+								<input type="text" class="form-control text-center" placeholder="Tax Number" required>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-credit-card"></span>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control text-center" placeholder="Confirm Tax Number" required>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-credit-card"></span>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
 								<input type="password" class="form-control text-center" placeholder="Password" required>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-lock"></span>
