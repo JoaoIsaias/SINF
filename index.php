@@ -59,7 +59,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 0; $i < 4; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -78,7 +78,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 4; $i < 8; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -97,7 +97,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 8; $i < 12; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -116,7 +116,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 12; $i < 16; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -142,7 +142,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 16; $i < 20; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -161,7 +161,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 20; $i < 24; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -180,7 +180,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 24; $i < 28; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
@@ -199,7 +199,7 @@ if (isset($load) && !empty($load)) {
 			<?php for ($i = 28; $i < 32; $i++) { ?>
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="thumbnail">
-						<img src="images/<?= $products[$i]->Imagem ?>" alt="Test">
+						<img style="height: 230px" src="images/<?= $products[$i]->Imagem ?>" alt="Test">
 						<div class="caption">
 							<h4 style="margin: 0" class="pull-right">
 								<?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€
