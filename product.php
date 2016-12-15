@@ -27,6 +27,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$related = getRelatedProducts($product->Familia);
 	$rating = getProductRating($_GET['id']);
 
+	$minNum = 9999;
+	$maxNum = 0;
+
+	for ($i = 0; $i < count($storages); $i++) {
+		if ($storages[$i]->Stock < $minNum)
+			$minNum = $storages[$i]->Stock;
+		if ($storages[$i]->Stock > $maxNum)
+			$maxNum = $storages[$i]->Stock;
+	}
+
 	if ($rating === NULL)
 		$rating = 0;
 
@@ -124,7 +134,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 												<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 											</button>
 										</div>
-										<input type="number" name="quantity" value="1" class="form-control pull-right" style="width: 100px">
+										<input type="number" name="quantity" min="<?= $minNum ?>" max="<?= $maxNum ?>" class="form-control pull-right" style="width: 100px" value="1">
 										<span style="padding-top: 10px; margin-right: 5px" class="pull-right"><b>Quantity:</b></span>
 									</form>
 								<?php } else if ($inList === false && $inCart === true) { ?>
@@ -146,7 +156,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 												<span class="glyphicon glyphicon-shopping-cart"></span> Add To Shopping Cart
 											</button>
 										</div>
-										<input type="number" name="quantity" value="1" class="form-control pull-right" style="width: 100px">
+										<input type="number" name="quantity" min="<?= $minNum ?>" max="<?= $maxNum ?>" class="form-control pull-right" style="width: 100px" value="1">
 										<span style="padding-top: 10px; margin-right: 5px" class="pull-right"><b>Quantity:</b></span>
 									</form>
 								<?php } else { ?>
@@ -228,7 +238,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<?= $reviews[$i]->Classificacao ?> stars
 							</span>
 							<span style="display: block; margin-bottom: 10px">
-								on <?= $reviews[$i]->Data ?>
+								by <b><?= getUser($reviews[$i]->CodCliente)->NomeCliente ?></b> on <b><?= $reviews[$i]->Data ?></b>
 							</span>
 							<span style="display: block">
 								<?= $reviews[$i]->Comentario ?>
@@ -258,7 +268,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 								<b>Rating:</b>
 							</span>
 							<input class="form-control pull-left" style="width: 80px" type="number" min="1" max="5" name="rating" required>
-							<button type="submit" class="btn btn-success pull-right" <?php if ($logon === true) echo "disabled"; ?>>
+							<button type="submit" class="btn btn-success pull-right" <?php if ($logon !== true) echo "disabled"; ?>>
 								<span class="glyphicon glyphicon-pencil"></span> Submit
 							</button>
 						</div>

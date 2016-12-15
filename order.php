@@ -1,3 +1,29 @@
+<?php
+
+require 'database.php';
+
+if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+	$ids = getOrderById($_GET['id']);
+
+	$total = 0;
+	$totalIva = 0;
+	$products = array();
+
+	for ($i = 0; $i < count($ids); $i++) {
+		array_push($products, getProductById($ids[$i]->CodArtigo));
+	}
+
+	for ($i = 0; $i < count($products); $i++) {
+		$total += $ids[$i]->Quantidade * $products[$i]->Preco;
+		$totalIva += $ids[$i]->Quantidade * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)));
+	}
+} else {
+	header('Location: index.php');
+	die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,50 +36,47 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<h2 style="margin-top: 0">Order #1</h2>
-				<p><b>Ordered on: </b>DD/MM/YYYY</p>
-				<p><b>Due Delivery / Delivered on: </b>DD/MM/YYYY</p>
+				<p><b>Date: </b></p>
 				<div class="table-respnsive">
 					<table class="table table-striped table-hover" style="margin-bottom: 10px">
 						<thead>
 							<tr>
 								<th>Product</th>
 								<th>Quantity</th>
+								<th>IVA</th>
 								<th>Price</th>
+								<th>Price + IVA</th>
 								<th>Subtotal</th>
+								<th>Subtotal (IVA)</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><a href="product.php">Product #1</a></td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product #2</a></td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product #3</a></td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-							</tr>
-							<tr>
-								<td><a href="product.php">Product #4</a></td>
-								<td>1</td>
-								<td>$24.99</td>
-								<td>$24.99</td>
-							</tr>
+							<?php for ($i = 0; $i < count($products); $i++) { ?>
+								<tr>
+									<td>
+										<a href="product.php?id=<?= $products[$i]->CodArtigo ?>">
+											<?= $products[$i]->DescArtigo ?>
+										</a>
+									</td>
+									<td><?= $ids[$i]->Quantidade ?></td>
+									<td><?= $products[$i]->Iva ?>%</td>
+									<td><?= $products[$i]->Preco ?>€</td>
+									<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€</td>
+									<td><?= $ids[$i]->Quantidade * $products[$i]->Preco ?>€</td>
+									<td><?= $ids[$i]->Quantidade * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0))) ?>€</td>
+									<td>
+								</tr>
+							<?php } ?>
 						</tbody>
 						<tfoot>
 							<tr>
 								<td></td>
 								<td></td>
 								<td></td>
-								<td><b>Total: </b>$24.99</td>
+								<td></td>
+								<td></td>
+								<td><b>Total: </b><?= $total ?>€</td>
+								<td><b>Total (IVA): </b><?= $totalIva ?>€</td>
 							</tr>
 						</tfoot>
 					</table>
@@ -82,7 +105,6 @@
 							<p style="margin-bottom: 0">something</p>
 						</div>
 					</div>
-					<h3 style="margin-top: 0">Invoice</h3>
 				</div>
 			</div>
 		</div>

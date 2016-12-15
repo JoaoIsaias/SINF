@@ -29,6 +29,20 @@ if (count($cart) > 0) {
 		$total += $cart[$i]['quantity'] * $products[$i]->Preco;
 		$totalIva += $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)));
 	}
+
+	if (isset($_POST['purchase'])) {
+		$bought = array();
+
+		for ($i = 0; $i < count($products); $i++) {
+			$bought[$i]['CodArtigo'] = $products[$i]->CodArtigo;
+			$bought[$i]['Quantidade'] = $cart[$i]['quantity'];
+			$bought[$i]['PrecoUnitario'] = $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0));
+		}
+
+		insertOrder($_SESSION['user'], $bought);
+		header('Location: orders.php');
+		die();
+	}
 }
 
 ?>
@@ -113,20 +127,20 @@ if (count($cart) > 0) {
 				<?php } ?>
 			</div>
 		</div>
-		<div class="row text-center" style="margin-bottom: 20px">
+		<form method="post" class="text-center" style="margin-bottom: 20px">
 			<a href="shopping_cart.php" class="btn btn-primary">
 				<span class="glyphicon glyphicon-shopping-cart"></span> Back to Shopping Cart
 			</a>
 			<?php if (count($cart) > 0) { ?>
-				<button type="button" class="btn btn-success">
+				<button name="purchase" type="submit" class="btn btn-success">
 					<span class="glyphicon glyphicon-ok"></span> Complete Purchase
 				</button>
 			<?php } else { ?>
-				<button type="button" class="btn btn-success" disabled>
+				<button name="purchase" type="submit" class="btn btn-success" disabled>
 					<span class="glyphicon glyphicon-ok"></span> Complete Purchase
 				</button>
 			<?php } ?>
-		</div>
+		</form>
 	</div>
 	<?php require 'footer.php'; ?>
 </body>
