@@ -1017,7 +1017,6 @@ namespace FirstREST.Lib_Primavera
 
             GcpBELinhasDocumentoVenda myLinhas = new GcpBELinhasDocumentoVenda();
 
-            PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
             List<Model.LinhaDocVenda> lstlindv = new List<Model.LinhaDocVenda>();
 
             try
@@ -1026,18 +1025,18 @@ namespace FirstREST.Lib_Primavera
                 {
                     myEnc.set_DataDoc(dv.Data);
                     myEnc.set_Entidade(dv.Entidade);
-                    myEnc.set_Serie(dv.Serie);
                     myEnc.set_Tipodoc("ECL");
                     myEnc.set_TipoEntidade("C");
                     lstlindv = dv.LinhasDoc;
                     PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myEnc);
+
                     foreach (Model.LinhaDocVenda lin in lstlindv)
                     {
-                        PriEngine.Engine.Comercial.Vendas.AdicionaLinha(myEnc, lin.CodArtigo, lin.Quantidade, "", "", lin.PrecoUnitario, lin.Desconto);
+                        PriEngine.Engine.Comercial.Vendas.AdicionaLinha(myEnc, lin.CodArtigo, lin.Quantidade, "", "", lin.PrecoUnitario, 0, "", 0, 0, 0, 0, 0, 0, 0, true, false, 0);
                     }
 
                     PriEngine.Engine.IniciaTransaccao();
-                    PriEngine.Engine.Comercial.Vendas.Actualiza(myEnc);
+                    PriEngine.Engine.Comercial.Vendas.Actualiza(myEnc, "Teste");
                     PriEngine.Engine.TerminaTransaccao();
                     erro.Erro = 0;
                     erro.Descricao = "Sucesso";
@@ -1075,8 +1074,8 @@ namespace FirstREST.Lib_Primavera
                     Model.DocVenda dv = new Model.DocVenda();
                     dv.id = objList.Valor("Id");
                     dv.Data = objList.Valor("DataGravacao");
-                    dv.Preco = objList.Valor("TotalMerc");
-                    dv.IVA = objList.Valor("TotalIva");
+                    dv.Preco = objList.Valor("TotalMerc") * 0.8;
+                    dv.IVA = objList.Valor("TotalMerc") * 0.2;
                     dv.Estado = objList.Valor("Estado");
                     dv.NumDoc = objList.Valor("NumDoc");
 
@@ -1096,7 +1095,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListLin = PriEngine.Engine.Consulta("SELECT Artigo, Descricao, Quantidade from LinhasDoc where IdCabecDoc='" + idEncomenda + "'");
+                objListLin = PriEngine.Engine.Consulta("SELECT Artigo, Descricao, Quantidade, PrecoLiquido as PrecoTotal from LinhasDoc where IdCabecDoc='" + idEncomenda + "'");
                 listlindv = new List<Model.LinhaDocVenda>();
 
                 while (!objListLin.NoFim())
@@ -1104,6 +1103,7 @@ namespace FirstREST.Lib_Primavera
                     lindv = new Model.LinhaDocVenda();
                     lindv.CodArtigo = objListLin.Valor("Artigo");
                     lindv.Quantidade = objListLin.Valor("Quantidade");
+                    lindv.PrecoTotal = objListLin.Valor("PrecoTotal");
                     listlindv.Add(lindv);
                     objListLin.Seguinte();
                 }
@@ -1122,35 +1122,35 @@ namespace FirstREST.Lib_Primavera
 
                 if (objList1.Vazia())
                 {
-                    return numeroDoc;
+                    return "Encomendado";
                 }
 
                 objList2 = PriEngine.Engine.Consulta("SELECT TOP(1) CabecDoc.TipoDoc, CabecDoc.NumDoc, Estado FROM  PRIDEMOSINF.dbo.CabecDocStatus, PRIDEMOSINF.dbo.CabecDoc CabecDoc_1 INNER JOIN PRIDEMOSINF.dbo.LinhasDoc LinhasDoc_1 ON CabecDoc_1.Id = LinhasDoc_1.IdCabecDoc LEFT OUTER JOIN PRIDEMOSINF.dbo.LinhasDocTrans ON LinhasDoc_1.Id = LinhasDocTrans.IdLinhasDocOrigem RIGHT OUTER JOIN PRIDEMOSINF.dbo.CabecDoc INNER JOIN PRIDEMOSINF.dbo.LinhasDoc ON CabecDoc.Id = LinhasDoc.IdCabecDoc ON LinhasDocTrans.IdLinhasDoc = LinhasDoc.Id WHERE (CabecDoc_1.TipoDoc = 'GR') AND (CabecDoc_1.NumDoc = " + objList1.Valor("NumDoc") + ") AND Estado = 'T'");
 
-                if (objList2.Valor("TipoDoc").Equals("FA"))
+                if (objList2.Vazia())
                 {
-                    return "Completa";
-                }
-                else if (objList2.Valor("TipoDoc").Equals("FAI"))
-                {
-                    return "Completa";
-                }
-                else if (objList1.Valor("TipoDoc").Equals("GR"))
-                {
-                    return "Expedida";
-                }
-                else if (objList1.Valor("TipoDoc").Equals("FA"))
-                {
-                    return "Completa";
-                }
-                else if (objList1.Valor("TipoDoc").Equals("FAI"))
-                {
-                    return "Completa";
+                    if (objList1.Valor("TipoDoc").Equals("GR"))
+                    {
+                        return "Expedida";
+                    }
+                    else if (objList1.Valor("TipoDoc").Equals("FA"))
+                    {
+                        return "Encomenda Completa";
+                    }
                 }
                 else
                 {
-                    return "Erro";
+                    if (objList2.Valor("TipoDoc").Equals("GR"))
+                    {
+                        return "Expedida";
+                    }
+                    else if (objList2.Valor("TipoDoc").Equals("FA"))
+                    {
+                        return "Encomenda Completa";
+                    }
                 }
+
+                return "Erro";
             }
             else
             {

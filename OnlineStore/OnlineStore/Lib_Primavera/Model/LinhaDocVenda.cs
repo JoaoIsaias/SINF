@@ -28,9 +28,15 @@ namespace FirstREST.Lib_Primavera.Model
         }
 
          public double PrecoUnitario
-        {
-            get;
-            set;
-        }
+         {
+             get;
+             set;
+         }
+
+         public double PrecoTotal
+         {
+             get;
+             set;
+         }
     }
 }
