@@ -16,6 +16,34 @@ function printStars($stars) {
 	}
 }
 
+// GET /artigo/get16randartigos
+function get16RandProducts() {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/get16randartigos");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
+// GET /artigo/get32randartigos
+function get32RandProducts() {
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, "http://localhost:49314/artigo/get32randartigos");
+
+	$json = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($json);
+}
+
 // GET /artigo/getbyid/{id do artigo}
 function getProductById($id) {
 	$ch = curl_init();
@@ -84,6 +112,44 @@ function getReviewsById($id) {
 	curl_close($ch);
 
 	return json_decode($json);
+}
+
+// POST /review/insertreview
+function insertReview($productId, $clientId, $rating, $comment, $date) {
+	$data = array("CodArtigo" => $productId,
+				  "CodCliente" => $clientId,
+				  "Classificacao" => $rating,
+				  "Comentario" => $comment,
+				  "Data" => $date);
+	$json = json_encode($data);
+	$ch = curl_init("http://localhost:49314/review/insertreview");
+
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json)));
+
+	$result = curl_exec($ch);
+	curl_close($ch);
+
+	return $result;
+}
+
+// POST /docvenda/insereencomenda
+function insertOrder() {
+	/*$data = array();
+	$json = json_encode($data);
+	$ch = curl_init("http://localhost:49314/docvenda/insereencomenda");
+
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json)));
+
+	$result = curl_exec($ch);
+	curl_close($ch);
+
+	return $result;*/
 }
 
 // GET /docvenda/getencomendascliente/{id do cliente}

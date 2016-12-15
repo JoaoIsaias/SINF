@@ -16,12 +16,18 @@ $location = $user->Localidade;
 $country = $user->Pais;
 
 $total = 0;
+$totalIva = 0;
 $products = array();
 $cart = getShoppingCart($_SESSION['user']);
 
 if (count($cart) > 0) {
 	for ($i = 0; $i < count($cart); $i++) {
 		array_push($products, getProductById($cart[$i]['productId']));
+	}
+
+	for ($i = 0; $i < count($products); $i++) {
+		$total += $cart[$i]['quantity'] * $products[$i]->Preco;
+		$totalIva += $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)));
 	}
 }
 
@@ -50,8 +56,11 @@ if (count($cart) > 0) {
 								<tr>
 									<th>Product</th>
 									<th>Quantity</th>
+									<th>IVA</th>
 									<th>Price</th>
+									<th>Price + IVA</th>
 									<th>Subtotal</th>
+									<th>Subtotal (IVA)</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -63,8 +72,11 @@ if (count($cart) > 0) {
 											</a>
 										</td>
 										<td><?= $cart[$i]['quantity'] ?></td>
-										<td><?= $products[$i]->Preco ?> €</td>
-										<td><?= $cart[$i]['quantity'] * $products[$i]->Preco ?> €</td>
+										<td><?= $products[$i]->Iva ?>%</td>
+										<td><?= $products[$i]->Preco ?>€</td>
+										<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€</td>
+										<td><?= $cart[$i]['quantity'] * $products[$i]->Preco ?>€</td>
+										<td><?= $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0))) ?>€</td>
 									</tr>
 								<?php } ?>
 							</tbody>
@@ -73,7 +85,10 @@ if (count($cart) > 0) {
 									<td></td>
 									<td></td>
 									<td></td>
+									<td></td>
+									<td></td>
 									<td><b>Total: </b><?= $total ?></td>
+									<td><b>Total (IVA): </b><?= $totalIva ?></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -81,7 +96,7 @@ if (count($cart) > 0) {
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="well">
-								<h3 style="margin-top: 0">Send to:</h3>
+								<h4 style="margin-top: 0">Send to:</h4>
 								<span><?= $address ?></span><br>
 								<span><?= $local ?></span><br>
 								<span><?= $postalCode ?> - <?= $location ?></span><br>
@@ -90,8 +105,8 @@ if (count($cart) > 0) {
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="well">
-								<h3 style="margin-top: 0">Payment Method:</h3>
-								
+								<h4 style="margin-top: 0">Payment Method:</h4>
+								<span>Cash Payment</span>
 							</div>
 						</div>
 					</div>
@@ -103,13 +118,13 @@ if (count($cart) > 0) {
 				<span class="glyphicon glyphicon-shopping-cart"></span> Back to Shopping Cart
 			</a>
 			<?php if (count($cart) > 0) { ?>
-				<a href="#" class="btn btn-success">
+				<button type="button" class="btn btn-success">
 					<span class="glyphicon glyphicon-ok"></span> Complete Purchase
-				</a>
+				</button>
 			<?php } else { ?>
-				<a href="#" class="btn btn-success" disabled>
+				<button type="button" class="btn btn-success" disabled>
 					<span class="glyphicon glyphicon-ok"></span> Complete Purchase
-				</a>
+				</button>
 			<?php } ?>
 		</div>
 	</div>

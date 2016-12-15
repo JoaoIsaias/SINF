@@ -62,26 +62,32 @@ if (isset($_GET['type']) && isset($_GET['option']) && isset($_GET['term'])) {
 								<tr>
 									<th>Image</th>
 									<th>Product</th>
+									<th>IVA</th>
 									<th>Price</th>
+									<th>Price + IVA</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php for ($i = 0; $i < count($results); $i++) { ?>
-									<tr>
-										<td>
-											<a href="product.php?id=<?= $results[$i]->CodArtigo ?>">
-												<img src="images/smallImage.png" class="img-responsive" width="65" height="65">
-											</a>
-										</td>
-										<td>
-											<h5>
+									<?php if ($results[$i]->Familia !== 'IGNORAR' && $results[$i]->Marca !== '(S/MARCA)') { ?>
+										<tr>
+											<td>
 												<a href="product.php?id=<?= $results[$i]->CodArtigo ?>">
-													<?= $results[$i]->DescArtigo ?>
+													<img src="images/smallImage.png" class="img-responsive" width="65" height="65">
 												</a>
-											</h5>
-										</td>
-										<td><h5><?= $results[$i]->Preco ?>€</h5></td>
-									</tr>
+											</td>
+											<td>
+												<h5>
+													<a href="product.php?id=<?= $results[$i]->CodArtigo ?>">
+														<?= $results[$i]->DescArtigo ?>
+													</a>
+												</h5>
+											</td>
+											<td><h5>20%</h5></td>
+											<td><h5><?= $results[$i]->Preco ?>€</h5></td>
+											<td><h5><?= $results[$i]->Preco + ($results[$i]->Preco * 0.2) ?>€</h5></td>
+										</tr>
+									<?php } ?>
 								<?php } ?>
 							</tbody>
 						</table>

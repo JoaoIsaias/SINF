@@ -86,7 +86,7 @@ if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<label for="payment">Payment Method:</label>
 							<div id="payment" style="background-color: #ffffff; border: 2px solid #dce4ec; border-radius: 4px; padding: 10px 15px">
-								<span>Paypal / Credit or Debit Card</span>
+								<span>Cash Payment</span>
 							</div>
 						</div>
 					</div>

@@ -30,6 +30,11 @@ if (count($list) > 0) {
 	for ($i = 0; $i < count($list); $i++) {
 		array_push($products, getProductById($list[$i]['productId']));
 	}
+
+	for ($i = 0; $i < count($products); $i++) {
+		$total += $products[$i]->Preco;
+		$totalIva += $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0));
+	}
 }
 
 ?>

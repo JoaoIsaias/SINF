@@ -13,6 +13,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	if (!empty($product->Marca))
 		$brand = getBrandById($product->Marca);
 
+	if (isset($_POST['comment']) && !empty($_POST['comment'])) {
+		if (isset($_POST['rating']) && !empty($_POST['rating'])) {
+			insertReview($_GET['id'], $_SESSION['user'], $_POST['rating'], $_POST['comment'], date("Y-m-d H:i:s"));
+			header('Location: product.php?id=' . $_GET['id']);
+			die();
+		}
+	}
+
 	$category = getCategoryById($product->Familia);
 	$reviews = getReviewsById($_GET['id']);
 	$storages = getStockById($_GET['id']);
@@ -204,7 +212,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 					</div>
 				<?php } else { ?>
 					<div class="alert alert-info" role="alert">
-						<p style="margin-bottom: 15px">There are no related products, currently.</p>
+						<p>There are no related products, currently.</p>
 					</div>
 				<?php } ?>
 			</div>
@@ -216,22 +224,45 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 					<?php for ($i = 0; $i < count($reviews); $i++) { ?>
 						<div class="well">
 							<span style="display: block">
-								<!-- print stars -->
-								<!-- print how long ago -->
+								<?php printStars($reviews[$i]->Classificacao); ?>
+								<?= $reviews[$i]->Classificacao ?> stars
 							</span>
 							<span style="display: block; margin-bottom: 10px">
-								<!-- who and date -->
+								on <?= $reviews[$i]->Data ?>
 							</span>
 							<span style="display: block">
-								<!-- comment -->
+								<?= $reviews[$i]->Comentario ?>
 							</span>
 						</div>
 					<?php } ?>
+					<form method="post">
+						<div class="well clearfix">
+							<textarea name="comment" style="resize: vertical; margin-bottom: 20px" class="form-control" placeholder="Leave a review..." rows="6" required></textarea>
+							<span class="pull-left" style="padding-top: 10px; margin-right: 5px">
+								<b>Rating:</b>
+							</span>
+							<input class="form-control pull-left" style="width: 80px" type="number" min="1" max="5" name="rating" required>
+							<button type="submit" class="btn btn-success pull-right">
+								<span class="glyphicon glyphicon-pencil"></span> Submit
+							</button>
+						</div>
+					</form>
 				<?php } else { ?>
 					<div class="alert alert-info" role="alert">
 						<p style="margin-bottom: 15px">There are no reviews fot this product, currently.</p>
-						<button type="button" class="btn btn-primary">Be the first to leave one</button>
 					</div>
+					<form method="post">
+						<div class="well clearfix">
+							<textarea name="comment" style="resize: vertical; margin-bottom: 20px" class="form-control" placeholder="Leave a review..." rows="6" required></textarea>
+							<span class="pull-left" style="padding-top: 10px; margin-right: 5px">
+								<b>Rating:</b>
+							</span>
+							<input class="form-control pull-left" style="width: 80px" type="number" min="1" max="5" name="rating" required>
+							<button type="submit" class="btn btn-success pull-right" <?php if ($logon === true) echo "disabled"; ?>>
+								<span class="glyphicon glyphicon-pencil"></span> Submit
+							</button>
+						</div>
+					</form>
 				<?php } ?>
 			</div>
 		</div>

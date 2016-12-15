@@ -30,6 +30,11 @@ if (count($cart) > 0) {
 	for ($i = 0; $i < count($cart); $i++) {
 		array_push($products, getProductById($cart[$i]['productId']));
 	}
+
+	for ($i = 0; $i < count($products); $i++) {
+		$total += $cart[$i]['quantity'] * $products[$i]->Preco;
+		$totalIva += $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)));
+	}
 }
 
 ?>
@@ -61,6 +66,8 @@ if (count($cart) > 0) {
 									<th>IVA</th>
 									<th>Price</th>
 									<th>Price + IVA</th>
+									<th>Subtotal</th>
+									<th>Subtotal (IVA)</th>
 									<th>Remove</th>
 								</tr>
 							</thead>
@@ -76,6 +83,8 @@ if (count($cart) > 0) {
 											<?php } ?>
 											<td><?= $cart[$i]['quantity'] ?></td>
 											<td><?= $products[$i]->Iva ?>%</td>
+											<td><?= $products[$i]->Preco ?>€</td>
+											<td><?= $products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0)) ?>€</td>
 											<td><?= $cart[$i]['quantity'] * $products[$i]->Preco ?>€</td>
 											<td><?= $cart[$i]['quantity'] * ($products[$i]->Preco + ($products[$i]->Preco * ($products[$i]->Iva / 100.0))) ?>€</td>
 											<td>
@@ -90,6 +99,8 @@ if (count($cart) > 0) {
 							</tbody>
 							<tfoot style="border-bottom: 2px solid #d5d5d5">
 								<tr>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
